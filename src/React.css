@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.form {
+  width: 450px;
+
+}
+
+.main {
+  height: 800px;
+}
+
+body {
+
+  overflow-x: hidden;
+}
+
+.para {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Add these styles to your CSS or Tailwind CSS configuration */
+.group-hover\:opacity-100:hover {
+  opacity: 100;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  width: 300px;
+  text-align: center;
+  height: 50px;
+}
+
+/* YourComponent.css */
+
+/* Initial state of the icon */
+.icon-svg {
+  stroke: #787878;
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease-in-out;
+}
+
+
+.costum {
+  gap: 85rem;
+}
+
+.area {
+  width: 90rem;
+  height: 25rem;
+}
+
+.react {
+  transition-property: opacity;
+  width: 300px;
+  text-align: center;
+  height: 100px;
+}
+
+/* Scroll */
+@media (max-width: 770px) {
+  .overflow-x-auto::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* or any other background color you prefer */
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background-color: #279C70;
+    /* Replace 'your-meta-3-color' with your desired color */
+    border-radius: 10px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background-color: #279C70;
+  }
+}
+
+.Adsalomn {
+  width: 530px;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-40 {
+  z-index: 40;
+}
+@media (max-width: 1780px) {
+  .back {
+    width: 90rem;
+  }
+}
+
+@media (max-width: 1680px) {
+  .back {
+    width: 80rem;
+  }
+}
+
+@media (max-width: 1480px) {
+  .back {
+
+    width: 80rem;
+  }
+}
+
+@media (max-width: 1480px) {
+  .back {
+
+    width: 70rem;
+  }
+}
+
+@media (max-width: 1380px) {
+  .back {
+
+    width: 60rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .back {
+
+    width: 60rem;
+  }
+}
+
+@media (max-width: 1180px) {
+  .back {
+
+    width: 55rem;
+  }
+}
+
+@media (max-width: 888px) {
+  .back {
+
+    width: 40rem;
+  }
+}
+
+@media (max-width: 788px) {
+  .back {
+
+    width: 40rem;
+  }
+}
+
+@media (max-width: 688px) {
+  .back {
+
+    width: 35rem;
+  }
+}
+
+@media (max-width: 588px) {
+  .back {
+
+    width: 30rem;
+  }
+}
+
+@media (max-width: 488px) {
+  .back {
+
+    width: 25rem;
+  }
+}
+
+@media (max-width: 1680px) {
+  .hello {
+
+    width: 25rem;
+
+  }
+}
+
+@media (max-width: 1440px) {
+  .hello {
+
+    width: 22rem;
+
+  }
+}
+
+@media (max-width: 767px) {
+  .chart-container {
+    width: 50% !important;
+    margin-left: 20px;
+
+  }
+}
+
+@media (max-width: 767px) {
+  .heading {
+    font-weight: bolder;
+    margin-top: 12px;
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 667px) {
+  .new {
+
+    width: 350px;
+    margin-left: -10px;
+  }
+
+  .but {
+
+    width: 130px;
+  }
+
+  .forget {
+
+    width: 260px;
+    margin-left: 50px;
+    margin-left: 65px;
+  }
+
+  .font {
+    margin-left: 60px;
+    font-size: 32px;
+    font-weight: bolder;
+  }
+
+}
+
+@media (max-width: 667px) {
+  .one {
+
+    width: 260px;
+    margin-left: 23px;
+
+  }
+}
