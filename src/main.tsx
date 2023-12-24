@@ -19,32 +19,39 @@ import Loader from './Loader';
 import Faq from './pages/Faq';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import { Provider } from 'react-redux';
+import { store } from './redux/store.tsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-      <Route path="/Loader" element={<Loader />} />
+    <Provider store={store}>
+      <ToastContainer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Loader" element={<Loader />} />
 
-        <Route path="/" element={<Form />} />
-        <Route path="/password" element={<Password />} />
-      
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Users" element={<Users />} />
-        <Route path="/Info" element={<Info/>} />
- 
-        <Route path="/Categories" element={<Categories />} />
-        <Route path="/Products" element={<Products />} />
-        <Route path="/productinfo" element={<ProductsInfo/>} />
-        <Route path="/Orders" element={<Orders />} />
-        <Route path="/Chats" element={<Chats />} />
-      
-        <Route path="/Reports" element={<Reports/>} />
-        <Route path="/Transaction" element={<Transaction/>} />
-        <Route path="/Faq" element={<Faq/>} />
-        <Route path="/Terms" element={<Terms/>} />
-        <Route path="/Privacy" element={<Privacy/>} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="/" element={<Form />} />
+          <Route path="/password" element={<Password />} />
+
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Users" element={<Users />} />
+          <Route path="/Info" element={<Info />} />
+
+          <Route path="/Categories" element={<Categories />} />
+          <Route path="/Products" element={<Products />} />
+          <Route path="/productinfo" element={<ProductsInfo />} />
+          <Route path="/Orders" element={<Orders />} />
+          <Route path="/Chats" element={<Chats />} />
+
+          <Route path="/Reports" element={<Reports />} />
+          <Route path="/Transaction" element={<Transaction />} />
+          <Route path="/Faq" element={<Faq />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/Privacy" element={<Privacy />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

@@ -2,13 +2,27 @@
 import React, { useState, useEffect } from 'react';
 import unsplash from '../assets/Rectangle 326 (3) copy.png';
 import { Outlet, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { forgotPassword } from '../redux/Auth/authAction'
 
 const Password = () => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
+    console.log('wroking')
     setShowContent(true);
   }, []);
+  const [email, setEmail] = useState('')
+  const dispatch: AppDispatch = useDispatch();
+  let user = useSelector((state: RootState) => state.auth.user);
+  let isMailSend = useSelector((state: RootState) => state.auth.isMailSend);
+  const sendEmailForReset = () => {
+      const mailData = {
+          email: email
+      }
+      dispatch(forgotPassword(mailData))
+  }
   const themes = {
     current: 'currentColor',
     transparent: 'transparent',
@@ -63,7 +77,8 @@ const Password = () => {
           <h2 className="text-4xl font-bold leading-9 tracking-tight font text-gray-800">Forgot Password</h2>
         </div>
         <div className={`mt-10 sm:mx-auto sm:w-full sm:max-w-sm ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
-          <form className="space-y-6 forget" action="#" method="POST">
+          {/* <form className="space-y-6 forget"> */}
+            <div className="space-y-6 forget">
             <div>
               <div className="flex items-center justify-between">
                 <label htmlFor="email" className="block text-sm font-bold leading-6 text-gray-2 ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}">Email</label>
@@ -73,6 +88,8 @@ const Password = () => {
                   id="email"
                   name="Email"
                   type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   autoComplete="current-password"
                   required
                   className="bg-bodydark text-black outline-none p-3 border-2 border-gray-2 rounded-xl shadow-inner placeholder-gray-2 focus:ring-primary sm:text-sm sm:leading-6 w-full opacity-60"
@@ -80,11 +97,12 @@ const Password = () => {
               </div>
             </div>
             <div className={`ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
-              <button type="submit" className="text-white tracking-wider flex w-full justify-center rounded-md bg-meta-3 px-7 py-4 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">Recover Password</button>
+              <button onClick={sendEmailForReset} className="text-white tracking-wider flex w-full justify-center rounded-md bg-meta-3 px-7 py-4 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">Recover Password</button>
               <br />
               <Link to={`/`} className="mt-10 text-sm text-meta-3 tracking-wider bold ">Back to login</Link>
             </div>
-          </form>
+            </div>
+          {/* </form> */}
         </div>
       </div>
     </div>

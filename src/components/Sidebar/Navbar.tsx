@@ -1,5 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../../redux/store';
+import { logout } from '../../redux/Auth/authReducer';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -14,7 +17,7 @@ const Header = (props: {
     padding: '10px',
     backgroundColor: 'white',
   };
-
+  const dispatch: AppDispatch = useDispatch();
   const rightContentStyle = {
     marginLeft: 'auto', // Pushes the content to the right
   };
@@ -22,7 +25,11 @@ const Header = (props: {
   const navigateToPage = () => {
     navigate('/');
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <header className=" top-0 z-999 flex" style={headerStyle}>
@@ -48,7 +55,7 @@ const Header = (props: {
         <path d="M15.0001 12H3.62012" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M5.85 8.6499L2.5 11.9999L5.85 15.3499" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <span className="ml-2">Logout</span>
+      <span onClick={handleLogout}  className="ml-2">Logout</span>
     </button>
       </div>
     </header>
