@@ -23,6 +23,8 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store.tsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResetPassword from "./pages/ResetPassword"
+import Otp from "./pages/Otp"
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -34,6 +36,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
           <Route path="/" element={<Form />} />
           <Route path="/password" element={<Password />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
+          <Route path="/otpVerification" element={<Otp />} />
 
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Users" element={<Users />} />
