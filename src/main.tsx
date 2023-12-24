@@ -19,7 +19,8 @@ import Loader from './Loader';
 import Faq from './pages/Faq';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
-
+import ResetPassword from "./pages/ResetPassword"
+import Otp from "./pages/Otp"
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -28,6 +29,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
         <Route path="/" element={<Form />} />
         <Route path="/password" element={<Password />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/otpVerification" element={<Otp />} />
       
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Users" element={<Users />} />
