@@ -33,11 +33,11 @@ export const forgotPassword = createAsyncThunk(
     async (userData: any, { rejectWithValue }) => {
         try {
             const response = await axios.post(authForgotPassword, userData); 
-            // toast.success(response.data.message);
+            toast.success(response.data.message);
             return response.data;
         } catch (error : any) {
             if (error.response) {
-                // toast.error(error.response.data.message || "Some Error Occur");
+                toast.error(error.response.data.message || "Some Error Occur");
                 return rejectWithValue(error.response.data);
             } else {
                 toast.error("Network error");
