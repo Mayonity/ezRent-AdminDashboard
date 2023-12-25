@@ -10,7 +10,6 @@ const Password = () => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    console.log('wroking')
     setShowContent(true);
   }, []);
   const [email, setEmail] = useState('')
