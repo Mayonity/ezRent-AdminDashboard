@@ -1,83 +1,106 @@
 
 import React, { useState, useEffect } from 'react';
 import unsplash from '../assets/Rectangle 326 (3) copy.png';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useSearchParams,useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { resetPassword } from '../redux/Auth/authAction';
 
 const Password = () => {
-    const [showContent, setShowContent] = useState(false);
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showContent, setShowContent] = useState(false)
+  const user_id = searchParams.get('user_id')
+  const token = searchParams.get('token')
+  const dispatch: AppDispatch = useDispatch();
+  let success = useSelector((state: RootState) => state.auth.success);
+  const updatePassword = () => {
+    const updatePasswordData = {
+      user_id: user_id,
+      token: token,
+      password: password,
+      confirm_password: confirmPassword
+    }
+    dispatch(resetPassword(updatePasswordData))
+  }
 
-    useEffect(() => {
-        setShowContent(true);
-    }, []);
-    const themes = {
-        current: 'currentColor',
-        transparent: 'transparent',
-        white: '#FFFFFF',
-        black: '#1C2434',
-        'black-2': '#010101',
-        body: '#64748B',
-        bodydark: '#F1F5F9',
-        bodydark1: '#DEE4EE',
-        bodydark2: '#8A99AF',
-        primary: '#3C50E0',
-        secondary: '#80CAEE',
-        stroke: '#E2E8F0',
-        gray: '#EFF4FB',
-        graydark: '#333A48',
-        'gray-2': '#787878',
-        'gray-3': '#FAFAFA',
-        whiten: '#F1F5F9',
-        whiter: '#F5F7FD',
-        boxdark: '#24303F',
-        'boxdark-2': '#1A222C',
-        strokedark: '#2E3A47',
-        'form-strokedark': '#3d4d60',
-        'form-input': '#1d2a39',
-        'meta-1': '#DC3545',
-        'meta-2': '#EFF2F7',
-        'meta-3': '#10B981',
-        'meta-4': '#313D4A',
-        'meta-5': '#259AE6',
-        'meta-6': '#FFBA00',
-        'meta-7': '#FF6766',
-        'meta-8': '#F0950C',
-        'meta-9': '#E5E7EB',
-        success: '#13795B',
-        danger: '#D34053',
-        warning: '#FFA70B',
-    };
-    return (
-        <div className="flex items-center justify-center min-h-screen">
-            <div className='flex items-center justify-center rounded-xl shadow'>
-                <div className={`rounded-xl  transform ${showContent ? 'scale-100' : 'scale-75'} transition-transform ease-in-out duration-500`} style={{ overflow: 'hidden' }}>
-                    <img
-                        src={unsplash}
-                        alt="Description of the image"
-                        width="566"
-                        height="auto"
-                        className={`rounded-xl hidden lg:block`}
-                    />
-                </div>
-                <div className="flex flex-col justify-center items-center h-screen ">
+  useEffect(() => {
+    setShowContent(true);
+    if (success) {
+    navigate('/');
+    }
+  }, [success,navigate]);
+  const themes = {
+    current: 'currentColor',
+    transparent: 'transparent',
+    white: '#FFFFFF',
+    black: '#1C2434',
+    'black-2': '#010101',
+    body: '#64748B',
+    bodydark: '#F1F5F9',
+    bodydark1: '#DEE4EE',
+    bodydark2: '#8A99AF',
+    primary: '#3C50E0',
+    secondary: '#80CAEE',
+    stroke: '#E2E8F0',
+    gray: '#EFF4FB',
+    graydark: '#333A48',
+    'gray-2': '#787878',
+    'gray-3': '#FAFAFA',
+    whiten: '#F1F5F9',
+    whiter: '#F5F7FD',
+    boxdark: '#24303F',
+    'boxdark-2': '#1A222C',
+    strokedark: '#2E3A47',
+    'form-strokedark': '#3d4d60',
+    'form-input': '#1d2a39',
+    'meta-1': '#DC3545',
+    'meta-2': '#EFF2F7',
+    'meta-3': '#10B981',
+    'meta-4': '#313D4A',
+    'meta-5': '#259AE6',
+    'meta-6': '#FFBA00',
+    'meta-7': '#FF6766',
+    'meta-8': '#F0950C',
+    'meta-9': '#E5E7EB',
+    success: '#13795B',
+    danger: '#D34053',
+    warning: '#FFA70B',
+  };
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className='flex items-center justify-center rounded-xl shadow'>
+        <div className={`rounded-xl  transform ${showContent ? 'scale-100' : 'scale-75'} transition-transform ease-in-out duration-500`} style={{ overflow: 'hidden' }}>
+          <img
+            src={unsplash}
+            alt="Description of the image"
+            width="566"
+            height="auto"
+            className={`rounded-xl hidden lg:block`}
+          />
+        </div>
+        <div className="flex flex-col justify-center items-center h-screen ">
 
-                    <div className="md:w-[600px] md:mx-auto m-5 bg-white rounded-2xl ">
-                        {/* <RxCross1 className="text-xl float-right m-5 text-[#DCDCDC]" /> */}
-                        <div className=" w-[80%] mx-auto text-center space-y-6 py-12">
+          <div className="md:w-[600px] md:mx-auto m-5 bg-white rounded-2xl ">
+            {/* <RxCross1 className="text-xl float-right m-5 text-[#DCDCDC]" /> */}
+            <div className=" w-[80%] mx-auto text-center space-y-6 py-12">
 
-                            <h1 className="md:text-2xl text-lg font-bold text-[#0E9F6E]">Reset password</h1><br />
-                            <button className="w-full py-4 text-center text-white bg-[#0E9F6E] md:text-lg text-xs rounded-md">Send reset password email</button>
-                            <div className="flex items-center">
-                                <hr className="w-full border border-[#DCDCDC]" />
-                                <p className="px-5">  OR</p>
-                                <hr className="w-full border border-[#DCDCDC]" />
-                            </div>
-                            <input type="password" placeholder="New Password" className="w-full text-xs  focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  text-white" />
-                            <input type="password" placeholder="Confirm Password" className="w-full  text-xs focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  text-white" />
-                            <button className="md:w-44 w-32 py-3 text-center text-white bg-[#0E9F6E] rounded-md">Save</button>
-                        </div>
-                    </div>
-                </div>
-                {/* <div className={`form  rounded-xl flex flex-col justify-center px-6 py-24.5 mb-1 lg:px-8 bg-white ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+              <h1 className="md:text-2xl text-lg font-bold text-[#0E9F6E]">Reset password</h1><br />
+              {/* <button className="w-full py-4 text-center text-white bg-[#0E9F6E] md:text-lg text-xs rounded-md">Send reset password email</button> */}
+              <div className="flex items-center">
+                <hr className="w-full border border-[#DCDCDC]" />
+                <p className="px-5">  OR</p>
+                <hr className="w-full border border-[#DCDCDC]" />
+              </div>
+              <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="New Password" className="w-full text-xs  focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  text-white" />
+              <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" className="w-full  text-xs focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  text-white" />
+              <button onClick={updatePassword}  className="md:w-44 w-32 py-3 text-center text-white bg-[#0E9F6E] rounded-md">Save</button>
+            </div>
+          </div>
+        </div>
+        {/* <div className={`form  rounded-xl flex flex-col justify-center px-6 py-24.5 mb-1 lg:px-8 bg-white ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
         <div className={`sm:mx-auto sm:w-full sm:max-w-sm mt-10 ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
           <h2 className="text-4xl font-bold leading-9 tracking-tight font text-gray-800">Forgot Password</h2>
         </div>
@@ -106,9 +129,9 @@ const Password = () => {
           </form>
         </div>
       </div> */}
-            </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Password;
