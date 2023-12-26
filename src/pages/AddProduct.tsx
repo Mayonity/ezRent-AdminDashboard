@@ -15,7 +15,7 @@ import { Block } from '../components/BlockProducts';
 import Delete from '../components/Delete';
 import { EditOffers } from '../components/EditOffers';
 
-const ProductsInfo = () => {
+const AddProduct = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showOrderModel, setShowOrderModel] = useState(false);
   const [isOn, setIsOn] = useState(false);
@@ -641,7 +641,7 @@ const ProductsInfo = () => {
   );
 };
 
-export default ProductsInfo;
+export default AddProduct;
 function setShowDelete(arg0: boolean) {
   throw new Error('Function not implemented.');
 }

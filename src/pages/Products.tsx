@@ -11,7 +11,7 @@ const Products = () => {
   const [isOn, setIsOn] = useState(false);
   const navigate = useNavigate();
   const navigateToPage = () => {
-    navigate('/productinfo');
+    navigate('/AddProduct');
   };
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

@@ -12,7 +12,7 @@ import Products from './pages/Products';
 import Orders from './pages/Orders';
 import Chats from './pages/Chats'
 import Info from './pages/Info';
-import ProductsInfo from './pages/productinfo';
+import AddProduct from './pages/addProduct.tsx';
 import Reports from './pages/Reports';
 import Transaction from './pages/Transaction';
 import Loader from './Loader';
@@ -45,7 +45,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
           <Route path="/Categories" element={<Categories />} />
           <Route path="/Products" element={<Products />} />
-          <Route path="/productinfo" element={<ProductsInfo />} />
+          <Route path="/AddProduct" element={<AddProduct />} />
           <Route path="/Orders" element={<Orders />} />
           <Route path="/Chats" element={<Chats />} />
 
