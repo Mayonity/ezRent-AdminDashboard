@@ -11,7 +11,7 @@ const Products = () => {
   const [isOn, setIsOn] = useState(false);
   const navigate = useNavigate();
   const navigateToPage = () => {
-    navigate('/productinfo');
+    navigate('/addProduct');
   };
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -461,7 +461,7 @@ const Products = () => {
         </div>
       )}
       {showBlock && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2  z-50">
           <div className="relative w-full max-w-lg bg-white">
             <div className="relative rounded-2xl shadow-2xl bg-white">
               <button onClick={closeBlock} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">

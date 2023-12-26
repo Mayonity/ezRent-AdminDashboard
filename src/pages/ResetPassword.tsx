@@ -71,8 +71,8 @@ const Password = () => {
                                 <p className="px-5">  OR</p>
                                 <hr className="w-full border border-[#DCDCDC]" />
                             </div>
-                            <input type="password" placeholder="New Password" className="w-full text-xs  focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  text-white" />
-                            <input type="password" placeholder="Confirm Password" className="w-full  text-xs focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  text-white" />
+                            <input type="password" placeholder="New Password" className="w-full text-xs  focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3  " />
+                            <input type="password" placeholder="Confirm Password" className="w-full  text-xs focus:border-[#0E9F6E] outline-none border-2 border-[#DCDCDC] rounded-md p-3 " />
                             <button className="md:w-44 w-32 py-3 text-center text-white bg-[#0E9F6E] rounded-md">Save</button>
                         </div>
                     </div>

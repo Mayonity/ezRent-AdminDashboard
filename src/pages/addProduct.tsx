@@ -15,7 +15,7 @@ import { Block } from '../components/BlockProducts';
 import Delete from '../components/Delete';
 import { EditOffers } from '../components/EditOffers';
 
-const ProductsInfo = () => {
+const AddProduct = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showOrderModel, setShowOrderModel] = useState(false);
   const [isOn, setIsOn] = useState(false);
@@ -579,7 +579,7 @@ const ProductsInfo = () => {
 
       </div>
       {showOrderModel && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50  bg-gray-2 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-50   z-50">
           <div className="relative  max-w-lg">
             <div className="relative    rounded-lg  ">
              
@@ -608,7 +608,7 @@ const ProductsInfo = () => {
         </div>
       )}
       {showDelete && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80  bg-gray-100  bg-gray-2 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80  bg-gray-2   z-50">
           <div className="relative w-100 max-w-lg ">
             <div className="relative rounded-3xl shadow-lg bg-white">
               <button onClick={closeDelete} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
@@ -622,7 +622,7 @@ const ProductsInfo = () => {
         </div>
       )}
       {showEditOffers && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-100  bg-gray-2  z-50 ">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80   bg-gray-2  z-50 ">
           <div className="relative  max-w-lg ">
             <div className="relative rounded-3xl shadow-lg ">
               <button onClick={closeEditOffers} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
@@ -641,7 +641,7 @@ const ProductsInfo = () => {
   );
 };
 
-export default ProductsInfo;
+export default AddProduct;
 function setShowDelete(arg0: boolean) {
   throw new Error('Function not implemented.');
 }

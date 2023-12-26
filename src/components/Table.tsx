@@ -373,7 +373,7 @@ const Table = () => {
         </table>
       </div>
       {showUploading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-50 z-50">
           <div className="relative w-full max-w-lg">
             <div className="relative bg-white rounded-2xl border-box border shadow-2xl">
               <button
