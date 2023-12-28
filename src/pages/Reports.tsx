@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
@@ -7,6 +7,9 @@ import { Block } from '../components/Block';
 import { Comments } from '../components/Comments';
 
 const Reports = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Reports'; // Set your dynamic title here
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [showReported, setShowReported] = useState(false);
   const [isOn, setIsOn] = useState(false);

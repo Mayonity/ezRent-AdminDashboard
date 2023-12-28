@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import Sidebar from '../components/Sidebar/Sidebars';
 import Navbar from '../components/Sidebar/Navbar';
 
 const Terms = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Terms'; // Set your dynamic title here
+  }, []);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     return (
       <div className="flex flex-col md:flex-row bg-gray transition-all">

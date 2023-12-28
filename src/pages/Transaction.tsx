@@ -7,6 +7,9 @@ import 'tippy.js/dist/tippy.css'; // Import Tippy styles
 import { TooltipComp } from './Tootlipcomp'
 
 const Transaction = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Transaction'; // Set your dynamic title here
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [isOn, setIsOn] = useState(false);

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 
 const Faq = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Faq'; // Set your dynamic title here
+  }, []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 

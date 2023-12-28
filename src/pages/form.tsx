@@ -4,8 +4,16 @@ import unsplash from '../assets/Rectangle 326 (2) copy.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../redux/store';
 import { login } from '../redux/Auth/authAction';
+import { BiShow, BiHide } from 'react-icons/bi';
 
 const Form = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Login'; // Set your dynamic title here
+  }, []);
+  const [open, setOpen] = useState(false)
+  const togglePasswordVisiblity = () => {
+    setOpen(!open)
+  }
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
@@ -101,7 +109,7 @@ const Form = () => {
                     value={email} onChange={handleEmailChange}
                     autoComplete="email"
                     required
-                    className={`bg-[#F1F5F9] text-black outline-none one new ml-3 p-10 block w-90  border border-body border-2 rounded-xl border-1 p-3  opacity-30 shadow-inner placeholder-gray-400 focus:ring-primary sm:text-sm sm:leading-6`}
+                    className={`bg-[#F1F5F9] text-graydark font-bold outline-none one new ml-3  block w-90   border-[#DEDEDE] border-2  rounded-xl border-1 p-3     focus:ring-primary sm:text-sm sm:leading-6`}
                   />
                 </div>
               </div>
@@ -109,17 +117,28 @@ const Form = () => {
                 <div className="flex items-center justify-between">
                   <label htmlFor="password" className={`block one text-sm new font-bold ml-3 leading-6 text-gray-2 tracking-wider  ease-in-out duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>Password</label>
                 </div>
-                <div className="mt-2">
+                <div className="mt-2 relative">
                   <input
                     id="password"
                     name="password"
-                    type="password"
+                    type={open ? "text" : "password"}
                     value={password}
                     onChange={handlePasswordChange}
                     autoComplete="current-password"
                     required
-                    className={`bg-[#F1F5F9] text-black one new ml-3 outline-none p-10 block w-90  opacity-30 border border-body border-2 rounded-xl border-0 p-3 shadow-inner placeholder-gray-400 focus:ring-primary sm:text-sm sm:leading-6`}
+                    className={`bg-[#F1F5F9] text-graydark font-bold outline-none one new ml-3  block w-90   border-[#DEDEDE] border-2  rounded-xl border-1 p-3     focus:ring-primary sm:text-sm sm:leading-6`}
                   />
+                   {open ? (
+                    <BiShow
+                      className="absolute top-4 right-[-90px] text-graydark text-xl"
+                      onClick={togglePasswordVisiblity}
+                    />
+                  ) : (
+                    <BiHide
+                      className="absolute top-4 right-[-90px] text-graydark text-xl"
+                      onClick={togglePasswordVisiblity}
+                    />
+                  )}
                 </div>
               </div>
               <div>

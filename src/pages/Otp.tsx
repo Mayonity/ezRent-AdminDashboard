@@ -4,6 +4,9 @@ import unsplash from '../assets/Rectangle 326 (3) copy.png';
 import { Link } from 'react-router-dom';
 
 const Otp = () => {
+    useEffect(() => {
+        document.title = 'Ez-Rent-Admin | Otp'; // Set your dynamic title here
+      }, []);
     const [showContent, setShowContent] = useState(false);
 
     useEffect(() => {

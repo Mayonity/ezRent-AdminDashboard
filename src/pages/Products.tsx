@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState , useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
 import Sidebar from '../components/Sidebar/Sidebars';
@@ -6,6 +6,9 @@ import Navbar from '../components/Sidebar/Navbar';
 import { Block } from '../components/BlockProducts';
 
 const Products = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Products'; // Set your dynamic title here
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [showSignInForm, setShowSignInForm] = useState(false);
   const [isOn, setIsOn] = useState(false);
@@ -253,7 +256,7 @@ const Products = () => {
                         <label
                           htmlFor="toggle1"
                           className="flex gap-2 cursor-pointer select-none text-danger items-center"
-                        >     Blocked
+                        >     Block
                           <div className="relative">
                             <input
                               type="checkbox"
@@ -326,7 +329,7 @@ const Products = () => {
                       <label
                         htmlFor="toggle1"
                         className="flex gap-2 cursor-pointer select-none text-meta-3 items-center"
-                      >     UnBlocked
+                      >     UnBlock
                         <div className="relative">
                           <input
                             type="checkbox"
@@ -401,7 +404,7 @@ const Products = () => {
                         <label
                           htmlFor="toggle1"
                           className="flex  gap-2 cursor-pointer select-none text-danger items-center"
-                        >     Blocked
+                        >     Block
                           <div className="relative">
                             <input
                               type="checkbox"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState , useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Chatmod } from '../components/Chatmod'
 import Navbar from '../components/Sidebar/Navbar';
@@ -7,6 +7,9 @@ import { OrderModel } from '../components/OrderModel';
 import { BlockChat } from '../components/BlockChat'
 
 const Chats = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Chat'; // Set your dynamic title here
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [showChatmod, setShowChatmod] = useState(false); // Corrected state variable
   const [isOn, setIsOn] = useState(false);

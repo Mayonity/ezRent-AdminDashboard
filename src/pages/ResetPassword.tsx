@@ -7,6 +7,9 @@ import { AppDispatch, RootState } from '../redux/store';
 import { resetPassword } from '../redux/Auth/authAction';
 
 const Password = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | ResetPassword'; // Set your dynamic title here
+  }, []);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [password, setPassword] = useState('')
