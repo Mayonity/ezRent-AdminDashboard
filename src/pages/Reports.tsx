@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import  { useState , useEffect} from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import Reported from '../components/Reported';
-import { Block } from '../components/Block';
 import { Comments } from '../components/Comments';
 
 const Reports = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Reports'; // Set your dynamic title here
+  }, []);
   const [showReported, setShowReported] = useState(false);
-  const [isOn, setIsOn] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
   const openReported = () => {
     setShowReported(true);
   };
@@ -194,7 +185,5 @@ const Reports = () => {
 };
 
 export default Reports;
-function setShowReported(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
+
 

@@ -1,34 +1,19 @@
 
-import React, { useState } from 'react';
-import Sidebar from '../components/Sidebar/Sidebars';
-import Navbar from '../components/Sidebar/Navbar';
+import { useState } from 'react';
 import ProductOne from '../assets/product1.jpeg';
 import ProductTwo from '../assets/product2.png';
 import ProductThree from '../assets/product3.jpeg';
 import ProductFour from '../assets/product4.jpeg';
-import { Link } from 'react-router-dom';
 import Uploading from './Uploading';
 import CategoryEdit from './CategoryEdit';
 
 
 const Table = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [isOn, setIsOn] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   const [showUploading, setShowUploading] = useState(false);
   const openUploading = () => {
     setShowUploading(true);
   };
   const [enabled, setEnabled] = useState<boolean>(false);
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
-
   const closeUploading = () => {
     setShowUploading(false);
   };

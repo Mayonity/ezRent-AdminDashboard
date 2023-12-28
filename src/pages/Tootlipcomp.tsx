@@ -1,6 +1,9 @@
-import React, { ReactNode, useState } from "react";
+import  { ReactNode, useState , useEffect } from "react";
 
 export const TooltipComp = ({ message, children }: { message: string; children: ReactNode }) => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Tootlipcomp'; // Set your dynamic title here
+  }, []);
   const [show, setShow] = useState(false);
   return (
     <div className="relative flex flex-col items-center group">

@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
 import Sidebar from '../components/Sidebar/Sidebars';
 import Navbar from '../components/Sidebar/Navbar';
 import { Block } from '../components/Block';
-import { FaSortUp, FaSortDown } from 'react-icons/fa';
-
-
-
 const Users = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | User'; // Set your dynamic title here
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [showSignInForm, setShowSignInForm] = useState(false);
   const toggleDropdown = () => {
@@ -16,15 +15,8 @@ const Users = () => {
   };
   const navigate = useNavigate();
   const navigateToPage = () => {
-    navigate('/Info');
+    navigate('/User-Info');
   };
-
-
-
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
-
   const openSignInForm = () => {
     setShowSignInForm(true);
   };
@@ -44,12 +36,6 @@ const Users = () => {
   };
 
   const [enabled, setEnabled] = useState<boolean>(false);
-
-
-  const [isOn, setIsOn] = useState(false);
-
-
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="flex flex-col md:flex-row h-full bg-gray transition-all">
@@ -228,7 +214,7 @@ const Users = () => {
                     <label
                       htmlFor="toggle1"
                       className="flex cursor-pointer select-none text-danger items-center"
-                    >     Blocked
+                    >     Block
                       <div className="relative">
                         <input
                           type="checkbox"
@@ -281,7 +267,7 @@ const Users = () => {
                   <label
                     htmlFor="toggle1"
                     className="flex cursor-pointer select-none text-meta-3 items-center"
-                  >     UnBlocked
+                  >     UnBlock
                     <div className="relative">
                       <input
                         type="checkbox"
@@ -318,7 +304,7 @@ const Users = () => {
 
       </div>
       {showSignInForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2 z-50">
           <div className="relative w-full max-w-lg bg-white">
             <div className="relative rounded-2xl shadow-2xl bg-white">
               <button
@@ -338,7 +324,7 @@ const Users = () => {
       )}
 
       {showBlock && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2 z-50">
           <div className="relative w-full max-w-lg bg-white">
             <div className="relative rounded-lg shadow-2xl bg-white">
               <button onClick={closeBlock} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
@@ -358,7 +344,5 @@ const Users = () => {
 };
 
 export default Users;
-function setShowBlock(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
+
 

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import  { useState ,useEffect} from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 
 const Faq = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Faq'; // Set your dynamic title here
+  }, []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -47,8 +50,8 @@ const Faq = () => {
 
           {showDropdown && (
             <div className="flex flex-col m-5 md:m-10">
-              <input type="text"  className="border border-box border-2 p-4 md:p-5 rounded-xl text-base md:text-xl font-normal text-gray-2 w-full text-[#CACACA]" placeholder='Question'/>
-              <input type="text"  className="border border-box border-2 p-4 md:p-5 rounded-xl text-base md:text-xl mt-4 md:mt-5 font-normal text-gray-2 w-full text-[#CACACA]" placeholder='Answers'/>
+              <input type="text"  className=" border-box border-2 p-4 md:p-5 rounded-xl text-base md:text-xl font-normal  w-full text-[#CACACA]" placeholder='Question'/>
+              <input type="text"  className=" border-box border-2 p-4 md:p-5 rounded-xl text-base md:text-xl mt-4 md:mt-5 font-normal  w-full text-[#CACACA]" placeholder='Answers'/>
               <br />
               <div className='justify-center items-center text-right'>
                 <button className='bg-meta-3 h-12 w-36 md:w-50 rounded-xl text-white text-sm md:text-base'>Save</button>

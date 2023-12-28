@@ -22,9 +22,8 @@ const Card = () => {
       </div>
       <div className='h-15 w-0.5 bg-white'></div>
       <div className="flex flex-col">
-        <h4 className="lg:text-1xl md:text-xs font-bold text-white dark:text-white mb-2">
-          Total products
-        </h4>
+        <h4 className="lg:text-sm md:text-xs font-bold text-white dark:text-white mb-2">
+ Reviews        </h4>
         <span className="lg:text-md font-bold text-white md:text-sm">345</span>
       </div>
     </div>

@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import  { useState , useEffect} from 'react';
 import { Chatmod } from '../components/Chatmod'
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
-import { OrderModel } from '../components/OrderModel';
 import { BlockChat } from '../components/BlockChat'
 
 const Chats = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Chats'; // Set your dynamic title here
+  }, []);
   const [showChatmod, setShowChatmod] = useState(false); // Corrected state variable
-  const [isOn, setIsOn] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
   const [isTooltipVisible4, setTooltipVisible4] = useState(false);
   const [isTooltipVisible5, setTooltipVisible5] = useState(false);
   const [isTooltipVisible6, setTooltipVisible6] = useState(false);
-  const [isTooltipVisible7, setTooltipVisible7] = useState(false);
 
   const handleMouseEnter4 = () => {
     setTooltipVisible4(true);
@@ -41,16 +35,8 @@ const Chats = () => {
   const handleMouseLeave6 = () => {
     setTooltipVisible6(false);
   };
-  const handleMouseEnter7 = () => {
-    setTooltipVisible7(true);
-  };
+ 
 
-  const handleMouseLeave7 = () => {
-    setTooltipVisible7(false);
-  };
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
   const [enabled, setEnabled] = useState<boolean>(false);
   const openChatmod = () => {
     setShowChatmod(true);
@@ -219,7 +205,7 @@ const Chats = () => {
                   <td className="border-b border-1 border-box relative px-5 2xl:text-sm text-xs">
                     <div
                       data-tooltip-target="tooltip-default-1"
-                      className="text-black bg-blue-700 2xl:text-sm text-xs hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                      className="text-black bg-blue-700 2xl:text-sm text-xs hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg ,d:text-base text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                       onMouseEnter={handleMouseEnter6}
                       onMouseLeave={handleMouseLeave6}
                     >
@@ -302,7 +288,7 @@ const Chats = () => {
                       <div
                         id="tooltip-default-1"
                         role="tooltip"
-                        className={`absolute z-10 2xl:text-sm  text-xs inline-block px-3 text-sm bg-white font-medium text-black shadow-3xl w-50transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible5 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                        className={`absolute z-10 2xl:text-sm  text-xs inline-block px-3  bg-white font-medium text-black shadow-3xl w-50transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible5 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                         style={{ top: '-80px', right: '0', width: '100' }}
                       >
                         Hi There! Absolutely,I' bee.. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -451,7 +437,4 @@ const Chats = () => {
 };
 
 export default Chats;
-function setShowChat(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 

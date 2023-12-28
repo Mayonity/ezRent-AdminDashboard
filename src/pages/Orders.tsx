@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import  { useState , useEffect } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
-import SignInForm from '../components/SignInForm';
 import { OrderModel } from '../components/OrderModel';
 
 const Orders = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Categories'; // Set your dynamic title here
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isOn, setIsOn] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -345,7 +346,5 @@ const Orders = () => {
 };
 
 export default Orders;
-function setShowOrderModel(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
+
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState , useEffect} from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import MyImage from '../assets/ps51_800KB.jpg';
@@ -8,40 +8,21 @@ import MyImage3 from '../assets/ps54.png';
 import MyImage4 from '../assets/ps55.png';
 import Image from '../assets/Mask group.png';
 import { Link } from 'react-router-dom';
-import SignInForm from '../components/SignInForm';
-import { OrderModel } from '../components/OrderModel';
-import { FaSearch } from 'react-icons/fa';
-import { Block } from '../components/BlockProducts';
 import Delete from '../components/Delete';
 import { EditOffers } from '../components/EditOffers';
+import { Block } from '../components/Block';
+import { OrderModel } from '../components/OrderModel';
 
 const AddProduct = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showOrderModel, setShowOrderModel] = useState(false);
-  const [isOn, setIsOn] = useState(false);
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
   const [isOpenDropdown1, setIsOpenDropdown1] = useState(false);
-  const [isOpenDropdown2, setIsOpenDropdown2] = useState(false);
-
   const toggleDropdown1 = () => {
     setIsOpenDropdown1(!isOpenDropdown1);
-    // Close the other dropdown
-    setIsOpenDropdown2(false);
-  };
-
-  const toggleDropdown2 = () => {
-    setIsOpenDropdown2(!isOpenDropdown2);
-    // Close the other dropdown
-    setIsOpenDropdown1(false);
-  };
-
-  const [isCompOpen, setIsCompOpen] = useState(false);
-
-  const openComp = () => {
-    setIsCompOpen(!isCompOpen);
+    
   };
   const openOrderModel = () => {
     setShowOrderModel(true);
@@ -70,10 +51,6 @@ const AddProduct = () => {
     setShowDelete(true);
   };
 
-  const closeDeleteLog = () => {
-    console.log("Closing sign-in form");
-    setShowDelete(false);
-  };
 
 
 
@@ -88,12 +65,11 @@ const AddProduct = () => {
     setShowEditOffers(true);
   };
 
-  const closeEditOffersLog = () => {
-    console.log("Closing sign-in form");
-    setShowEditOffers(false);
-  };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | AddProduct'; // Set your dynamic title here
+  }, []);
   return (
     <div className=''>
 
@@ -414,7 +390,7 @@ const AddProduct = () => {
                         </Link>
                         <Link
                           to="#"
-                          className="inline-flex items-center ml-40 justify-center gap-5 w-1/4 rounded-md gap-2.5 bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                          className="inline-flex items-center ml-40 justify-center gap-5 w-1/4 rounded-md md:gap-2.5 bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                         >
 
                           Save
@@ -428,7 +404,7 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
-          <h1 className="text-bold text-2xl m-10 md:text-3xl lg:text-4xl m-5 md:m-10">
+          <h1 className="text-bold text-2xl  md:text-3xl lg:text-4xl m-5 md:m-10">
             Rent History
           </h1>
 
@@ -642,7 +618,4 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-function setShowDelete(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 

@@ -8,7 +8,7 @@ const SignInForm = () => {
         <label className="block text-black dark:text-white mb-2.5 2xl:text-xl text-xs font-bold">User ID</label>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="User id"
           className="w-full  rounded border-[1.5px] border-stroke bg-transparent py-2 px-3 2xl:py-3 2xl:px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
         />
       </div>
@@ -16,8 +16,8 @@ const SignInForm = () => {
       <div className="mb-4">
         <label className="block text-black dark:text-white mb-2.5 2xl:text-xl text-xs font-bold">Name</label>
         <input
-          type="password"
-          placeholder="Password"
+          type="text"
+          placeholder="Name"
           className="w-full  rounded border-[1.5px] border-stroke bg-transparent py-2 px-3 2xl:py-3 2xl:px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
         />
       </div>
@@ -25,7 +25,7 @@ const SignInForm = () => {
         <label className="block text-black dark:text-white mb-2.5 2xl:text-xl text-xs font-bold">Phone Number</label>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Phone Number"
           className="w-full  rounded border-[1.5px] border-stroke bg-transparent py-2 px-3 2xl:py-3 2xl:px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
         />
       </div>
@@ -33,16 +33,16 @@ const SignInForm = () => {
       <div className="mb-4">
         <label className="block text-black dark:text-white mb-2.5 2xl:text-xl text-xs font-bold">Email</label>
         <input
-          type="password"
-          placeholder="Password"
+          type="text"
+          placeholder="Email"
           className="w-full  rounded border-[1.5px] border-stroke bg-transparent py-2 px-3 2xl:py-3 2xl:px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
         />
       </div>
       <div className="mb-4">
         <label className="block text-black dark:text-white mb-2.5 2xl:text-xl text-xs font-bold">Commission Rate</label>
         <input
-          type="password"
-          placeholder="Password"
+          type="numer"
+          placeholder="Commission Rate"
           className="w-full  rounded border-[1.5px] border-stroke bg-transparent py-2 px-3 2xl:py-3 2xl:px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
         />
       </div>

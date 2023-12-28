@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import  { useState, useEffect } from 'react';
 import { Transform } from '../components/Transform';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import 'tippy.js/dist/tippy.css'; // Import Tippy styles
-import { TooltipComp } from './Tootlipcomp'
 
 const Transaction = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showChat, setShowChat] = useState(false);
-  const [isOn, setIsOn] = useState(false);
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Transaction'; // Set your dynamic title here
+  }, []);
   const [showTransform, setShowTransform] = useState(false); // Corrected variable name
-  const navigate = useNavigate();
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  }; const [isTooltipVisible1, setTooltipVisible1] = useState(false);
+  const [isTooltipVisible1, setTooltipVisible1] = useState(false);
   const [isTooltipVisible2, setTooltipVisible2] = useState(false);
   const [isTooltipVisible3, setTooltipVisible3] = useState(false);
   const [isTooltipVisible4, setTooltipVisible4] = useState(false);
@@ -79,18 +73,7 @@ const Transaction = () => {
   const handleMouseLeave7 = () => {
     setTooltipVisible7(false);
   };
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
-  const [showBlock, setShowBlock] = useState(false);
-  const openBlock = () => {
-    setShowBlock(true);
-  };
 
-  const closeBlock = () => {
-    console.log("Closing sign-in form");
-    setShowBlock(false);
-  };
   const openTransform = () => {
     setShowTransform(true);
   };
@@ -101,11 +84,6 @@ const Transaction = () => {
   };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  function openUploading(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <div className="flex flex-col md:flex-row bg-gray transition-all">
       {/* Sidebar and Navbar components */}

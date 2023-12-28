@@ -22,7 +22,7 @@ const Card = () => {
 
     <div className="flex flex-col">
       <h4 className="lg:text-1xl md:text-sm font-bold text-white dark:text-white mb-2">
-        Total products
+        Total Borrow
       </h4>
       <span className="lg:text-xl font-medium text-white md:text-sm">345</span>
     </div>

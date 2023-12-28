@@ -1,35 +1,25 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import Card_3 from '../components/Card_3';
 import Card_2 from '../components/Card_2';
-
 import Card_0 from '../components/Card_0';
 import Card_1 from '../components/Card_1';
 import { OrderModel } from '../components/OrderModel';
 import { Review } from '../components/Review';
-// import { UserForm } from '../components/UserForm';
 import { Verify } from '../components/Verify';
-import Card from '../components/Card';
-import Card1 from '../components/Card1';
-import Card2 from '../components/Card2';
-import Card3 from '../components/Card3';
 import { ResetPass } from '../components/ResetPass';
 import { Block } from '../components/Block';
 import { RecieveInfo } from '../components/RecieveInfo';
 import { Address } from '../components/Address';
-import { TooltipComp } from './Tootlipcomp'
 import UserForm from '../components/UserForm';
-
-
 const Info = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showOrderModel, setShowOrderModel] = useState(false);
-  const [isOn, setIsOn] = useState(false);
+  
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | User-info'; // Set your dynamic title here
+  }, []);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const [showOrderModel, setShowOrderModel] = useState(false);
   const [isTooltipVisible1, setTooltipVisible1] = useState(false);
   const [isTooltipVisible2, setTooltipVisible2] = useState(false);
   const [isTooltipVisible3, setTooltipVisible3] = useState(false);
@@ -65,8 +55,6 @@ const Info = () => {
     setShowOrderModel(false);
   };
   const [showReview, setShowReview] = useState(false);
-
-
   const openReview = () => {
     setShowReview(true);
   };
@@ -75,8 +63,6 @@ const Info = () => {
     setShowReview(false);
   };
   const [showUserForm, setShowUserForm] = useState(false);
-
-
   const openUserForm = () => {
     setShowUserForm(true);
   };
@@ -84,13 +70,7 @@ const Info = () => {
   const closeUserForm = () => {
     setShowUserForm(false);
   };
-
-
-
-
   const [showVerify, setShowVerify] = useState(false);
-
-
   const openVerify = () => {
     setShowVerify(true);
   };
@@ -98,13 +78,7 @@ const Info = () => {
   const closeVerify = () => {
     setShowVerify(false);
   };
-
-
-
-
   const [showResetPass, setShowResetPass] = useState(false);
-
-
   const openResetPass = () => {
     setShowResetPass(true);
   };
@@ -192,7 +166,7 @@ const Info = () => {
                     <div className='w-8 h-7 text-danger ml-15' ><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#DE4245'><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg></div>
                   </div>
                 </div>
-                <div className='mb-10 justify-center align-center items-center ml-25 mb-2'>
+                <div className='md:mb-10 justify-center align-center items-center ml-25 mb-2'>
                   <button className='w-15 h-7 bg-meta-3 rounded-md text-white text-sm' onClick={openVerify}>Verify</button>
                 </div>
                 <div className='flex gap-12  mb-2'>
@@ -250,7 +224,7 @@ const Info = () => {
               <div className='2xl:w-90 w-72 p-5 border border-box rounded'>
 
                 <div className='flex justify-between 2xl:text-xl text-xs'>
-                 
+
                   <div>
                     <div className='flex gap-5 '>
 
@@ -279,32 +253,32 @@ const Info = () => {
               </div>
               <div className='2xl:w-90 w-72 p-5 border border-box rounded mt-5'>
 
-              <div className='flex justify-between 2xl:text-xl text-xs'>
-                 
-                 <div>
-                   <div className='flex gap-5 '>
+                <div className='flex justify-between 2xl:text-xl text-xs'>
 
-                     <div>Name:</div>
-                     <div className='text-gray-2'>John Doe</div>
+                  <div>
+                    <div className='flex gap-5 '>
 
-                   </div>
+                      <div>Name:</div>
+                      <div className='text-gray-2'>John Doe</div>
 
-                   <div className='flex gap-5 '>
-                     <div>Phone:</div>
-                     <div className='text-gray-2'>+65 342 342</div>
+                    </div>
 
-                   </div>
-                 </div>
-                 <div className='' >
-                   <button onClick={openRecieveInfo}>
-                     <svg width="5" height="5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='2xl:w-10 w-8 text-center 2xl:h-7 h-6 border-box  justify-center items-center border'>
-                       <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                       <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                       <path d="M2.5 18.3333H17.5" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                     </svg>
-                   </button>
-                 </div>
-               </div>
+                    <div className='flex gap-5 '>
+                      <div>Phone:</div>
+                      <div className='text-gray-2'>+65 342 342</div>
+
+                    </div>
+                  </div>
+                  <div className='' >
+                    <button onClick={openRecieveInfo}>
+                      <svg width="5" height="5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='2xl:w-10 w-8 text-center 2xl:h-7 h-6 border-box  justify-center items-center border'>
+                        <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2.5 18.3333H17.5" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -323,7 +297,7 @@ const Info = () => {
               <div className='2xl:w-90 w-72 p-5 border border-box rounded'>
 
                 <div className='flex justify-between 2xl:text-xl text-xs'>
-                 
+
                   <div className='flex 2xl:gap-5 gap-3'>
 
                     <div>Address:</div>
@@ -345,26 +319,26 @@ const Info = () => {
 
               </div>
               <div className='2xl:w-90 w-72 p-5 border border-box rounded mt-5'>
-              <div className='flex justify-between 2xl:text-xl text-xs'>
-                 
-                 <div className='flex 2xl:gap-5 gap-3'>
+                <div className='flex justify-between 2xl:text-xl text-xs'>
 
-                   <div>Address:</div>
-                   <div className='text-gray-2'>Street, X Singapore</div>
+                  <div className='flex 2xl:gap-5 gap-3'>
 
-                 </div>
-                 <div className=' '>
-                   <button onClick={openAddress}>
-                     <svg width="5" height="5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='2xl:w-10 w-8 text-center 2xl:h-7 h-6 border-box  justify-center items-center border'>
-                       <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                       <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                       <path d="M2.5 18.3333H17.5" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                     </svg>
-                   </button>
-                 </div>
+                    <div>Address:</div>
+                    <div className='text-gray-2'>Street, X Singapore</div>
+
+                  </div>
+                  <div className=' '>
+                    <button onClick={openAddress}>
+                      <svg width="5" height="5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='2xl:w-10 w-8 text-center 2xl:h-7 h-6 border-box  justify-center items-center border'>
+                        <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2.5 18.3333H17.5" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
 
 
-               </div>
+                </div>
 
               </div>
             </div>
@@ -389,7 +363,7 @@ const Info = () => {
           <div className="card 2xl:p-4 p-2 card">
             <Card_1 />
           </div>
-        </div> 
+        </div>
 
 
 
@@ -503,12 +477,12 @@ const Info = () => {
                 </td>
                 <td className="border-b border-1 border-box py-5  dark-border-strokedark text-primary">
 
-                  <p className="inline-flex rounded-full bg-warning bg-opacity-10 p-1 2xl:text-sm text-[10px] font-medium text-warning">
+                  <p className="inline-flex rounded-full bg-warning bg-opacity-10 py-1 px-2 2xl:text-sm text-[10px] font-medium text-warning">
                     Pending
                   </p>
                 </td>
                 <td className="py-2" >
-                  <button onClick={openOrderModel}>    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill='#30A87E' className='bg-[#D5EDE5] w-5 h-5 rounded-full p-1'>
+                  <button onClick={openOrderModel}>    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill='#30A87E' className='bg-[#D5EDE5] w-7 h-7 rounded-full p-1'>
                     <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" /></svg></button>
                 </td>
               </tr>
@@ -602,12 +576,12 @@ const Info = () => {
                 </td>
                 <td className="border-b border-1 border-box py-5  dark-border-strokedark text-primary">
 
-                  <p className="inline-flex rounded-full bg-warning bg-opacity-10 p-1 2xl:text-sm text-[10px] font-medium text-warning">
+                  <p className="inline-flex rounded-full bg-warning bg-opacity-10 px-2 py-1 2xl:text-sm text-[10px] font-medium text-warning">
                     Pending
                   </p>
                 </td>
                 <td className=" py-4">
-                  <button onClick={openOrderModel}>    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill='#30A87E' className='bg-[#D5EDE5] w-5 h-5 rounded-full p-1 2xl:text-sm text-[10px]'>
+                  <button onClick={openOrderModel}>    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill='#30A87E' className='bg-[#D5EDE5] w-7 h-7 rounded-full p-1 2xl:text-sm text-[10px]'>
                     <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" /></svg></button>
                 </td>
               </tr>
@@ -741,7 +715,7 @@ const Info = () => {
                 <td className="border-b border-1 border-box relative">
                   <div
                     data-tooltip-target="tooltip-default-2"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-20 focus:ring-4 2xl:text-sm text-xs focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-20 focus:ring-4 2xl:text-sm text-xs focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-base text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter2}
                     onMouseLeave={handleMouseLeave2}
                   >
@@ -825,17 +799,17 @@ const Info = () => {
 
             </tbody>
           </table>
-        </div> 
+        </div>
       </div>
       {showOrderModel && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-gray-2 bg-opacity-50 z-50">
           <div className="relative  max-w-lg">
             <div className="relative    rounded-lg  ">
-              
+
               <div className="p-8">
-              <button onClick={closeOrderModel} className="absolute top-12 right-12 text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
-              </button>
+                <button onClick={closeOrderModel} className="absolute top-12 right-12 text-gray-500 hover:text-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+                </button>
                 <OrderModel />
               </div>
             </div>
@@ -846,11 +820,11 @@ const Info = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-50 z-50">
           <div className="relative w-100 bg-white max-w-lg">
             <div className="relative  rounded-lg shadow-2xl">
-              
+
               <div className="p-">
-              <button onClick={closeReview} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
-              </button>
+                <button onClick={closeReview} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+                </button>
                 <Review />
               </div>
             </div>
@@ -861,11 +835,11 @@ const Info = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-50 z-50">
           <div className="relative w-180 max-w-lg ">
             <div className="relative  rounded-lg border-box  border-2  bg-white shadow-2xl">
-             
+
               <div className="w-140 px-12 py-8">
-              <button onClick={closeUserForm} className="absolute top-3  right-2 text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
-              </button>
+                <button onClick={closeUserForm} className="absolute top-3  right-2 text-gray-500 hover:text-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+                </button>
                 <UserForm />
               </div>
             </div>
@@ -889,7 +863,7 @@ const Info = () => {
         </div>
       )}
       {showResetPass && (
-        <div className="fixed inset-0 flex items-center justify-center  z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-80 z-50">
           <div className="relative w-full max-w-lg ">
             <div className="relative  rounded-lg shadow-2xl border-box  border-2  bg-white">
               <button onClick={closeResetPass} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
@@ -903,7 +877,7 @@ const Info = () => {
         </div>
       )}
       {showBlock && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2 z-50">
           <div className="relative w-full max-w-lg bg-white">
             <div className="relative rounded-lg shadow-lg bg-white">
               <button onClick={closeBlock} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">

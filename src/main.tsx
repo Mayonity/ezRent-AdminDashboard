@@ -11,7 +11,7 @@ import Categories from './pages/Categories';
 import Products from './pages/Products';
 import Orders from './pages/Orders';
 import Chats from './pages/Chats'
-import Info from './pages/Info';
+import Userinfo from './pages/User-Info';
 import AddProduct from './pages/addProduct';
 import Reports from './pages/Reports';
 import Transaction from './pages/Transaction';
@@ -34,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Users" element={<Users />} />
-        <Route path="/Info" element={<Info/>} />
+        <Route path="/User-Info" element={<Userinfo/>} />
  
         <Route path="/Categories" element={<Categories />} />
         <Route path="/Products" element={<Products />} />
