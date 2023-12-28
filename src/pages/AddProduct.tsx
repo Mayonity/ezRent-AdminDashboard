@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import MyImage from '../assets/ps51_800KB.jpg';
@@ -8,9 +8,7 @@ import MyImage3 from '../assets/ps54.png';
 import MyImage4 from '../assets/ps55.png';
 import Image from '../assets/Mask group.png';
 import { Link } from 'react-router-dom';
-import SignInForm from '../components/SignInForm';
 import { OrderModel } from '../components/OrderModel';
-import { FaSearch } from 'react-icons/fa';
 import { Block } from '../components/BlockProducts';
 import Delete from '../components/Delete';
 import { EditOffers } from '../components/EditOffers';
@@ -18,7 +16,10 @@ import { EditOffers } from '../components/EditOffers';
 const AddProduct = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showOrderModel, setShowOrderModel] = useState(false);
-  const [isOn, setIsOn] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | AddProduct'; // Set your dynamic title here
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -32,17 +33,6 @@ const AddProduct = () => {
     setIsOpenDropdown2(false);
   };
 
-  const toggleDropdown2 = () => {
-    setIsOpenDropdown2(!isOpenDropdown2);
-    // Close the other dropdown
-    setIsOpenDropdown1(false);
-  };
-
-  const [isCompOpen, setIsCompOpen] = useState(false);
-
-  const openComp = () => {
-    setIsCompOpen(!isCompOpen);
-  };
   const openOrderModel = () => {
     setShowOrderModel(true);
   };
@@ -69,15 +59,6 @@ const AddProduct = () => {
   const openDelete = () => {
     setShowDelete(true);
   };
-
-  const closeDeleteLog = () => {
-    console.log("Closing sign-in form");
-    setShowDelete(false);
-  };
-
-
-
-
   const [showEditOffers, setShowEditOffers] = useState(false);
 
   const closeEditOffers = () => {
@@ -88,10 +69,6 @@ const AddProduct = () => {
     setShowEditOffers(true);
   };
 
-  const closeEditOffersLog = () => {
-    console.log("Closing sign-in form");
-    setShowEditOffers(false);
-  };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
@@ -582,11 +559,11 @@ const AddProduct = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50  bg-gray-2 z-50">
           <div className="relative  max-w-lg">
             <div className="relative    rounded-lg  ">
-             
+
               <div className="">
-              <button onClick={closeOrderModel} className="absolute top-3  right-2 text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
-              </button>
+                <button onClick={closeOrderModel} className="absolute top-3  right-2 text-gray-500 hover:text-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+                </button>
                 <OrderModel />
               </div>
             </div>

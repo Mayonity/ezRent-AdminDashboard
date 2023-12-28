@@ -14,7 +14,7 @@ const Card2 = () => {
             <div className=" flex ">
               <div>
                 <h4 className="text-1xl font-bold text-white dark:text-white">
-                Total products
+                Total Order
                 </h4>
                 <span className="text-xl font-medium text-white " >345</span>
               </div>

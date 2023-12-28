@@ -1,5 +1,5 @@
 // components/Password.js
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import unsplash from '../assets/Rectangle 326 (3) copy.png';
 import { Outlet, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,9 @@ import { AppDispatch, RootState } from '../redux/store';
 import { forgotPassword } from '../redux/Auth/authAction'
 
 const Password = () => {
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Password'; // Set your dynamic title here
+  }, []);
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {

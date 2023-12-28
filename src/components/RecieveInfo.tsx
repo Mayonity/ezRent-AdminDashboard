@@ -16,11 +16,11 @@ export const RecieveInfo = () => {
      <div className='-ml-30'>
         <label htmlFor=""  className='ml-5 mt-5'>Receiver Name</label>
 
-        <input type="password" placeholder='John Doe' className='p-3 w-125 mt-5 rounded-md border border-2 border-box text-box ml-5' />
+        <input type="password" placeholder='John Doe' className='p-3 w-125 mt-2 mb-5 rounded-md border border-2 border-box text-box ml-5' />
 
         <label htmlFor="" className='ml-5 mt-5'>Phone Number</label>
 
-        <input type="password"  className='p-3 w-125 mt-5 rounded-md border border-2  border-box text-box ml-5 ' />
+        <input type="password" placeholder='Enter Your Password'  className='p-3 w-125 mt-2 rounded-md  border-2  border-box text-box ml-5 ' />
         <button className='bg-meta-3 p-4 w-50 mt-5 text-white text-center ml-35  rounded-md'>Save</button>
      </div>
     </div>
