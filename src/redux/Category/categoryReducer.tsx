@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addCategory, showCategories} from './categoryAction'
+import { addCategory, showCategories, updateCategory} from './categoryAction'
 
 
 interface CategoryState {
@@ -42,6 +42,18 @@ export const categorySlice = createSlice({
                 state.categories = action.payload;
             })
             .addCase(showCategories.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(updateCategory.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(updateCategory.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.loading = false;
+                state.categories.push(action.payload);
+            })
+            .addCase(updateCategory.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
