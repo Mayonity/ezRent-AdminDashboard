@@ -1,16 +1,37 @@
 import React, { ChangeEvent, useState } from 'react';
-
-const Uploading: React.FC = () => {
-  const [file, setFile] = useState<File | null>(null);
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { addCategory,updateCategory } from '../redux/Category/categoryAction';
+const Uploading: React.FC = (props:any) => {
+  const {category} = props
+  const dispatch: AppDispatch = useDispatch();
+  const [categoryName, setCategoryName] = useState(category.name);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(category.image_path);
+  const [file, setFile] = useState<any>(category.image_path);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
+    setFile(selectedFile);
 
     if (selectedFile) {
       setFile(selectedFile);
+      const filePreviewUrl = URL.createObjectURL(selectedFile);
+      setPreviewUrl(filePreviewUrl);
     } else {
       setFile(null);
+      setPreviewUrl(null);
     }
+  };
+
+  const handleSubmit = async () => {
+
+    const formData = new FormData();
+    formData.append('id', category.id)
+    formData.append('name', categoryName);
+    formData.append('image', file);
+
+    dispatch(updateCategory(formData));
+
   };
 
   return (
@@ -21,7 +42,7 @@ const Uploading: React.FC = () => {
         <h1 className='2xl:text-4xl text-2xl text-center text-meta-3 text-bold'>Edit Category</h1>
         <p className='text-gray-2 text-xs mt-2 w-96 text-center mx-auto '>Edit your product category and necessary information from here</p>
         <div className="p-7">
-          <form action="#">
+        
             <div className=" flex items-center gap-3">
               <h1 className='2xl:text-xl text-md font-bold'>Category Icon</h1>
 
@@ -34,8 +55,14 @@ const Uploading: React.FC = () => {
               <input
                 type="file"
                 accept="image/*"
+                onChange={handleFileChange}
                 className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
               />
+               {previewUrl ? (
+              <div className="image-preview">
+                <img src={previewUrl} alt="File preview" />
+              </div>
+            ) :
               <div className="flex flex-col items-center justify-center space-y-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">
                   <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,12 +79,14 @@ const Uploading: React.FC = () => {
                 <p>Drag your image here</p>
                 <p className='text-gray-2 2xl:text-xl text-xs'>(Only * jpg and *png images will be accepted)</p>
               </div>
+}
             </div>
             <div className="md:w-full lg:w-2/3">
               <label htmlFor="" className='2xl:text-1xl text-sm'>Category name</label>
               <input
                 type="text"
-
+                value={categoryName}
+                onChange={(e)=>setCategoryName(e.target.value)}
                 className="w-100 p-3  border border-box rounded-lg"
               />
             </div>
@@ -71,12 +100,12 @@ const Uploading: React.FC = () => {
               </button>
               <button
                 className="flex justify-center rounded bg-meta-3 2xl:py-3 py-2 2xl:text-xl text-xs 2xl:px-15 px-10 font-medium text-gray hover:bg-opacity-70"
-                type="submit"
+                onClick={handleSubmit}
               >
                 Save
               </button>
             </div>
-          </form>
+         
         </div>
       </div>
     </div>
