@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from "./Auth/authReducer";
-
+import categoryReducer from './Category/categoryReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  category : categoryReducer
   // add other reducers here
 });
 
