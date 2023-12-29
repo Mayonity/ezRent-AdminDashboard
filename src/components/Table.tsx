@@ -1,21 +1,21 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar/Sidebars';
 import Navbar from '../components/Sidebar/Navbar';
-import ProductOne from '../assets/product1.jpeg';
-import ProductTwo from '../assets/product2.png';
-import ProductThree from '../assets/product3.jpeg';
-import ProductFour from '../assets/product4.jpeg';
 import { Link } from 'react-router-dom';
 import Uploading from './Uploading';
 import CategoryEdit from './CategoryEdit';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { showCategories } from '../redux/Category/categoryAction';
+import moment from 'moment';
 
 const Table = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [isOn, setIsOn] = useState(false);
-
+  const dispatch: AppDispatch = useDispatch();
+  const categories = useSelector((state: RootState) => state.category.categories); 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -51,7 +51,9 @@ const Table = () => {
   const closeCategoryEdit2 = () => {
     setShowCategoryEdit2(false);
   };
-
+useEffect(() => {
+  dispatch(showCategories())
+},[dispatch])
 
   return (
     <div className="flex-1">
@@ -100,6 +102,7 @@ const Table = () => {
       <div className="relative overflow-x-auto m-10 shadow-md sm:rounded-lg  border border-box">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-white">
           <thead className="2xl:text-lg text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box">
+           
             <tr>
               <th scope="col" className="py-3 px-5">
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -150,25 +153,27 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="2xl:text-base text-xs border-b border-1 border-box ">
+          {categories.map((category, index) => (
+            <tr key={index} className="2xl:text-base text-xs border-b border-1 border-box ">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                01
+                {category.id}
               </th>
               <td className="px-6 py-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                   <div className="h-12.5 w-15 rounded-md">
-                    <img src={ProductOne} alt="Product" className='rounded-lg' />
+                    <img src={category.image_path} alt="Product" className='rounded-lg' />
                   </div>
                   <p className="text-sm text-black dark:text-white">
-                    Gaming
+                    {category.name}
                   </p>
                 </div>
               </td>
               <td className="px-6 py-4">
-                180
+               {categories.length}
               </td>
               <td className="px-6 py-4">
-                20-4-2022
+                {moment(category.created_at).format('YYYY-MM-DD')}
+              
               </td>
               <td className="border-b border-box py-5 px-4 ">
                 <label
@@ -204,171 +209,8 @@ const Table = () => {
               </td>
 
             </tr>
-            <tr className="2xl:text-base text-xs border-b border-1 border-box ">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                02
-              </th>
-              <td className="px-6 py-4">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <div className="h-12.5 w-15 rounded-md">
-                    <img src={ProductTwo} alt="Product" className='rounded-lg' />
-                  </div>
-                  <p className="text-sm text-black dark:text-white">
-                    Backpack
-                  </p>
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                180
-              </td>
-              <td className="px-6 py-4">
-                20-4-2022
-              </td>
-              <td className="border-b border-box py-5 px-4 dark-border-strokedark " onClick={openCategoryEdit2}>
-                <label
-                  htmlFor="toggle1"
-                  className="flex cursor-pointer select-none text-meta-3 items-center"
-
-                >     Enabled
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      id="toggle1"
-                      className="sr-only "
-                      onChange={() => {
-                        setEnabled(!enabled);
-                      }}
-                    />
-
-                    <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                    <div
-                      className={`absolute right-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-meta-3 transition ${enabled && '!right-1 !translate-x-full !bg-meta-3 dark:!bg-white'
-                        }`}
-                    ></div>
-                  </div>
-                </label>
-              </td>
-
-
-              <td className="border-b border-box py-5 px-4 dark-border-strokedark text-primary">
-                <button onClick={openCategoryEdit} className='2xl:w-25 w-20 text-center h-9 rounded-full justify-center items-center bg-[#D9DDFA] ' >
-                  <svg width="23" height="23" viewBox="0 0 20 20" fill="none" className='w-10 mx-auto' xmlns="http://www.w3.org/2000/svg" >
-                    <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M2.5 18.3333H17.5" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </td>
-
-            </tr>
-            <tr className="2xl:text-base text-xs border-b border-1 border-box ">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                03
-              </th>
-              <td className="px-6 py-4">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <div className="h-12.5 w-15 rounded-md">
-                    <img src={ProductThree} alt="Product" className='rounded-lg' />
-                  </div>
-                  <p className="text-sm text-black dark:text-white">
-                    Shoes
-                  </p>
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                180
-              </td>
-              <td className="px-6 py-4">
-                20-4-2022
-              </td>
-              <td className="border-b border-box py-5 px-4 dark-border-strokedark" onClick={openCategoryEdit2}>
-                <label
-                  htmlFor="toggle1"
-                  className="flex cursor-pointer select-none text-meta-3 items-center"
-                >     Enabled
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      id="toggle1"
-                      className="sr-only "
-                      onChange={() => {
-                        setEnabled(!enabled);
-                      }}
-                    />
-
-                    <div className="block 2xl:h-8 2xl:w-14 w-12 h-6 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                    <div
-                      className={`absolute right-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-meta-3 transition ${enabled && '!right-1 !translate-x-full !bg-meta-3 dark:!bg-white'
-                        }`}
-                    ></div>
-                  </div>
-                </label>
-              </td>
-
-
-              <td className="border-b border-box py-5 px-4 dark-border-strokedark text-primary">
-                <button onClick={openCategoryEdit} className='2xl:w-25 w-20 text-center h-9 rounded-full justify-center items-center bg-[#D9DDFA] ' >
-                  <svg width="23" height="23" viewBox="0 0 20 20" fill="none" className='w-10 mx-auto' xmlns="http://www.w3.org/2000/svg" >
-                    <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M2.5 18.3333H17.5" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </td>
-
-            </tr>
-            <tr className="2xl:text-base text-xs border-b border-1 border-box ">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                04
-              </th>
-              <td className="px-6 py-4">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <div className="h-12.5 w-15 rounded-md">
-                    <img src={ProductFour} alt="Product" className='rounded-lg' width={52} />
-                  </div>
-                  <p className="text-sm text-black dark:text-white">
-                    Car
-                  </p>
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                180
-              </td>
-              <td className="px-6 py-4">
-                20-4-2022
-              </td>
-              <td className="border-b border-1 border-box py-5 px-4 ">
-                <label
-                  htmlFor="toggle1"
-                  className="flex cursor-pointer select-none text-danger items-center" onClick={openCategoryEdit2}
-                >     Disabled
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      id="toggle1"
-                      className="sr-only "
-                    />
-                    <div className="block 2xl:h-8 2xl:w-14 w-12 h-6 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                    <div
-                      className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                        }`}
-                    ></div>
-                  </div>
-                </label>
-              </td>
-
-
-              <td className="border-b border-1 border-box py-5 px-4 dark-border-strokedark text-primary">
-                <button onClick={openCategoryEdit} className='2xl:w-25 text-center mx-auto h-9 w-20 rounded-full justify-center items-center bg-[#D9DDFA] ' >
-                  <svg width="23" height="23" viewBox="0 0 20 20" fill="none" className='w-10 mx-auto' xmlns="http://www.w3.org/2000/svg" >
-                    <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M2.5 18.3333H17.5" stroke="#404EED" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </td>
-
-            </tr>
+            ))}
+         
           </tbody>
         </table>
       </div>

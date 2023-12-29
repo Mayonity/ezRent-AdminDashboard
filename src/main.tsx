@@ -11,7 +11,11 @@ import Categories from './pages/Categories';
 import Products from './pages/Products';
 import Orders from './pages/Orders';
 import Chats from './pages/Chats'
+<<<<<<< Updated upstream
 import UserInfo from './pages/Users-Info.tsx';
+=======
+import Info from './pages/Info';
+>>>>>>> Stashed changes
 import AddProduct from './pages/AddProduct.tsx';
 import Reports from './pages/Reports';
 import Transaction from './pages/Transaction';
