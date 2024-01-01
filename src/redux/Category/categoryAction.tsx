@@ -34,14 +34,8 @@ export const addCategory = createAsyncThunk(
 export const showCategories = createAsyncThunk(
     'category/all',
     async (_, { rejectWithValue }) => {
-        try {
-            const token = getToken(); 
-            const response = await axios.get(showCategoryEndPoint,{
-                headers: {
-              
-                    'Authorization': `Bearer ${token}` 
-                }
-            })
+        try { 
+            const response = await axios.get(showCategoryEndPoint)
             return response.data.categories;
         } catch (error: any) {
             if (error.response) {
