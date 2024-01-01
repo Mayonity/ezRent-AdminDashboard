@@ -47,7 +47,7 @@ const Header = (props: {
       ) : null}
 
       <div style={rightContentStyle} className="flex space-x-10 ">
-        <h1 className="text-[#313131] text-2xl not-italic font-bold leading-[normal] opacity-30 mt-2 heading">Hi John</h1>
+        <h1 className="text-[#313131] text-2xl not-italic font-bold leading-[normal] opacity-30 mt-2 heading">Hi Admin</h1>
    
         <button onClick={navigateToPage} className="bg-meta-3 hover:bg-blue-700 text-white but font-bold flex items-center justify-center w-52 h-[59px] shrink-0 rounded-[7px] rounded-lg">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
