@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import MyImage from '../assets/ps51_800KB.jpg';
@@ -12,13 +12,32 @@ import { OrderModel } from '../components/OrderModel';
 import { Block } from '../components/BlockProducts';
 import Delete from '../components/Delete';
 import { EditOffers } from '../components/EditOffers';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { addProduct } from '../redux/Product/productAction';
+import { showCategories } from '../redux/Category/categoryAction';
+
 
 const AddProduct = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const categories = useSelector((state: RootState) => state.category.categories);
+  console.log(categories, 'categories')
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [totalQuantity, setTotalQuantity] = useState('');
+  const [tagLine, setTagLine] = useState('')
+  const [collectionFee, setCollectionFee] = useState('')
+  const [refundDeposit, setRefundDeposit] = useState('')
+  const [description, setdescription] = useState('')
+  const [categoryId, setCategoryId] = useState('')
+  const [file, setFile] = useState<any | null>(null)
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showOrderModel, setShowOrderModel] = useState(false);
 
   useEffect(() => {
-    document.title = 'Ez-Rent-Admin | AddProduct'; // Set your dynamic title here
+    document.title = 'Ez-Rent-Admin | AddProduct'; 
+    dispatch(showCategories())
   }, []);
 
   const toggleDropdown = () => {
@@ -68,8 +87,34 @@ const AddProduct = () => {
   const openEditOffers = () => {
     setShowEditOffers(true);
   };
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    setFile(selectedFile);
 
+    if (selectedFile) {
+      setFile(selectedFile);
+      const filePreviewUrl = URL.createObjectURL(selectedFile);
+      setPreviewUrl(filePreviewUrl);
+    } else {
+      setFile(null);
+      setPreviewUrl(null);
+    }
+  };
+  const handleSubmit = async () => {
 
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('price', price);
+    formData.append('totalQuantity', totalQuantity);
+    formData.append('tagLine', tagLine);
+    formData.append('collection_fee', collectionFee);
+    formData.append('refundable_deposit', refundDeposit);
+    formData.append('description', description);
+    formData.append('image', file);
+
+    dispatch(addProduct(formData));
+
+  };
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className=''>
@@ -161,6 +206,7 @@ const AddProduct = () => {
                           </label>
                           <input
                             type="text"
+                            onChange={(e) => setTitle(e.target.value)}
                             placeholder="Enter Product Name here..."
                             className="w-90 rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
@@ -171,7 +217,8 @@ const AddProduct = () => {
                             Price (per day)<span className="text-meta-1">*</span>
                           </label>
                           <input
-                            type="text"
+                            type="number"
+                            onChange={(e) => setPrice(e.target.value)}
                             placeholder="Product Price"
                             className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
@@ -181,7 +228,8 @@ const AddProduct = () => {
                             Quantity<span className="text-meta-1">*</span>
                           </label>
                           <input
-                            type="text"
+                            type="number"
+                            onChange={(e) => setTotalQuantity(e.target.value)}
                             placeholder="Product Quantity"
                             className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition  focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
@@ -194,6 +242,7 @@ const AddProduct = () => {
                           </label>
                           <input
                             type="text"
+                            onChange={(e) => setTagLine(e.target.value)}
                             placeholder="Product Tagline"
                             className="w-90 rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
@@ -205,6 +254,7 @@ const AddProduct = () => {
                           </label>
                           <input
                             type="text"
+                            onChange={(e) => setCollectionFee(e.target.value)}
                             placeholder=""
                             className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
@@ -214,7 +264,8 @@ const AddProduct = () => {
                             Refundable Deposit<span className="text-meta-1">*</span>
                           </label>
                           <input
-                            type="text"
+                            type="number"
+                            onChange={(e) => setRefundDeposit(e.target.value)}
                             placeholder=""
                             className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition  focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
@@ -227,6 +278,7 @@ const AddProduct = () => {
 
                         <input
                           type="email"
+                          onChange={(e) => setdescription(e.target.value)}
                           placeholder="Lorem Ipsum doler init..."
                           className="w-full rounded border-[1.5px] border-stroke bg-transparent py-9 px-5 font-medium outline-none transition focus:border-meta-3 active:border-meta-3 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
@@ -263,6 +315,7 @@ const AddProduct = () => {
                               tabIndex={-1}
                             >
                               <div className="py-1" role="none">
+                              
                                 <a
                                   href="#"
                                   className="text-gray-700 block px-4 py-2 text-sm border-b border-box text-center"

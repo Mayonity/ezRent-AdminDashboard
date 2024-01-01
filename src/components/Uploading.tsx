@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../redux/store';
 import { addCategory } from '../redux/Category/categoryAction';
 
 const Uploading: React.FC = () => {
-  const [file, setFile] = useState<any | null>(null);
+  const [file, setFile] = useState<any | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [categoryName, setCategoryName] = useState('');
   const dispatch: AppDispatch = useDispatch();
