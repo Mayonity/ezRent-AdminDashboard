@@ -4,13 +4,16 @@ import SignInForm from '../components/SignInForm';
 import Sidebar from '../components/Sidebar/Sidebars';
 import Navbar from '../components/Sidebar/Navbar';
 import { Block } from '../components/Block';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { showUsers } from '../redux/User/userAction';
+import moment from 'moment';
 
 
 const Users = () => {
-  useEffect(() => {
-    document.title = 'Ez-Rent-Admin | Users'; // Set your dynamic title here
-  }, []);
+  const users = useSelector((state: RootState) => state.user.users);
+  const dispatch: AppDispatch = useDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
   const [showSignInForm, setShowSignInForm] = useState(false);
   const toggleDropdown = () => {
@@ -38,6 +41,10 @@ const Users = () => {
     console.log("Closing sign-in form");
     setShowBlock(false);
   };
+  useEffect(() => {
+    document.title = 'Ez-Rent-Admin | Users'; // Set your dynamic title here
+    dispatch(showUsers())
+  }, []);
 
   const [enabled, setEnabled] = useState<boolean>(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -48,7 +55,7 @@ const Users = () => {
       <div className={`flex-1 ${sidebarOpen ? '' : ''}`}>
         <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <h1 className="text-bold text-2xl md:text-3xl boldish lg:text-4xl m-5 md:m-10">
-          Users <span className="text-meta-3 boldish">(2)</span>
+          Users <span className="text-meta-3 boldish">({users.length})</span>
         </h1>
         <div className="flex flex-col md:flex-row m-5 md:m-10 gap-4 p-5 rounded-lg bg-white border border-box">
           <div className="w-full md:w-2/3">
@@ -133,6 +140,7 @@ const Users = () => {
         <div className="relative overflow-x-auto m-5 md:m-10 border-box rounded-2xl border">
           <table className="w-full 2xl:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-lg border-box">
             <thead className=" text-gray-2 uppercase border-box border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
               <tr>
                 <th scope="col" className=" px-6 py-3 border-b border-box text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -192,114 +200,62 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-box border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              {users.map((user, index) => (
 
+                <tr key={index} className="bg-white border-box border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="py-5 px-5">
+                    {user?.id}
+                  </td>
+                  <td className="">
+                    {user?.name}
+                  </td>
+                  <td className="hidden md:table-cell">
+                    {user.phone ? `+65 ${user?.phone}` : 'N/A'}
+                  </td>
+                  <td className="hidden md:table-cell">
+                    {user?.email}
+                  </td>
+                  <td className="hidden md:table-cell">
+                    {moment(user.created_at).format('MMMM Do YYYY')}
 
-                <td className="py-5 px-5">
-                  01
-                </td>
-                <td className="">
-                  John Doe
-                </td>
-                <td className="hidden md:table-cell">
-                  +65 342 342
-                </td>
-                <td className="hidden md:table-cell">
-                  johndoe@gmail.com
-                </td>
-                <td className="hidden md:table-cell">
-                  August 07,2023
-                </td>
-                <td className="">
-                  Email
-                </td>
-                <td className="border-b border-box ">
-                  <button onClick={openBlock}>
-                    <label
-                      htmlFor="toggle1"
-                      className="flex cursor-pointer select-none text-danger items-center"
-                    >     Block
-                      <div className="relative">
-                        <input
-                          type="checkbox"
-                          id="toggle1"
-                          className="sr-only "
+                  </td>
+                  <td className="">
+                    Email
+                  </td>
+                  <td className="border-b border-box ">
+                    <button onClick={openBlock}>
+                      <label
+                        htmlFor="toggle1"
+                        className="flex cursor-pointer select-none text-danger items-center"
+                      >     Block
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            id="toggle1"
+                            className="sr-only "
 
-                        />
+                          />
 
-                        <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                        <div
-                          className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                            }`}
-                        ></div>
-                      </div>
-                    </label>
-                  </button>
-                </td>
-                <td className="   ">
-                  <button onClick={navigateToPage} className='w-[35px] h-[35px] shrink-0 rounded-[17.5px] bg-[#D5EDE5] flex items-center justify-center'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
+                          <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
+                          <div
+                            className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
+                              }`}
+                          ></div>
+                        </div>
+                      </label>
+                    </button>
+                  </td>
+                  <td className="   ">
+                    <button onClick={navigateToPage} className='w-[35px] h-[35px] shrink-0 rounded-[17.5px] bg-[#D5EDE5] flex items-center justify-center'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
 
-                </td>
-              </tr>
-              <tr className="bg-white border-box border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-
-                <td className="px-5">
-                  01
-                </td>
-                <td className="">
-                  John Doe
-                </td>
-                <td className="hidden md:table-cell">
-                  +65 342 342
-                </td>
-                <td className="hidden md:table-cell">
-                  johndoe@gmail.com
-                </td>
-                <td className="hidden md:table-cell">
-                  August 07,2023
-                </td>
-                <td className="py-5">
-                  Both
-                </td>
-                <td className=" ">
-                  <label
-                    htmlFor="toggle1"
-                    className="flex cursor-pointer select-none text-meta-3 items-center"
-                  >     UnBlock
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        id="toggle1"
-                        className="sr-only "
-                        onChange={() => {
-                          setEnabled(!enabled);
-                        }}
-                      />
-
-                      <div className="block 2xl:h-8 h-6 2xl:w-14 w-12  rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                      <div
-                        className={`absolute right-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-meta-3 transition ${enabled && '!right-1 !translate-x-full !bg-meta-3 dark:!bg-white'
-                          }`}
-                      ></div>
-                    </div>
-                  </label>
-                </td>
-                <td className="    ">
-                  <button onClick={navigateToPage} className='w-[35px] h-[35px] shrink-0 rounded-[17.5px] bg-[#D5EDE5] flex items-center justify-center'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -320,7 +276,7 @@ const Users = () => {
                 </svg>
               </button>
               <div className="p-4 md:p-8">
-                <SignInForm />
+                <SignInForm setShowSignInForm={setShowSignInForm} />
               </div>
             </div>
           </div>

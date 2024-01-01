@@ -9,6 +9,7 @@ import moment from 'moment';
 
 const Table = () => {
   const categories = useSelector((state: RootState) => state.category.categories);
+  
   const [isOpen, setIsOpen] = useState(false);
   const [singleCategory, setSingleCategory] = useState('');
   const [searchName, setSearchName] = useState('');

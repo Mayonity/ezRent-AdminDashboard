@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { addUser } from '../redux/User/userAction';
+const SignInForm: React.FC = ({ setShowSignInForm }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const dispatch: AppDispatch = useDispatch();
 
-const SignInForm: React.FC = () => {
+  const handleSubmit = async () => {
+    const data = {
+      name : name,
+      email :email
+    };
+    dispatch(addUser(data));
+    setShowSignInForm(false);
+
+  };
   return (
     <div className="flex bg-white w-100 p-15 flex-col justify-center px-5 py-12 lg:px-8 rounded-md">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -12,7 +27,7 @@ const SignInForm: React.FC = () => {
       </div>
 
       <div className=" sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <div className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
               Email address
@@ -22,6 +37,8 @@ const SignInForm: React.FC = () => {
                 id="email"
                 name="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 required
                 placeholder='example@example.com'
@@ -43,6 +60,8 @@ const SignInForm: React.FC = () => {
                 id="name"
                 name="name"
                 type="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 autoComplete="current-password"
                 required
                 placeholder='exampleUsername'
@@ -53,13 +72,13 @@ const SignInForm: React.FC = () => {
 
           <div>
             <button
-              type="submit"
+              onClick={handleSubmit}
               className="flex w-full justify-center rounded-md bg-meta-3 px-4 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:outline focus:ring focus:ring-offset focus:ring-indigo-600"
             >
               Create User
             </button>
           </div>
-        </form>
+        </div>
 
        
       </div>

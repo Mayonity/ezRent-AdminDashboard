@@ -4,9 +4,17 @@ import SignInForm from '../components/SignInForm';
 import Sidebar from '../components/Sidebar/Sidebars';
 import Navbar from '../components/Sidebar/Navbar';
 import { Block } from '../components/BlockProducts';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { showProducts } from '../redux/Product/productAction';
+import moment from 'moment';
 
 const Products = () => {
+  const products = useSelector((state: RootState) => state.product.products);
+  console.log(products,'products')
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
+    dispatch(showProducts())
     document.title = 'Ez-Rent-Admin | Products'; // Set your dynamic title here
   }, []);
   const [isOpen, setIsOpen] = useState(false);
@@ -218,231 +226,83 @@ const Products = () => {
                 </tr>
               </thead>
               <tbody className='2xl:text-xl text-xs'>
-                <tr>
-                  <td className="border-b border-box py-5   dark:border-strokedark ">
-                    <h5 className="font-medium dark:text-white text-left">
-                      01
-                    </h5>
-
-                  </td>
-
-                  <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Play Station 5
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Gaming
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      $40
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Devis miller
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5  dark:border-strokedark">
-                    <div>
-                      <button onClick={openBlock}>
-                        <label
-                          htmlFor="toggle1"
-                          className="flex gap-2 cursor-pointer select-none text-danger items-center"
-                        >     Block
-                          <div className="relative">
-                            <input
-                              type="checkbox"
-                              id="toggle1"
-                              className="sr-only "
-
-                            />
-
-                            <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                            <div
-                              className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!left-1 !translate-x-full !bg-white dark:!bg-white'
-                                }`}
-                            ></div>
-                          </div>
-                        </label>
+                {products.map((product, index) => (
+                    <tr key={index}>
+                    <td className="border-b border-box py-5   dark:border-strokedark ">
+                      <h5 className="font-medium dark:text-white text-left">
+                        {product.id}
+                      </h5>
+  
+                    </td>
+  
+                    <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
+                      <h5 className="font-medium text-black dark:text-white">
+                       {product.title}
+                      </h5>
+  
+                    </td>
+                    <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
+                      <h5 className="font-medium text-black dark:text-white">
+                        Gaming
+                      </h5>
+  
+                    </td>
+                    <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
+                      <h5 className="font-medium text-black dark:text-white">
+                        {product.price}
+                      </h5>
+  
+                    </td>
+                    <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
+                      <h5 className="font-medium text-black dark:text-white">
+                        Devis miller
+                      </h5>
+  
+                    </td>
+                    <td className="border-b border-box py-5  dark:border-strokedark">
+                      <div>
+                        <button onClick={openBlock}>
+                          <label
+                            htmlFor="toggle1"
+                            className="flex gap-2 cursor-pointer select-none text-danger items-center"
+                          >     Block
+                            <div className="relative">
+                              <input
+                                type="checkbox"
+                                id="toggle1"
+                                className="sr-only "
+  
+                              />
+  
+                              <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
+                              <div
+                                className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!left-1 !translate-x-full !bg-white dark:!bg-white'
+                                  }`}
+                              ></div>
+                            </div>
+                          </label>
+                        </button>
+                      </div>
+                    </td>
+                    <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
+                      <h5 className="font-medium text-black dark:text-white">
+                      {moment(product.created_at).format('YYYY-MM-DD')}
+                      </h5>
+  
+                    </td>
+                    <td className="border-b border-box py-5  dark-border-box text-primary">
+                      <button onClick={navigateToPage} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
+                          <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+  
                       </button>
-                    </div>
-                  </td>
-                  <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      20-04-2022
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5  dark-border-box text-primary">
-                    <button onClick={navigateToPage} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
-                        <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-
-                    </button>
-
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border-b border-box py-5   dark:border-strokedark ">
-                    <h5 className="font-medium dark:text-white text-left">
-                      02
-                    </h5>
-
-                  </td>
-
-                  <td className="border-b border-box py-5 dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Play Station 5
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Gaming
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      $40
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Devis miller
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5  dark:border-strokedark">
-                    <div>
-                      <label
-                        htmlFor="toggle1"
-                        className="flex gap-2 cursor-pointer select-none text-meta-3 items-center"
-                      >     UnBlock
-                        <div className="relative">
-                          <input
-                            type="checkbox"
-                            id="toggle1"
-                            className="sr-only "
-                            onChange={() => {
-                              setEnabled(!enabled);
-                            }}
-                          />
-
-                          <div className="block 2xl:h-8 h-6 2xl:w-14 w-12  rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                          <div
-                            className={`absolute right-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-meta-3 transition ${enabled && '!right-1 !translate-x-full !bg-meta-3 dark:!bg-white'
-                              }`}
-                          ></div>
-                        </div>
-                      </label>
-                    </div>
-                  </td>
-                  <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      20-04-2022
-                    </h5>
-
-                  </td>
-                  <td className="border-b border-box py-5 dark-border-box text-primary">
-                    <button onClick={navigateToPage} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
-                        <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-
-                    </button>
-
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-5  dark:border-strokedark ">
-                    <h5 className="font-medium dark:text-white text-left">
-                      03
-                    </h5>
-
-                  </td>
-
-                  <td className="py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Play Station 5
-                    </h5>
-
-                  </td>
-                  <td className=" py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Gaming
-                    </h5>
-
-                  </td>
-                  <td className=" py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      $40
-                    </h5>
-
-                  </td>
-                  <td className=" py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      Devis miller
-                    </h5>
-
-                  </td>
-                  <td className=" py-5  dark:border-strokedark">
-                    <div >
-                      <button onClick={openBlock}>
-                        <label
-                          htmlFor="toggle1"
-                          className="flex  gap-2 cursor-pointer select-none text-danger items-center"
-                        >     Block
-                          <div className="relative">
-                            <input
-                              type="checkbox"
-                              id="toggle1"
-                              className="sr-only "
-
-                            />
-
-                            <div className="block 2xl:h-8 h-6 2xl:w-14 w-12  rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                            <div
-                              className={`absolute left-1 top-1 2xl:h-6 w-4 h-4  2xl:w-6 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                                }`}
-                            ></div>
-                          </div>
-                        </label>
-                      </button>
-                    </div>
-                  </td>
-                  <td className=" py-5   dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      20-04-2022
-                    </h5>
-
-                  </td>
-                  <td className=" py-5  dark-border-box text-primary ">
-                    <button onClick={navigateToPage} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
-                        <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-
-                    </button>
-
-                  </td>
-                </tr>
-
-
-
+  
+                    </td>
+                  </tr>
+                ))}
+  
               </tbody>
             </table>
           </div>
