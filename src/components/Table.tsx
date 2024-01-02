@@ -186,7 +186,7 @@ const Table = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  {categories.length}
+                  {category.products ?  category.products.length : 0}
                 </td>
                 <td className="px-6 py-4">
                   {moment(category.created_at).format('YYYY-MM-DD')}
