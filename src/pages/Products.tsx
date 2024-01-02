@@ -243,7 +243,7 @@ const Products = () => {
                     </td>
                     <td className="border-b border-box py-5  dark:border-strokedark xl:pl-11">
                       <h5 className="font-medium text-black dark:text-white">
-                        Gaming
+                        {product?.category?.name}
                       </h5>
   
                     </td>
@@ -255,7 +255,7 @@ const Products = () => {
                     </td>
                     <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
                       <h5 className="font-medium text-black dark:text-white">
-                        Devis miller
+                       {product?.user?.name}
                       </h5>
   
                     </td>
