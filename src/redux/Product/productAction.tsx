@@ -12,7 +12,7 @@ export const addProduct = createAsyncThunk(
             const token = getToken(); 
             const response = await axios.post(addProductEndPoint, productData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    // 'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}` 
                 }
             });

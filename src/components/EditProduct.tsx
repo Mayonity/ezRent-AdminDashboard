@@ -1,14 +1,33 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RiArrowDropDownLine } from "react-icons/ri"
 import UploadImage from "../components/UploadImage"
 import { Link } from 'react-router-dom';
 import Delete from '../components/Delete';
 import Image from '../assets/Mask group.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { showCategories } from '../redux/Category/categoryAction';
+import { addProduct } from '../redux/Product/productAction';
+import { showUsers } from '../redux/User/userAction';
 
 const EditProduct = () => {
+    const dispatch: AppDispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
+    const categories = useSelector((state: RootState) => state.category.categories);
+    const users = useSelector((state: RootState) => state.user.users);
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [totalQuantity, setTotalQuantity] = useState('');
+    const [tagLine, setTagline] = useState('')
+    const [collectionFee, setCollectionFee] = useState('')
+    const [refundDeposit, setRefundDeposit] = useState('')
+    const [description, setDescription] = useState('')
+    const [categoryId, setCategoryId] = useState('')
+    const [featureImage, setFeatureImage] = useState<File | null>(null)
+    const [filesArray, setFilesArray] =  useState<File[]>([]);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
@@ -17,6 +36,38 @@ const EditProduct = () => {
     const toggleDropdown1 = () => {
         setIsOpenDropdown1(!isOpenDropdown1);
     }
+    const handleSubmit = async () => {
+       const user_id = 44;
+       const category_id = 6;
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('price', price);
+        formData.append('total_quantity', totalQuantity);
+        formData.append('tagline', tagLine);
+        formData.append('collection_fee', collectionFee);
+        formData.append('refundable_deposit', refundDeposit);
+        formData.append('description', description);
+        formData.append('category_id', category_id);
+        formData.append('user_id', user_id);
+        if (featureImage) {
+            formData.append('image', featureImage);
+        }
+        // Append multiple files
+        filesArray.forEach((file, index) => {
+            formData.append(`images`, file);
+        });
+    
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(`${key}: ${value}`);
+        // }
+        // return
+        dispatch(addProduct(formData));
+    
+      };
+    useEffect(() => {
+        dispatch(showCategories())
+        dispatch(showUsers())
+    },[])
     return (
         <div>
 
@@ -66,7 +117,7 @@ const EditProduct = () => {
                 </h1>                <hr className='2xl:my-7 my-5 md:block hidden' />
                 <div className='lg:flex gap-0'>
                     <div className=' lg:w-[300px] md:w-full '>
-                        <UploadImage />
+                        <UploadImage onFileChange={setFeatureImage} onFilesArrayChange={setFilesArray} />
                     </div>
                     <div className='border bg-gray-300 ml-5 lg:block hidden w-[1px] mt-16  h-[700px]'>
 
@@ -78,20 +129,20 @@ const EditProduct = () => {
                             <div>
                                 <label className='2xl:text-lg text-xs'>Product Name*</label>
                                 <div className=' w-full  mt-2  rounded-[15px]'>
-                                    <input type="text" className='text-sm cursor-pointer 2xl:w-[520px] px-3 xl:w-[370px] md:w-[330px] w-[95%] mx-auto  outline-none focus:border-[#0E9F6E]  border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
+                                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className='text-sm cursor-pointer 2xl:w-[520px] px-3 xl:w-[370px] md:w-[330px] w-[95%] mx-auto  outline-none focus:border-[#0E9F6E]  border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
                                 </div>
                             </div>
                             <div className='flex xl:gap-5 gap-6 md:mt-0 mt-5 '>
                                 <div>
                                     <label className='2xl:text-lg text-xs'>Price (per day)*</label>
                                     <div className='mt-2 rounded-[15px]'>
-                                        <input type="text" className='text-sm cursor-pointer 2xl:w-[220px] px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
+                                        <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} className='text-sm cursor-pointer 2xl:w-[220px] px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
                                     </div>
                                 </div>
                                 <div>
                                     <label className='2xl:text-lg text-xs'>Quantity*</label>
                                     <div className='mt-2 rounded-[15px]'>
-                                        <input type="text" className='text-sm cursor-pointer 2xl:w-[220px]  px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E]  border-[#DEDEDE] border-2  rounded-[7px] 2xl:py-3 py-2' />
+                                        <input type="text" value={totalQuantity} onChange={(e) => setTotalQuantity(e.target.value)} className='text-sm cursor-pointer 2xl:w-[220px]  px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E]  border-[#DEDEDE] border-2  rounded-[7px] 2xl:py-3 py-2' />
                                     </div>
                                 </div>
                             </div>
@@ -100,20 +151,20 @@ const EditProduct = () => {
                             <div>
                                 <label className='2xl:text-lg text-xs'>Tagline*</label>
                                 <div className=' w-full mt-2   rounded-[15px]'>
-                                    <input type="text" className='text-sm cursor-pointer 2xl:w-[520px] px-3 xl:w-[370px] md:w-[350px] w-[95%] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2   rounded-[7px] 2xl:py-3 py-2' />
+                                    <input type="text" value={tagLine} onChange={(e) => setTagline(e.target.value)} className='text-sm cursor-pointer 2xl:w-[520px] px-3 xl:w-[370px] md:w-[350px] w-[95%] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2   rounded-[7px] 2xl:py-3 py-2' />
                                 </div>
                             </div>
                             <div className='flex xl:gap-5 gap-6 md:mt-0 mt-5'>
                                 <div>
                                     <label className='2xl:text-lg  text-[10px]'>Delivery/ collection fee*</label>
                                     <div className='mt-2  rounded-[15px]'>
-                                        <input type="text" className='text-sm cursor-pointer 2xl:w-[220px] px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
+                                        <input type="text" value={collectionFee} onChange={(e) => setCollectionFee(e.target.value)} className='text-sm cursor-pointer 2xl:w-[220px] px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
                                     </div>
                                 </div>
                                 <div>
                                     <label className='2xl:text-lg text-xs'>Refundable deposit*</label>
                                     <div className='mt-2 rounded-[15px]'>
-                                        <input type="text" className='text-sm cursor-pointer 2xl:w-[220px] px-3 xl:w-[150px] w-[130px]  outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
+                                        <input type="text" value={refundDeposit} onChange={(e) => setRefundDeposit(e.target.value)} className='text-sm cursor-pointer 2xl:w-[220px] px-3 xl:w-[150px] w-[130px]  outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' />
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +173,7 @@ const EditProduct = () => {
                             <div>
                                 <label className='2xl:text-lg text-xs'>Description*</label>
                                 <div>
-                                    <textarea
+                                    <textarea value={description} onChange={(e) => setDescription(e.target.value)}
                                         className=' text-sm  cursor-pointer  border-2 p-2 mt-2 rounded-[7px] px-3 2xl:h-[91px] 2xl:w-[760px] xl:w-[540px] border-[#DEDEDE] md:w-[350px] outline-none focus:border-[#0E9F6E] w-full h-[80px]' />
                                 </div>
                             </div>
@@ -208,13 +259,13 @@ const EditProduct = () => {
                         </div>
                         <div className='mb-4.5 float-right  mt-25'>
                            
-                            <Link
-                                to="#"
+                            <button
+                                onClick={handleSubmit}
                                 className="inline-flex items-center md:ml-40 justify-center gap-5 md:w-1/4 w-44 rounded-md md:gap-2.5 bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                             >
 
                                 Save
-                            </Link>
+                            </button>
                         </div>
 
                     </div>

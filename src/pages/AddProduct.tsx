@@ -101,21 +101,7 @@ const AddProduct = () => {
       setPreviewUrl(null);
     }
   };
-  const handleSubmit = async () => {
 
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('price', price);
-    formData.append('totalQuantity', totalQuantity);
-    formData.append('tagLine', tagLine);
-    formData.append('collection_fee', collectionFee);
-    formData.append('refundable_deposit', refundDeposit);
-    formData.append('description', description);
-    formData.append('image', file);
-
-    dispatch(addProduct(formData));
-
-  };
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className=''>
