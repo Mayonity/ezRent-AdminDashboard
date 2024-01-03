@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { showCategories } from '../redux/Category/categoryAction';
 import moment from 'moment';
-
+import Toggle from "../components/Toggle"
 const Table = () => {
   const categories = useSelector((state: RootState) => state.category.categories);
-  
   const [isOpen, setIsOpen] = useState(false);
   const [singleCategory, setSingleCategory] = useState('');
   const [searchName, setSearchName] = useState('');
@@ -65,11 +64,11 @@ const Table = () => {
   };
   useEffect(() => {
     if (categories.length === 0) {
-    dispatch(showCategories())
+      dispatch(showCategories())
     }
     setDisplayCategories(categories);
   }, [dispatch, categories])
- 
+
 
   return (
     <div className="flex-1">
@@ -117,11 +116,10 @@ const Table = () => {
       </div>
 
       <div className="relative overflow-x-auto m-10 shadow-md sm:rounded-lg  border border-box">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-white">
-          <thead className="2xl:text-lg text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box">
-
+        <table className="w-full 2xl:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-white">
+          <thead className=" text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box">
             <tr>
-              <th scope="col" className="py-3 px-5">
+              <th scope="col" className="py-3 px-6">
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                   ID
                   <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +128,7 @@ const Table = () => {
                   </svg>
                 </div>
               </th>
-              <th scope="col" className=" py-3">
+              <th scope="col" className=" py-3 px-6">
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                   CATEGORY NAME
                   <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +137,7 @@ const Table = () => {
                   </svg>
                 </div>
               </th>
-              <th scope="col" className="py-3">
+              <th scope="col" className="py-3 px-6">
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                   NO OF PRODUCTS
                   <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -148,7 +146,7 @@ const Table = () => {
                   </svg>
                 </div>
               </th>
-              <th scope="col" className=" py-3">
+              <th scope="col" className=" py-3 px-6">
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                   ADDED ON
                   <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +155,7 @@ const Table = () => {
                   </svg>
                 </div>
               </th>
-              <th scope="col" className=" py-3">
+              <th scope="col" className=" py-3 px-4">
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                   STATUS
                   <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,25 +191,7 @@ const Table = () => {
 
                 </td>
                 <td className="border-b border-box py-5 px-4 ">
-                  <label
-                    htmlFor="toggle1"
-                    className="flex cursor-pointer select-none text-danger items-center"
-                  >     Disabled
-                    <div className="relative" onClick={openCategoryEdit2}>
-                      <input
-                        type="checkbox"
-                        id="toggle1"
-                        className="sr-only "
-
-                      />
-
-                      <div className="block 2xl:h-8 2xl:w-14 w-12 h-6 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                      <div
-                        className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                          }`}
-                      ></div>
-                    </div>
-                  </label>
+              <Toggle/>
                 </td>
 
 

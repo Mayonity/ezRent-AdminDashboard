@@ -64,28 +64,28 @@ const LineChart: React.FC = () => {
 
   return (
     <div>
-  
-          <div className="w-[681px]  shrink-0 border rounded-[10px] bg-white border-solid border-[#CACACA] " style={{ maxWidth: '180%', width: '700px', margin: '0 auto' }}>
-          <h1 className='text-xl text-gray-2 pl-10 opacity-90 mt-6'>Total Products</h1>
-<br />
-<div className='p-6'>
-<div className='flex'>   
-<div className="text-[#787878] text-xl font-bold not-italic" style={{ writingMode: 'vertical-rl', transform: 'rotate(-180deg)', marginBottom: '40px' }}>
-  Number of Products
-</div>
+
+      <div className="w-[681px]  shrink-0 border pb-6 rounded-[10px] bg-white border-solid border-[#CACACA] " style={{ maxWidth: '180%', width: '100%', margin: '0 auto' }}>
+        <h1 className='text-xl text-gray-2 pl-10 opacity-90 mt-6'>Total Products</h1>
+        <br />
+        <div className='p-6'>
+          <div className='flex'>
+            <div className="text-[#787878] text-xl font-bold not-italic" style={{ writingMode: 'vertical-rl', transform: 'rotate(-180deg)', marginBottom: '40px' }}>
+              Number of Products
+            </div>
 
 
 
 
-      <div style={{ width: '75%', height: '35vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }} className="">
-    
-        <canvas ref={chartRef} style={{ width: '80%', height: '60%' }}/>
+            <div style={{ width: '75%', height: '35vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }} className="">
+
+              <canvas ref={chartRef} style={{ width: '80%', height: '60%' }} />
+            </div>
+          </div>
+
+          <div className='text-[#787878] text-center text-xl not-italic font-bold leading-[normal] mt-28'>March 2023</div>
+        </div>
       </div>
-      </div>
-
-      <div className='text-[#787878] text-center text-xl not-italic font-bold leading-[normal] mt-20'>March 2023</div>
-</div>
-    </div>
     </div>
 
   );

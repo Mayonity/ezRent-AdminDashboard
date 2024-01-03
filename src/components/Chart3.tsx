@@ -77,7 +77,7 @@ const LineChart3: React.FC = () => {
 
 <div>
   
-  <div className="w-[681px]  shrink-0 border rounded-[10px] bg-white border-solid border-[#CACACA] " style={{ maxWidth: '180%', width: '700px', margin: '0 auto' }}>
+  <div className="w-[681px]  shrink-0 border rounded-[10px] pb-6 bg-white border-solid border-[#CACACA] " style={{ maxWidth: '180%', width: '100%', margin: '0 auto' }}>
   <h1 className='text-xl text-gray-2 pl-10 opacity-90 mt-6'>Total Transaction amount</h1>
   <br />
   <div className='p-6'>

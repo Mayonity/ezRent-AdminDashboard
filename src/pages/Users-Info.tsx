@@ -13,6 +13,8 @@ import { Block } from '../components/Block';
 import { RecieveInfo } from '../components/RecieveInfo';
 import { Address } from '../components/Address';
 import UserForm from '../components/UserForm';
+import {RxCrossCircled} from "react-icons/rx"
+import {TiTick } from "react-icons/ti"
 const Info = () => {
   
   useEffect(() => {
@@ -137,60 +139,49 @@ const Info = () => {
         <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <h1 className='m-10 ml-24 flex text-[#DC4449]'><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#DC4449'> <path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>This user is blocked due to spam and misinformation</h1>
         {/* Section with three boxes */}
-        <div className='m-10 flex md:flex-row flex-col justify-center 2xl:text-lg text-sm'>
+        <div className='xl:m-3 m-0  w-[95%] grid gap-5 lg:gap-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center 2xl:text-lg text-sm'>
           <div>
             <div className=' p-5 border-box border rounded bg-white'>
-              <div className='flex justify-between border-b border-box mb-5 '>
-                <h1 className='2xl:text-xl text-lg font-bold text-meta-3'>User Information</h1>
+              <div className='flex justify-between items-center border-b border-box mb-5 '>
+                <h1 className='2xl:text-xl text-lg font-bold text-meta-3 mb-5'>User Information</h1>
                 <button onClick={openUserForm}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='w-10 text-center h-7 border-box  justify-center items-center border'>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='w-10 text-center h-7 border-box   border'>
                     <path d="M11.05 3.00002L4.20829 10.2417C3.94996 10.5167 3.69996 11.0584 3.64996 11.4334L3.34162 14.1334C3.23329 15.1084 3.93329 15.775 4.89996 15.6084L7.58329 15.15C7.95829 15.0834 8.48329 14.8084 8.74162 14.525L15.5833 7.28335C16.7666 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2333 1.75002 11.05 3.00002Z" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M9.90833 4.20825C10.2667 6.50825 12.1333 8.26659 14.45 8.49992" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M2.5 18.3333H17.5" stroke="#279D70" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
               </div>
-              <div>
-                <div className='flex gap-20 mb-2'>
-                  <h1>Id:</h1>
-                  <h1 className='text-gray-2'>1</h1>
-                </div>
-                <div className='flex gap-13  mb-2'>
-                  <h1>Name:</h1>
-                  <h1 className='text-gray-2'>John Doe</h1>
-                </div>
-                <div className='flex gap-12  mb-2'>
-                  <h1>Phone:</h1>
-                  <div className='flex 2xl:gap-30 gap-10'>
-                    <h1 className='text-gray-2'>+65 342 342</h1>
-                    <div className='w-8 h-7 text-danger ml-15' ><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#DE4245'><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg></div>
-                  </div>
-                </div>
-                <div className='md:mb-10 justify-center align-center items-center ml-25 mb-2'>
-                  <button className='w-15 h-7 bg-meta-3 rounded-md text-white text-sm' onClick={openVerify}>Verify</button>
-                </div>
-                <div className='flex gap-12  mb-2'>
-                  <h1>Email:</h1>
-                  <div className='flex 2xl:gap-30 gap-14'>
-                    <h1 className='text-gray-2'>johndoe@gmail.com</h1>
-                    <div className='  text-center rounded-full  border-success border-2 text-success'><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill='#559A85'><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg></div>
-                  </div>
-                </div>
-                <div className='flex 2xl:gap-8 gap-4  mb-2'>
-                  <h1>Commision rate:</h1>
-
-                  <input type="text" placeholder='%5' className='text-gray-2 w-10 h-8 p-1 rounded border' />
-                </div>
-                <div className='flex 2xl:gap-10 xl:gap-3  mb-5'>
-                  <h1>Created on:</h1>
-                  <h1 className='text-gray-2'>August 07,2023 (10:10 AM)</h1>
-                </div>
-                <div className='flex justify-between mb-2'>
-                  <button className='2xl:w-40 w-32 2xl:text-xl text-xs rounded-md h-10 bg-greenlight' onClick={openResetPass}>Reset Password</button>
-                  <button className='2xl:w-40 w-32 2xl:text-xl text-xs rounded-md h-10 bg-[#EEB3B4] text-[#D40915]' onClick={openBlock}>Block</button>
-
-                </div>
+             <div className='grid grid-cols-4  '>
+              <div className='text-[#313131] md:text-xs text-[10px] font-bold space-y-3'> 
+                <h1>Id:</h1>
+                <h1>Name:</h1>
+                <h1>Phone:</h1><br/><br/>
+                <h1 className=''>Email:</h1>
+                <h1>Commission rate:</h1>
+                <h1>Created on:</h1>
               </div>
+              <div className='col-span-2 text-[#787878] font-bold md:text-xs text-[10px] space-y-3'>
+                <h1>1</h1>
+                <h1>John doe</h1>
+                <h1>+65 342 342</h1>
+                <button className='text-white bg-[#0E9F6E] rounded-md text-center py-1 px-3 font-bold text-[10px]'>Verify</button>
+                <h1>johndoe@gmail.com</h1>
+                <h1 className='border border-[#787878] rounded-md p-1 w-7'>5%</h1>
+                <h1>August 07, 2023 (10:10 AM)</h1>
+              </div>
+              <div className=' space-y-2  md:text-xs text-[10px]  grid grid-cols-1 place-items-end pla'>
+                <h1 className='text-white'>ndm</h1>
+                {/* <h1 className='text-white'>ndm</h1> */}
+                
+                <RxCrossCircled className="text-[#D60000] text-xl"  />
+                <h1 className='text-white'>ndm</h1>
+                <TiTick className="text-[#0E9F6E] text-xl border border-[#0E9F6E] p-1 rounded-full" />
+                <h1 className='text-white'>ndm</h1>
+                <h1 className='text-white'>ndm</h1>
+                
+              </div>
+             </div>
 
             </div>
           </div>
@@ -198,10 +189,10 @@ const Info = () => {
 
 
 
-          <div className='flex  justify-center bg-white  gap-4 md:gap-8 lg:gap-10 xl:gap-12'>
-            <div className=' p-5 border-box border rounded'>
+          <div className=' p-5 border-box border rounded bg-white'>
+            <div className=''>
               <div className='flex justify-between border-b border-box mb-5'>
-                <h1 className='2xl:text-xl text-lg font-bold text-meta-3'>Receiver Information</h1>
+                <h1 className='2xl:text-xl text-lg font-bold text-meta-3 mb-5'>Receiver Information</h1>
                 <svg
                   className="fill-current text-meta-3"
                   width="24"
@@ -221,7 +212,7 @@ const Info = () => {
                 </svg>
               </div>
 
-              <div className='2xl:w-90 w-72 p-5 border border-box rounded'>
+              <div className='w-full p-5 border border-box rounded'>
 
                 <div className='flex justify-between 2xl:text-xl text-xs'>
 
@@ -251,7 +242,7 @@ const Info = () => {
                 </div>
 
               </div>
-              <div className='2xl:w-90 w-72 p-5 border border-box rounded mt-5'>
+              <div className='w-full p-5 border border-box rounded mt-5'>
 
                 <div className='flex justify-between 2xl:text-xl text-xs'>
 
@@ -283,10 +274,10 @@ const Info = () => {
             </div>
           </div>
 
-          <div className='  flex  justify-center bg-white  '>
-            <div className=' p-5 border-box border rounded'>
+          <div className=' p-5 border-box border rounded bg-white'>
+            <div className=''>
               <div className='flex justify-between border-b border-box mb-5'>
-                <h1 className='2xl:text-xl text-lg font-bold text-meta-3'>Receiver Address</h1>
+                <h1 className='2xl:text-xl text-lg font-bold text-meta-3 mb-5'>Receiver Address</h1>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M11.9999 13.4299C13.723 13.4299 15.1199 12.0331 15.1199 10.3099C15.1199 8.58681 13.723 7.18994 11.9999 7.18994C10.2768 7.18994 8.87988 8.58681 8.87988 10.3099C8.87988 12.0331 10.2768 13.4299 11.9999 13.4299Z" stroke="#0E9F6E" stroke-width="1.5" />
                   <path d="M3.6202 8.49C5.5902 -0.169998 18.4202 -0.159997 20.3802 8.5C21.5302 13.58 18.3702 17.88 15.6002 20.54C13.5902 22.48 10.4102 22.48 8.3902 20.54C5.6302 17.88 2.4702 13.57 3.6202 8.49Z" stroke="#0E9F6E" stroke-width="1.5" />
@@ -294,7 +285,7 @@ const Info = () => {
 
               </div>
 
-              <div className='2xl:w-90 w-72 p-5 border border-box rounded'>
+              <div className='w-full p-5 border border-box rounded'>
 
                 <div className='flex justify-between 2xl:text-xl text-xs'>
 
@@ -318,7 +309,7 @@ const Info = () => {
                 </div>
 
               </div>
-              <div className='2xl:w-90 w-72 p-5 border border-box rounded mt-5'>
+              <div className='w-full p-5 border border-box rounded mt-5'>
                 <div className='flex justify-between 2xl:text-xl text-xs'>
 
                   <div className='flex 2xl:gap-5 gap-3'>
@@ -493,6 +484,7 @@ const Info = () => {
             </tbody>
           </table>
         </div>
+        
         <h1 className='text-3xl m-10 font-bold'>Borrow</h1>
         <div className="relative overflow-x-auto m-10 shadow-md sm:rounded-lg  border border-box">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -891,7 +883,7 @@ const Info = () => {
         </div>
       )}
       {showRecieveInfo && (
-        <div className="fixed inset-0 flex items-center justify-center  z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2  z-50">
           <div className="relative w-full max-w-lg">
             <div className="relative rounded-3xl shadow-2xl  border-box  border-2  bg-white w-150 ml-10 p-8 ">
               <button onClick={closeRecieveInfo} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
@@ -907,7 +899,7 @@ const Info = () => {
         </div>
       )}
       {showAddress && (
-        <div className="fixed inset-0 flex items-center justify-center  z-50">
+        <div className="fixed inset-0 flex items-center justify-center  bg-opacity-80 bg-gray-2 z-50">
           <div className="relative w-full max-w-lg">
             <div className="relative rounded-3xl shadow-2xl border border-box bg-white w-150 ml-10 p-8 ">
               <button onClick={closeAddress} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
