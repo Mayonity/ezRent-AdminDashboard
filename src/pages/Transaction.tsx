@@ -1,24 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Transform } from '../components/Transform';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import 'tippy.js/dist/tippy.css'; // Import Tippy styles
-import { TooltipComp } from './Tootlipcomp'
 
 const Transaction = () => {
   useEffect(() => {
     document.title = 'Ez-Rent-Admin | Transaction'; // Set your dynamic title here
   }, []);
-  const [isOpen, setIsOpen] = useState(false);
-  const [showChat, setShowChat] = useState(false);
-  const [isOn, setIsOn] = useState(false);
   const [showTransform, setShowTransform] = useState(false); // Corrected variable name
-  const navigate = useNavigate();
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  }; const [isTooltipVisible1, setTooltipVisible1] = useState(false);
+  const [isTooltipVisible1, setTooltipVisible1] = useState(false);
   const [isTooltipVisible2, setTooltipVisible2] = useState(false);
   const [isTooltipVisible3, setTooltipVisible3] = useState(false);
   const [isTooltipVisible4, setTooltipVisible4] = useState(false);
@@ -82,18 +73,7 @@ const Transaction = () => {
   const handleMouseLeave7 = () => {
     setTooltipVisible7(false);
   };
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
-  const [showBlock, setShowBlock] = useState(false);
-  const openBlock = () => {
-    setShowBlock(true);
-  };
 
-  const closeBlock = () => {
-    console.log("Closing sign-in form");
-    setShowBlock(false);
-  };
   const openTransform = () => {
     setShowTransform(true);
   };
@@ -104,11 +84,6 @@ const Transaction = () => {
   };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  function openUploading(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <div className="flex flex-col md:flex-row bg-gray transition-all">
       {/* Sidebar and Navbar components */}
@@ -214,8 +189,8 @@ const Transaction = () => {
                     </svg>
                   </div>
                 </th>
-                <th scope="col" className=" py-3 text-gray-2">
-                  <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                <th scope="col" className="pr-18  py-3 text-gray-2">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent:"center", whiteSpace: 'nowrap' }}>
                     Remarks
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -227,8 +202,8 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="2xl:text-base text-xs border-b border-1 border-box ">
-                <th scope="row" className="px-5 py-8 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+              <tr className="2 border-b border-1 border-box ">
+                <th scope="row" className="px-5 py-8 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                   01
                 </th>
                 <td className="py-4">
@@ -243,21 +218,21 @@ const Transaction = () => {
                 <td className=" py-4">
                   Late Return
                 </td>
-                <td className=" py-4 text-center">
+                <td className=" py-4 ">
                   01
                 </td>
                 <td className="border-b border-1 border-box relative">
-                  <div
-                    data-tooltip-target="tooltip-default-1"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
-                    onMouseEnter={handleMouseEnter1}
-                    onMouseLeave={handleMouseLeave1}
+                <div
+                    data-tooltip-target="tooltip-default-2"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    onMouseEnter={handleMouseEnter2}
+                    onMouseLeave={handleMouseLeave2}
                   >
                     Lorem Ipsum
                     <div
-                      id="tooltip-default-1"
+                      id="tooltip-default-2"
                       role="tooltip"
-                      className={`absolute z-10 inline-block px-3 py-2 text-sm bg-white font-medium text-black shadow-3xl w-50  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible1 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                      className={`absolute z-10 inline-block px-3 py-3 text-sm bg-white font-medium text-black shadow-3xl w-50  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible2 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                       style={{ top: '-50px', right: '0' }}
                     >
                       Lorem Ipsum
@@ -271,8 +246,8 @@ const Transaction = () => {
 
 
               </tr>
-              <tr className="2xl:text-base text-xs border-b border-1 border-box ">
-                <th scope="row" className=" px-5 py-8 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+              <tr className=" border-b border-1 border-box ">
+                <th scope="row" className=" px-5 py-8 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                   02
                 </th>
                 <td className=" py-4">
@@ -287,13 +262,13 @@ const Transaction = () => {
                 <td className="py-4">
                   Reimbursement
                 </td>
-                <td className=" py-4 text-center">
+                <td className=" py-4 ">
                   02
                 </td>
                 <td className="border-b border-1 border-box relative">
                   <div
                     data-tooltip-target="tooltip-default-2"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 2xl:text-base text-xs text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter2}
                     onMouseLeave={handleMouseLeave2}
                   >
@@ -301,7 +276,7 @@ const Transaction = () => {
                     <div
                       id="tooltip-default-2"
                       role="tooltip"
-                      className={`absolute z-10 inline-block px-3 py-2 text-sm bg-white font-medium text-black shadow-3xl w-50  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible2 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                      className={`absolute z-10 inline-block px-3 py-3 text-sm bg-white font-medium text-black shadow-3xl w-50  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible2 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                       style={{ top: '-50px', right: '0' }}
                     >
                       Lorem Ipsum
@@ -313,8 +288,8 @@ const Transaction = () => {
 
               </tr>
 
-              <tr className="2xl:text-base  text-xs border-b border-1 border-box ">
-                <th scope="row" className="px-5 py-8 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+              <tr className=" border-b border-1 border-box ">
+                <th scope="row" className="px-5 py-8 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                   03
                 </th>
                 <td className=" py-4">
@@ -329,13 +304,13 @@ const Transaction = () => {
                 <td className=" py-4">
                   Compensation
                 </td>
-                <td className=" py-4 text-center">
+                <td className=" py-4 ">
                   03
                 </td>
                 <td className="border-b border-1 border-box relative" >
                   <div
                     data-tooltip-target="tooltip-default-3"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 2xl:text-base  text-xs  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg   text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter3}
                     onMouseLeave={handleMouseLeave3}
                   >
@@ -343,7 +318,7 @@ const Transaction = () => {
                     <div
                       id="tooltip-default-3"
                       role="tooltip"
-                      className={`absolute z-10 inline-block px-3 py-2 text-sm bg-white font-medium text-black shadow-3xl w-50  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible3 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                      className={`absolute z-10 inline-block px-3 py-3 text-sm bg-white font-medium text-black shadow-3xl w-50  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible3 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                       style={{ top: '-50px', right: '0' }}
                     >
                       Lorem Ipsum
@@ -365,7 +340,7 @@ const Transaction = () => {
         <h1 className='text-4xl font-black m-10 mt-30 boldish'>Order</h1>
         <div className="relative overflow-x-auto m-10  shadow-md sm:rounded-lg border border-box bg-white">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="2xl:text-lg text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
+            <thead className="2xl:text-base text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
               <tr>
                 <th scope="col" className="px-10 py-6 text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -405,8 +380,8 @@ const Transaction = () => {
                   </div>
                 </th>
 
-                <th scope="col" className="px-6 py-3 text-gray-2">
-                  <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                <th scope="col" className="pr-16 py-3 text-gray-2">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent:"center",whiteSpace: 'nowrap' }}>
                     Remarks
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -418,7 +393,7 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody className='bg-white'>
-              <tr className="2xl:text-base  text-xs  border-b border-1 border-box ">
+              <tr className=" border-b border-1 border-box ">
 
                 <td className="px-10 py-6">
                   01
@@ -436,7 +411,7 @@ const Transaction = () => {
                 <td className="border-b border-1 border-box relative">
                   <div
                     data-tooltip-target="tooltip-default-1"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 2xl:text-base  text-xs  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg   text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter4}
                     onMouseLeave={handleMouseLeave4}
                   >
@@ -464,7 +439,7 @@ const Transaction = () => {
         <h1 className='text-4xl font-black m-10 mt-30 boldish'>Commissions</h1>
         <div className="relative overflow-x-auto m-10  shadow-md sm:rounded-lg border border-box bg-white">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="2xl:text-lg text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
+            <thead className="2xl:text-base text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
               <tr>
                 <th scope="col" className="px-10 py-6 text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -504,8 +479,8 @@ const Transaction = () => {
                   </div>
                 </th>
 
-                <th scope="col" className="px-6 py-3 text-gray-2">
-                  <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                <th scope="col" className="pr-16 py-3 text-gray-2">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent:"center",whiteSpace: 'nowrap' }}>
                     Remarks
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -517,7 +492,7 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody className='bg-white'>
-              <tr className="2xl:text-base  text-xs  border-b border-1 border-box ">
+              <tr className="  border-b border-1 border-box ">
 
                 <td className="px-10 py-6">
                   01
@@ -534,7 +509,7 @@ const Transaction = () => {
                 <td className="border-b border-1 border-box relative">
                   <div
                     data-tooltip-target="tooltip-default-1"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 2xl:text-base  text-xs  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg   text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter5}
                     onMouseLeave={handleMouseLeave5}
                   >
@@ -561,7 +536,7 @@ const Transaction = () => {
         <h1 className='text-4xl font-black m-10 mt-30 boldish'>Deposit</h1>
         <div className="relative overflow-x-auto m-10  shadow-md sm:rounded-lg border border-box bg-white">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="2xl:text-lg text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
+            <thead className="2xl:text-base text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
               <tr>
                 <th scope="col" className="px-10 py-6 text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -609,8 +584,8 @@ const Transaction = () => {
                     </svg>
                   </div>
                 </th>
-                <th scope="col" className="px-6 py-3 text-gray-2">
-                  <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                <th scope="col" className="pr-16 py-3 text-gray-2">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent:"center",whiteSpace: 'nowrap' }}>
                     Remarks
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -618,11 +593,10 @@ const Transaction = () => {
                     </svg>
                   </div>
                 </th>
-
               </tr>
             </thead>
             <tbody className='bg-white'>
-              <tr className="2xl:text-base  text-xs  border-b border-1 border-box ">
+              <tr className=" border-b border-1 border-box ">
 
                 <td className="px-10 py-6">
                   01
@@ -642,7 +616,7 @@ const Transaction = () => {
                 <td className="border-b border-1 border-box relative">
                   <div
                     data-tooltip-target="tooltip-default-1"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 2xl:text-base  text-xs  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg   text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter6}
                     onMouseLeave={handleMouseLeave6}
                   >
@@ -669,7 +643,7 @@ const Transaction = () => {
         <h1 className='text-4xl font-black m-10 mt-30 boldish'>Late Fee</h1>
         <div className="relative overflow-x-auto m-10  shadow-md sm:rounded-lg border border-box bg-white">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="2xl:text-lg text-xs text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
+            <thead className="2xl:text-base text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box bg-gray">
               <tr>
                 <th scope="col" className="px-10 py-6 text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -717,8 +691,8 @@ const Transaction = () => {
                     </svg>
                   </div>
                 </th>
-                <th scope="col" className="px-6 py-3 text-gray-2">
-                  <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                <th scope="col" className="pr-16 py-3 text-gray-2">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent:"center",whiteSpace: 'nowrap' }}>
                     Remarks
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -730,7 +704,7 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody className='bg-white'>
-              <tr className="2xl:text-base  text-xs  border-b border-1 border-box ">
+              <tr className=" border-b border-1 border-box ">
 
                 <td className="px-10 py-6">
                   01
@@ -750,7 +724,7 @@ const Transaction = () => {
                 <td className="border-b border-1 border-box relative">
                   <div
                     data-tooltip-target="tooltip-default-1"
-                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 2xl:text-base  text-xs  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                    className="text-black bg-blue-700 hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg   text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                     onMouseEnter={handleMouseEnter7}
                     onMouseLeave={handleMouseLeave7}
                   >
@@ -766,11 +740,6 @@ const Transaction = () => {
                     </div>
                   </div>
                 </td>
-
-
-
-
-
               </tr>
             </tbody>
           </table>
@@ -779,9 +748,9 @@ const Transaction = () => {
       {showTransform && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-50 z-50">
           <div className="relative w-full max-w-lg">
-            <div className="relative bg-white rounded-2xl shadow-2xl">
+            <div className="relative bg-white rounded-2xl shadow-2xl md:m-0 m-5">
 
-              <div className="p-8">
+              <div className="2xl:p-0 md:p-8">
                 <button onClick={closeSignInForm} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
                   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
                 </button>

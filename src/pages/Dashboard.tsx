@@ -9,8 +9,12 @@ import LineChart from "../components/Linechart";
 import LineChart1 from '../components/Chart2';
 import LineChart2 from '../components/Chart1';
 import LineChart3 from '../components/Chart3';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { LuCalendarDays } from "react-icons/lu"
 const Dashboard = () => {
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   useEffect(() => {
     document.title = 'Ez-Rent-Admin | Dashboard'; // Set your dynamic title here
@@ -40,26 +44,49 @@ const Dashboard = () => {
           </div>
 
           {/* Date input */}
-          <div className="p-5 ml-5 mb-4">
-            {/* ... */}
+          <div className="md:px-5 px-2 md:ml-5 ml-2   md:flex   gap-5">
+            <h1 className='text-lg pt-6  font-bold'>
+              Time Range:
+            </h1>
+            <div className="flex  mt-5 justify-around w-60 items-center ">
+              <div className='relative'>
+                <DatePicker selected={startDate} onChange={(date: any) => setStartDate(date)} className='w-24  md:text-[10px] text-[6px] text-end  rounded-full p-2 outline-none bg-gray border-[#CACACA] border focus:border-[#0E9F6E]' />
+                <LuCalendarDays className="absolute top-1 left-1 p-1 text-2xl border-r-[#CACACA] border-t-transparent border-b-transparent border-l-transparent border" />
+              </div>
+              <p className='text-[10px] font-bold'>- To -</p>
+              <div className='relative'>
+                <DatePicker selected={endDate} onChange={(date: any) => setEndDate(date)} className='w-24  md:text-[10px] text-[6px] text-end  rounded-full p-2 outline-none bg-gray  border-[#CACACA] border focus:border-[#0E9F6E]' />
+                <LuCalendarDays className="absolute top-1 left-1 p-1 text-2xl border-r-[#CACACA] border-t-transparent border-b-transparent border-l-transparent border" />
+
+              </div>
+            </div>
           </div>
 
-          <div className="p-5 ml-5 mb-4">
-            {/* ... */}
+          <div className="md:px-5 px-2 md:ml-5 ml-2 mb-4  md:flex  justify-between md:w-[665px] gap-5">
+            <h1 className='text-lg pt-6  font-bold'>
+              Show by:
+            </h1>
+            <div className="flex flex-wrap mt-5 justify-around md:w-[490px] gap-3 items-center ">
+              <button className='w-26  text-sm text-center  text-[#787878] rounded-full py-1 outline-none bg-gray border-[#CACACA] border focus:border-[#0E9F6E]'>Days</button>
+              <button  className='w-26  text-sm text-center text-[#787878] rounded-full py-1 outline-none bg-gray border-[#CACACA] border focus:border-[#0E9F6E]'>Weeks</button>
+              <button  className='w-26  text-sm text-center text-[#787878] rounded-full py-1 outline-none bg-gray border-[#CACACA] border focus:border-[#0E9F6E]'>Months</button>
+              <button  className='w-26  text-sm text-center text-[#787878] rounded-full py-1 outline-none bg-gray border-[#CACACA] border focus:border-[#0E9F6E]'>Year</button>
+
+            </div>
           </div>
 
           {/* Line Charts */}
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2 m-2 md:m-10">
-            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full md:w-1/2 chart">
+            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full  chart">
               <LineChart />
             </div>
-            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full md:w-1/2 chart">
+            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full chart">
               <LineChart1 />
             </div>
-            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full md:w-1/2 chart">
+            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full chart">
               <LineChart2 />
             </div>
-            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full md:w-1/2 chart">
+            <div className="chart-container flex flex-col mb-4 md:mb-0 w-full chart">
               <LineChart3 />
             </div>
           </div>

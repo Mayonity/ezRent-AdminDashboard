@@ -7,8 +7,9 @@ import { Block } from '../components/Block';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { showUsers } from '../redux/User/userAction';
-import moment from 'moment';
+import Toggle from "../components/Toggle"
 
+import moment from 'moment';
 
 const Users = () => {
   const users = useSelector((state: RootState) => state.user.users);
@@ -49,10 +50,10 @@ const Users = () => {
   const [enabled, setEnabled] = useState<boolean>(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <div className="flex flex-col md:flex-row h-full bg-gray transition-all">
+    <div className="flex flex-col md:flex-row h-full  transition-all">
       {/* Sidebar and Navbar components */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className={`flex-1 ${sidebarOpen ? '' : ''}`}>
+      <div className={`flex-1 ${sidebarOpen ? '' : ''}bg-gray h-screen`}>
         <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <h1 className="text-bold text-2xl md:text-3xl boldish lg:text-4xl m-5 md:m-10">
           Users <span className="text-meta-3 boldish">({users.length})</span>
@@ -127,9 +128,9 @@ const Users = () => {
               )}
             </div>
           </div>
-          <div className="md:w-1/4 mt-4 md:mt-0 flex relative">
+          <div className="md:w-[20%] mt-4 md:mt-0 flex relative">
             <button
-              className="w-full md:w-80 bg-meta-3 h-15 text-white rounded-md"
+              className="w-full text-sm bg-meta-3 h-15 text-white rounded-md"
               onClick={openSignInForm}
             >
               + Add New User
@@ -139,10 +140,9 @@ const Users = () => {
 
         <div className="relative overflow-x-auto m-5 md:m-10 border-box rounded-2xl border">
           <table className="w-full 2xl:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-lg border-box">
-            <thead className=" text-gray-2 uppercase border-box border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
+          <thead className=" text-gray-2 uppercase border-box border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className=" px-6 py-3 border-b border-box text-gray-2">
+                <th scope="col" className=" px-5 py-3 border-b border-box text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                     ID
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,7 +187,7 @@ const Users = () => {
                     </svg>
                   </div>
                 </th>
-                <th scope="col" className=" px-1 py-4 border-b border-box text-gray-2">
+                <th scope="col" className=" px- py-4 border-b border-box text-gray-2">
                   <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                     VERIFIED
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -223,27 +223,7 @@ const Users = () => {
                     Email
                   </td>
                   <td className="border-b border-box ">
-                    <button onClick={openBlock}>
-                      <label
-                        htmlFor="toggle1"
-                        className="flex cursor-pointer select-none text-danger items-center"
-                      >     Block
-                        <div className="relative">
-                          <input
-                            type="checkbox"
-                            id="toggle1"
-                            className="sr-only "
-
-                          />
-
-                          <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                          <div
-                            className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                              }`}
-                          ></div>
-                        </div>
-                      </label>
-                    </button>
+                  <Toggle/>
                   </td>
                   <td className="   ">
                     <button onClick={navigateToPage} className='w-[35px] h-[35px] shrink-0 rounded-[17.5px] bg-[#D5EDE5] flex items-center justify-center'>
@@ -264,8 +244,8 @@ const Users = () => {
 
       </div>
       {showSignInForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 z-50">
-          <div className="relative w-full max-w-lg bg-white">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2 z-50">
+          <div className="relative w-full m-5 max-w-lg bg-white">
             <div className="relative rounded-2xl shadow-2xl bg-white">
               <button
                 onClick={closeSignInForm}

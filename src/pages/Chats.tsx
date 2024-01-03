@@ -1,26 +1,17 @@
-import  { useState , useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Chatmod } from '../components/Chatmod'
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
-import { OrderModel } from '../components/OrderModel';
 import { BlockChat } from '../components/BlockChat'
-
+import Toggle from "../components/Toggle"
 const Chats = () => {
   useEffect(() => {
-    document.title = 'Ez-Rent-Admin | Chat'; // Set your dynamic title here
+    document.title = 'Ez-Rent-Admin | Chats'; // Set your dynamic title here
   }, []);
-  const [isOpen, setIsOpen] = useState(false);
   const [showChatmod, setShowChatmod] = useState(false); // Corrected state variable
-  const [isOn, setIsOn] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
   const [isTooltipVisible4, setTooltipVisible4] = useState(false);
   const [isTooltipVisible5, setTooltipVisible5] = useState(false);
   const [isTooltipVisible6, setTooltipVisible6] = useState(false);
-  const [isTooltipVisible7, setTooltipVisible7] = useState(false);
 
   const handleMouseEnter4 = () => {
     setTooltipVisible4(true);
@@ -44,16 +35,8 @@ const Chats = () => {
   const handleMouseLeave6 = () => {
     setTooltipVisible6(false);
   };
-  const handleMouseEnter7 = () => {
-    setTooltipVisible7(true);
-  };
 
-  const handleMouseLeave7 = () => {
-    setTooltipVisible7(false);
-  };
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
+
   const [enabled, setEnabled] = useState<boolean>(false);
   const openChatmod = () => {
     setShowChatmod(true);
@@ -67,9 +50,9 @@ const Chats = () => {
 
 
   const [showBlock, setShowBlock] = useState(false);
-  const openBlock = () => {
-    setShowBlock(true);
-  };
+  // const openBlock = () => {
+  //   setShowBlock(true);
+  // };
 
   const closeBlock = () => {
     console.log("Closing sign-in form");
@@ -99,7 +82,7 @@ const Chats = () => {
         {/* Sidebar and Navbar components */}
 
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <div className="flex-1">
+        <div className="flex-1 bg-gray h-screen">
           <div className='z-50 inset-0'>
             <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           </div>
@@ -146,11 +129,11 @@ const Chats = () => {
           </div>
 
           <div className="relative overflow-x-auto m-10 shadow-md sm:rounded-lg 2xl:text-sm text-xs border border-box">
-            <table className="w-full 2xl:text-sm text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="2xl:text-lg text-sm text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box">
+            <table className="w-[96%] mx-auto  2xl:text-sm text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="2xl:text-base text-xs  text-gray-2 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-1 border-box">
                 <tr>
-                  <th scope="col" className="px-6 py-3">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className=" py-3">
+                    <div style={{ display: 'flex', justifyContent: "", alignItems: 'center', whiteSpace: 'nowrap' }}>
                       ID
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -158,8 +141,8 @@ const Chats = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className=" py-3">
+                    <div style={{ display: 'flex', justifyContent: "", alignItems: 'center', whiteSpace: 'nowrap' }}>
                       FROM
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -167,8 +150,8 @@ const Chats = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className=" py-3">
+                    <div style={{ display: 'flex', justifyContent: "", alignItems: 'center', whiteSpace: 'nowrap' }}>
                       TO
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -176,8 +159,8 @@ const Chats = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className=" py-3">
+                    <div style={{ display: 'flex', justifyContent: "", alignItems: 'center', whiteSpace: 'nowrap' }}>
                       CONTENTS
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -185,8 +168,8 @@ const Chats = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="px-6 py-3">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className="py-3">
+                    <div style={{ display: 'flex', justifyContent: "", alignItems: 'center', whiteSpace: 'nowrap' }}>
                       SENT ON
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -194,8 +177,8 @@ const Chats = () => {
                       </svg>
                     </div>
                   </th>
-                  <th className="py-4 px-10 font-medium text-gray-2 dark:text-white">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th className="py-4   text-gray-2 dark:text-white">
+                    <div style={{ display: 'flex', justifyContent: "", alignItems: 'center', whiteSpace: 'nowrap' }}>
                       STATUS
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -209,20 +192,20 @@ const Chats = () => {
                 </tr>
               </thead>
               <tbody className='bg-white 2xl:text-sm text-xs'>
-                <tr className="text-base border-b border-1 border-box ">
-                  <th scope="row" className="px-6 py-42xl:text-sm text-xs  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr className=" text- border-b border-1 border-box ">
+                  <th scope="row" className=" py-4 2xl:text-sm   font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     01
                   </th>
-                  <td className=" py-4 2xl:text-sm text-xs">
+                  <td className=" py-4 2xl:text-sm ">
                     Devis miller
                   </td>
-                  <td className=" py-4 2xl:text-sm text-xs">
+                  <td className=" py-4 2xl:text-sm ">
                     John Doe
                   </td>
-                  <td className="border-b border-1 border-box relative px-5 2xl:text-sm text-xs">
+                  <td className="border-b border-1 border-box relative  2xl:text-sm ">
                     <div
                       data-tooltip-target="tooltip-default-1"
-                      className="text-black bg-blue-700 2xl:text-sm text-xs hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                      className="text-black bg-blue-700 2xl:text-sm hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg ,d:text-base  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
                       onMouseEnter={handleMouseEnter6}
                       onMouseLeave={handleMouseLeave6}
                     >
@@ -230,7 +213,7 @@ const Chats = () => {
                       <div
                         id="tooltip-default-1"
                         role="tooltip"
-                        className={`absolute z-10 inline-block px-3 text-xs bg-white font-medium text-black shadow-3xl w-50transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible6 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                        className={`absolute z-10 inline-block p-3 text-[10px] bg-white font-medium text-black shadow-3xl  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible6 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                         style={{ top: '-80px', right: '0', width: '100' }}
                       >
                         Hi There! Absolutely,I' bee.. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -238,37 +221,12 @@ const Chats = () => {
                       </div>
                     </div>
                   </td>
-                  <td className=" py-4 2xl:text-sm  text-xs">
+                  <td className=" py-4 2xl:text-sm  text-start ">
                     07-08-2023(10:34 AM)
                   </td>
 
-                  <td className="border-b border-1 border-box" onClick={openBlock}>
-                    <button onClick={openBlock}>
-
-                      <td className=" py-5  dark-border-strokedark">
-                        <button onClick={openBlock}>
-                          <label
-                            htmlFor="toggle1"
-                            className="flex cursor-pointer text-sm select-none text-danger items-center"
-                          >    Blocked
-                            <div className="relative">
-                              <input
-                                type="checkbox"
-                                id="toggle1"
-                                className="sr-only "
-
-                              />
-
-                              <div className="block 2xl:h-8 h-6 2xl:w-14 w-12  rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                              <div
-                                className={`absolute left-1 top-1  2xl:h-6 xl:h-4 w-4 2xl:w-6 rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                                  }`}
-                              ></div>
-                            </div>
-                          </label>
-                        </button>
-                      </td>
-                    </button>
+                  <td className="border-b border-1  border-box">
+                    <Toggle />
                   </td>
 
                   <td className="border-b border-1 border-box py-5  dark-border-strokedark text-primary">
@@ -284,28 +242,28 @@ const Chats = () => {
                   </td>
 
                 </tr>
-                <tr className="text-base border-b border-1 border-box ">
-                  <th scope="row" className="px-6 py-4 2xl:text-sm  text-xs font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr className=" text- border-b border-1 border-box ">
+                  <th scope="row" className=" py-4 2xl:text-sm   font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     02
                   </th>
-                  <td className=" py-4 2xl:text-sm  text-xs">
+                  <td className=" py-4 2xl:text-sm ">
                     Devis miller
                   </td>
-                  <td className=" py-4 2xl:text-sm  text-xs">
-                    Patrick
+                  <td className=" py-4 2xl:text-sm ">
+                    Patrik
                   </td>
-                  <td className="border-b border-1 border-box relative px-5">
+                  <td className="border-b border-1 border-box relative  2xl:text-sm ">
                     <div
                       data-tooltip-target="tooltip-default-1"
-                      className="text-black bg-blue-700  2xl:text-sm  text-xs hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
-                      onMouseEnter={handleMouseEnter5}
-                      onMouseLeave={handleMouseLeave5}
+                      className="text-black bg-blue-700 2xl:text-sm hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg ,d:text-base  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                      onMouseEnter={handleMouseEnter6}
+                      onMouseLeave={handleMouseLeave6}
                     >
                       Hi There! Absolutely,I' bee..
                       <div
                         id="tooltip-default-1"
                         role="tooltip"
-                        className={`absolute z-10 2xl:text-sm  text-xs inline-block px-3 text-sm bg-white font-medium text-black shadow-3xl w-50transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible5 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                        className={`absolute z-10 inline-block p-3 text-[10px] bg-white font-medium text-black shadow-3xl  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible6 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                         style={{ top: '-80px', right: '0', width: '100' }}
                       >
                         Hi There! Absolutely,I' bee.. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -313,37 +271,16 @@ const Chats = () => {
                       </div>
                     </div>
                   </td>
-                  <td className=" py-4 2xl:text-sm  text-xs">
+                  <td className=" py-4 2xl:text-sm  text-start ">
                     07-08-2023(10:34 AM)
                   </td>
 
-                  <td className="order-b border-1 border-box py-5  dark-border-strokedark" >
-                    <button >
-                      <label
-                        htmlFor="toggle1"
-                        className="flex cursor-pointer  text-sm select-none text-meta-3 items-center"
-                      >     UnBlocked
-                        <div className="relative">
-                          <input
-                            type="checkbox"
-                            id="toggle1"
-                            className="sr-only "
-                            onChange={() => {
-                              setEnabled(!enabled);
-                            }}
-                          />
-
-                          <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                          <div
-                            className={`absolute right-1 top-1  2xl:h-6 xl:h-4 w-4 2xl:w-6 rounded-full bg-meta-3 transition ${enabled && '!right-1 !translate-x-full !bg-meta-3 dark:!bg-white'
-                              }`}
-                          ></div>
-                        </div>
-                      </label>
-                    </button>
+                  <td className="border-b border-1  border-box">
+                    <Toggle />
                   </td>
 
                   <td className="border-b border-1 border-box py-5  dark-border-strokedark text-primary">
+
                     <button onClick={openChatmod} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
                         <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -352,32 +289,31 @@ const Chats = () => {
 
 
                     </button>
-
                   </td>
 
                 </tr>
-                <tr className="text-base border-b border-1 border-box ">
-                  <th scope="row" className="px-6 py-4  2xl:text-sm  text-xs font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    03
+                <tr className=" text- border-b border-1 border-box ">
+                  <th scope="row" className=" py-4 2xl:text-sm   font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    02
                   </th>
-                  <td className=" py-4 2xl:text-sm  text-xs ">
+                  <td className=" py-4 2xl:text-sm ">
                     Devis miller
                   </td>
-                  <td className=" py-4 2xl:text-sm  text-xs ">
+                  <td className=" py-4 2xl:text-sm ">
                     Jasons
                   </td>
-                  <td className="border-b border-1 border-box relative px-5">
+                  <td className="border-b border-1 border-box relative  2xl:text-sm ">
                     <div
                       data-tooltip-target="tooltip-default-1"
-                      className="text-black bg-blue-700  2xl:text-sm  text-xs hover:bg-blue-800 -ml-18 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
-                      onMouseEnter={handleMouseEnter4}
-                      onMouseLeave={handleMouseLeave4}
+                      className="text-black bg-blue-700 2xl:text-sm hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg ,d:text-base  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+                      onMouseEnter={handleMouseEnter6}
+                      onMouseLeave={handleMouseLeave6}
                     >
                       Hi There! Absolutely,I' bee..
                       <div
                         id="tooltip-default-1"
                         role="tooltip"
-                        className={`absolute z-10 inline-block 2xl:text-sm  text-xs  px-3 bg-white font-medium text-black shadow-3xl w-50transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible4 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
+                        className={`absolute z-10 inline-block p-3 text-[10px] bg-white font-medium text-black shadow-3xl  transition-opacity border border-box duration-300 bg-gray-900 rounded-lg shadow-sm tooltip ${isTooltipVisible6 ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:bg-gray-700`}
                         style={{ top: '-80px', right: '0', width: '100' }}
                       >
                         Hi There! Absolutely,I' bee.. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -385,36 +321,16 @@ const Chats = () => {
                       </div>
                     </div>
                   </td>
-
-                  <td className=" py-4 2xl:text-sm  text-xs">
+                  <td className=" py-4 2xl:text-sm  text-start ">
                     07-08-2023(10:34 AM)
                   </td>
 
-                  <td className="border-b border-box py-5  dark-border-strokedark">
-                    <button onClick={openBlock}>
-                      <label
-                        htmlFor="toggle1"
-                        className="flex cursor-pointer text-sm select-none text-danger items-center"
-                      >    Blocked
-                        <div className="relative">
-                          <input
-                            type="checkbox"
-                            id="toggle1"
-                            className="sr-only "
-
-                          />
-
-                          <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                          <div
-                            className={`absolute left-1 top-1 2xl:h-6 xl:h-4 w-4 2xl:w-6  rounded-full bg-white transition ${enabled && '!right-1 !translate-x-full !bg-white dark:!bg-white'
-                              }`}
-                          ></div>
-                        </div>
-                      </label>
-                    </button>
+                  <td className="border-b border-1  border-box">
+                    <Toggle />
                   </td>
 
-                  <td className="border-b border-box py-5 dark-border-box text-primary">
+                  <td className="border-b border-1 border-box py-5  dark-border-strokedark text-primary">
+
                     <button onClick={openChatmod} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
                         <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -423,10 +339,10 @@ const Chats = () => {
 
 
                     </button>
-
                   </td>
 
                 </tr>
+
 
               </tbody>
             </table>
@@ -454,7 +370,4 @@ const Chats = () => {
 };
 
 export default Chats;
-function setShowChat(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 

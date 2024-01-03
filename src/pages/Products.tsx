@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { showProducts } from '../redux/Product/productAction';
 import moment from 'moment';
-
+import Toggle from "../components/Toggle"
 const Products = () => {
   const products = useSelector((state: RootState) => state.product.products);
   console.log(products,'products')
@@ -23,6 +23,9 @@ const Products = () => {
   const navigate = useNavigate();
   const navigateToPage = () => {
     navigate('/AddProduct');
+  };
+  const navigateToPage2 = () => {
+    navigate('/viewProduct');
   };
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -74,7 +77,7 @@ const Products = () => {
               <button
                 onClick={toggleDropdown}
                 type="button"
-                className="inline-flex justify-center"
+                className="inline-flex  items-center justify-center"
                 id="menu-button"
                 aria-expanded={isOpen}
                 aria-haspopup="true"
@@ -95,7 +98,7 @@ const Products = () => {
               </button>
               {isOpen && (
                 <div
-                  className="absolute right-0 z-10 mt-2 w-70 lg:w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className="absolute right-0 z-10 mt-2 top-14 w-70 lg:w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
@@ -157,8 +160,8 @@ const Products = () => {
         <div className="rounded-lg border border-box m-10 bg-white px-5  shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto">
-              <thead className='2xl:texr-xl text-xs text-center'>
-                <tr className="bg-whiter text-left dark:bg-meta-4">
+            <thead className='2xl:text-xl  text-xs '>
+                <tr className="bg text-center dark:bg-meta-4 border-b border-box py-5   dark:border-strokedark  ">
                   <th scope="col" className=" py-3 text-gray-2">
                     <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                       ID
@@ -168,8 +171,8 @@ const Products = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className=" py-3  text-gray-2">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className=" py-3  pl-12   text-gray-2">
+                    <div style={{ display: 'flex', justifyContent: '', alignItems: "center", whiteSpace: 'nowrap' }}>
                       PRODUCT NAME
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -177,8 +180,8 @@ const Products = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="py-3 text-gray-2">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className="py-3 pl-4 text-gray-2">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: '', whiteSpace: 'nowrap' }}>
                       CATEGORY
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -186,8 +189,8 @@ const Products = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className=" py-3 text-gray-2">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className="pl-4 py-3  text-gray-2">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: '', whiteSpace: 'nowrap' }}>
                       PRICE/D
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -195,8 +198,8 @@ const Products = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="   py-3 text-gray-2">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className="pl-4   py-3 text-gray-2">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: '', whiteSpace: 'nowrap' }}>
                       LESSOR NAME
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -205,7 +208,7 @@ const Products = () => {
                     </div>
                   </th>
                   <th scope="col" className=" py-3 text-gray-2">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: '', whiteSpace: 'nowrap' }}>
                       STATUS
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
@@ -213,13 +216,21 @@ const Products = () => {
                       </svg>
                     </div>
                   </th>
-                  <th scope="col" className="  py-3 text-gray-2">
-                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  <th scope="col" className="pl-3  py-3 text-gray-2">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: '', whiteSpace: 'nowrap' }}>
                       ADDED ON
                       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
                         <path d="M3.54678 14.68L5.68678 16.82L6.99345 18.1333C7.54678 18.6867 8.44678 18.6867 9.00012 18.1333L12.4534 14.68C12.9068 14.2267 12.5801 13.4533 11.9468 13.4533L8.20678 13.4533L4.05345 13.4533C3.41345 13.4533 3.09345 14.2267 3.54678 14.68Z" fill="#292D32" />
                       </svg>
+                    </div>
+                  </th>
+                  <th scope="col" className="  py-3 text-gray-2">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', whiteSpace: 'nowrap' }}>
+                      {/* <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.4532 9.31999L10.3132 7.17999L9.00655 5.86666C8.45322 5.31333 7.55322 5.31333 6.99988 5.86666L3.54655 9.31999C3.09322 9.77333 3.41988 10.5467 4.05322 10.5467H7.79322H11.9466C12.5866 10.5467 12.9066 9.77333 12.4532 9.31999Z" fill="#292D32" />
+                        <path d="M3.54678 14.68L5.68678 16.82L6.99345 18.1333C7.54678 18.6867 8.44678 18.6867 9.00012 18.1333L12.4534 14.68C12.9068 14.2267 12.5801 13.4533 11.9468 13.4533L8.20678 13.4533L4.05345 13.4533C3.41345 13.4533 3.09345 14.2267 3.54678 14.68Z" fill="#292D32" />
+                      </svg> */}
                     </div>
                   </th>
 
@@ -260,29 +271,7 @@ const Products = () => {
   
                     </td>
                     <td className="border-b border-box py-5  dark:border-strokedark">
-                      <div>
-                        <button onClick={openBlock}>
-                          <label
-                            htmlFor="toggle1"
-                            className="flex gap-2 cursor-pointer select-none text-danger items-center"
-                          >     Block
-                            <div className="relative">
-                              <input
-                                type="checkbox"
-                                id="toggle1"
-                                className="sr-only "
-  
-                              />
-  
-                              <div className="block 2xl:h-8 h-6 2xl:w-14 w-12 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
-                              <div
-                                className={`absolute left-1 top-1 2xl:h-6 2xl:w-6 w-4 h-4 rounded-full bg-white transition ${enabled && '!left-1 !translate-x-full !bg-white dark:!bg-white'
-                                  }`}
-                              ></div>
-                            </div>
-                          </label>
-                        </button>
-                      </div>
+                   <Toggle/>
                     </td>
                     <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
                       <h5 className="font-medium text-black dark:text-white">
@@ -291,7 +280,7 @@ const Products = () => {
   
                     </td>
                     <td className="border-b border-box py-5  dark-border-box text-primary">
-                      <button onClick={navigateToPage} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
+                      <button onClick={navigateToPage2} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
                           <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -310,7 +299,7 @@ const Products = () => {
 
       </div>
       {showSignInForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-2 bg-opacity-80 z-50">
           <div className="relative w-full max-w-lg">
             <div className="relative bg-white rounded-lg shadow-2xl">
               <button onClick={closeSignInForm} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
@@ -324,18 +313,33 @@ const Products = () => {
         </div>
       )}
       {showBlock && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 z-50">
-          <div className="relative w-full max-w-lg bg-white">
-            <div className="relative rounded-2xl shadow-2xl bg-white">
-              <button onClick={closeBlock} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
-              </button>
-              <div className="pl-7">
-                <Block />
-              </div>
-            </div>
-          </div>
-        </div>
+         <div className="fixed inset-0 flex items-center justify-center bg-opacity-80 bg-gray-2  z-50">
+         <div className="relative w-full max-w-lg bg-white">
+           <div className="relative rounded-2xl shadow-2xl bg-white">
+             <button onClick={closeBlock} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
+               <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+             </button>
+             <div className="pl-7">
+               <div className="flex bg-white w-100 p-15 flex-col justify-center px-5 py-12 lg:px-8 rounded-md">
+                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+
+                   <h2 className=" text-center ml-10 text-3xl font-bold leading-9 tracking-tight text-[#C70813] ">
+                     Block this Products
+                   </h2>
+                   <br />
+                 </div>
+                 <div>
+                   <textarea name="" id="" placeholder=' User Block' className='bg-white text-gray-2 border-2 border-box w-100 h-40 rounded-lg p-5' />
+                   <br />
+                   <div className='text-center mt-5'>
+                     <button className='text-white bg-[#C70813] p-4 w-50 ml-10 text-center rounded-lg'>Block</button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
       )}
     </div>
   );
