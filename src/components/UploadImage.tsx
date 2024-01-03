@@ -1,15 +1,65 @@
 /* eslint-disable @next/next/no-img-element */
 import { LuImagePlus } from "react-icons/lu"
-import React, { ChangeEvent, useState } from 'react';
-function UploadImage() {
+import React, { ChangeEvent, useEffect, useState } from 'react';
+function UploadImage({ onFileChange, onFilesArrayChange }) {
+    const [imagesArray, setImagesArray] = useState<File[]>([]);
     const [imageUrl1, setImageUrl1] = useState<string | undefined>(undefined);
-    function readURL(input: HTMLInputElement | null) {
+    const [imageUrl2, setImageUrl2] = useState<string | undefined>(undefined);
+    const [imageUrl3, setImageUrl3] = useState<string | undefined>(undefined);
+    const [imageUrl4, setImageUrl4] = useState<string | undefined>(undefined);
+    const [imageUrl5, setImageUrl5] = useState<string | undefined>(undefined);
+
+
+    const handleSingleFileChange = (file) => {
+        readURL(file, 'first');
+        onFileChange(file.files[0]);
+    };
+
+    const handleFirstFileChange = (file) => {
+        if (file.files[0]) {
+            readURL(file, 'second');
+            setImagesArray(prevArray => [...prevArray, file.files[0]]);
+        }
+    }
+    const handleSecondFileChange = (file) => {
+        if (file.files[0]) {
+            readURL(file, 'third');
+            setImagesArray(prevArray => [...prevArray, file.files[0]]);
+        }
+    }
+    const handleThirdFileChange = (file) => {
+        if (file.files[0]) {
+            readURL(file, 'fourth');
+            setImagesArray(prevArray => [...prevArray, file.files[0]]);
+        }
+    }
+    const handleFourthFileChange = (file) => {
+        if (file.files[0]) {
+            readURL(file, 'fifth');
+            setImagesArray(prevArray => [...prevArray, file.files[0]]);
+        }
+    }
+    useEffect(() => {
+        onFilesArrayChange(imagesArray);
+    }, [imagesArray, onFilesArrayChange]);
+    function readURL(input: HTMLInputElement | null, type: string) {
         if (input && input.files && input.files[0]) {
             const file = input.files[0];
             const reader = new FileReader();
 
             reader.onload = (e) => {
-                setImageUrl1(e.target?.result as string);
+                if (type === 'first') {
+                    setImageUrl1(e.target?.result as string);
+                } else if (type === 'second') {
+                    setImageUrl2(e.target?.result as string);
+                }
+                else if (type === 'third') {
+                    setImageUrl3(e.target?.result as string);
+                } else if (type === 'fourth') {
+                    setImageUrl4(e.target?.result as string);
+                } else if (type === 'fifth') {
+                    setImageUrl5(e.target?.result as string);
+                }
             };
 
             reader.readAsDataURL(file);
@@ -31,7 +81,7 @@ function UploadImage() {
                     type="file"
                     accept="image/*"
                     style={{ display: 'none' }}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => readURL(e.target)}
+                    onChange={(e) => handleSingleFileChange(e.target)}
                 />
                 {imageUrl1 && (
                     <div className="box ">
@@ -44,10 +94,16 @@ function UploadImage() {
                     <div className='2xl:w-[140px] w-[120px]  text-center py-12 bg-[#F1F5F9] border border-[#CACACA] rounded-2xl'>
                         <label className="btn btn-default" htmlFor="inputFile">
                             <label ><LuImagePlus className="text-[#0E9F6E] mx-auto w-[36px] h-[36px]" /> </label>
-
-                            {imageUrl1 && (
+                            <input
+                                id="inputFile"
+                                type="file"
+                                accept="image/*"
+                               
+                                onChange={(e) => handleFirstFileChange(e.target)}
+                            />
+                            {imageUrl2 && (
                                 <div className="box ">
-                                    <img src={imageUrl1} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
+                                    <img src={imageUrl2} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
                                 </div>
                             )}
                         </label>
@@ -56,10 +112,16 @@ function UploadImage() {
                     <div className='2xl:w-[140px] w-[120px]  text-center py-12 bg-[#F1F5F9] border border-[#CACACA] rounded-2xl'>
                         <label className="btn btn-default" htmlFor="inputFile">
                             <label ><LuImagePlus className="text-[#0E9F6E] mx-auto w-[36px] h-[36px]" /></label>
-
-                            {imageUrl1 && (
+                            <input
+                                id="inputFile"
+                                type="file"
+                                accept="image/*"
+                              
+                                onChange={(e) => handleSecondFileChange(e.target)}
+                            />
+                            {imageUrl3 && (
                                 <div className="box ">
-                                    <img src={imageUrl1} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
+                                    <img src={imageUrl3} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
                                 </div>
                             )}
                         </label>
@@ -70,10 +132,16 @@ function UploadImage() {
                     <div className='2xl:w-[140px] w-[120px]  text-center py-12 bg-[#F1F5F9] border border-[#CACACA] rounded-2xl'>
                         <label className="btn btn-default" htmlFor="inputFile">
                             <label ><LuImagePlus className="text-[#0E9F6E] mx-auto w-[36px] h-[36px]" /></label>
-
-                            {imageUrl1 && (
+                            <input
+                                id="inputFile"
+                                type="file"
+                                accept="image/*"
+                               
+                                onChange={(e) => handleThirdFileChange(e.target)}
+                            />
+                            {imageUrl4 && (
                                 <div className="box ">
-                                    <img src={imageUrl1} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
+                                    <img src={imageUrl4} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
                                 </div>
                             )}
                         </label>
@@ -82,10 +150,16 @@ function UploadImage() {
                     <div className='2xl:w-[140px] w-[120px]  text-center py-12 bg-[#F1F5F9] border border-[#CACACA] rounded-2xl'>
                         <label className="btn btn-default" htmlFor="inputFile">
                             <label ><LuImagePlus className="text-[#0E9F6E] mx-auto w-[36px] h-[36px]" /></label>
-
-                            {imageUrl1 && (
+                            <input
+                                id="inputFile"
+                                type="file"
+                                accept="image/*"
+                                
+                                onChange={(e) => handleFourthFileChange(e.target)}
+                            />
+                            {imageUrl5 && (
                                 <div className="box ">
-                                    <img src={imageUrl1} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
+                                    <img src={imageUrl5} alt="Uploaded Image" className="  absolute -mt-[90px] flex justify-center 2xl:w-[140px] w-[120px]  rounded-2xl  h-36" />
                                 </div>
                             )}
                         </label>
