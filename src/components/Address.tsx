@@ -16,7 +16,7 @@ export const Address = () => {
      <div className='-ml-30'>
         <label htmlFor=""  className='ml-5 mt-5'>Address</label>
 
-        <input type="password"  className='p-5 w-125 mt-5 rounded-md border border-2 border-box text-box ml-5' />
+        <input type="text"  className='p-5 w-125 mt-5 rounded-md border border-2 border-box text-box ml-5' />
 
       
         <button className='bg-meta-3 p-4 w-50 mt-5 text-white text-center ml-35  rounded-md'>Save</button>

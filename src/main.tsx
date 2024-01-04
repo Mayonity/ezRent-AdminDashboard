@@ -14,6 +14,7 @@ import Chats from './pages/Chats'
 import UserInfo from './pages/Users-Info.tsx';
 import Info from './pages/Info';
 import AddProduct from './pages/AddProduct.tsx';
+import ViewProduct from "./pages/ViewProduct.tsx"
 import Reports from './pages/Reports';
 import Transaction from './pages/Transaction';
 import Loader from './Loader';
@@ -47,6 +48,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path="/Categories" element={<Categories />} />
           <Route path="/Products" element={<Products />} />
           <Route path="/AddProduct" element={<AddProduct />} />
+          <Route path="/ViewProduct" element={<ViewProduct />} />
+
           <Route path="/Orders" element={<Orders />} />
           <Route path="/Chats" element={<Chats />} />
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
 import { OrderModel } from '../components/OrderModel';
-
+import {RiArrowDropDownLine} from "react-icons/ri"
 const Orders = () => {
   useEffect(() => {
     document.title = 'Ez-Rent-Admin | Orders'; // Set your dynamic title here
@@ -43,66 +43,20 @@ const Orders = () => {
                 className="w-full p-4 bg-white border border-box rounded-lg"
               />
             </div>
-            <div className="md:w-full lg:w-1/5 mt-4 md:mt-0">
-              <div className="text-center relative text-gray-2 h-15 p-3 md:w-70 lg:w-full font-bold border border-box border-1 rounded-lg bg-whiter">
-                <button
-                  onClick={toggleDropdown}
-                  type="button"
-                  className="inline-flex justify-center gap-x-1.5 rounded-md bg-whiter px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-                  id="menu-button"
-                  aria-expanded={isOpen}
-                  aria-haspopup="true"
-                >
-                  lessee
-                  <svg
-                    className={`-mr-1 h-5 w-5 text-gray-400 ${isOpen ? 'transform rotate-180' : ''}`}
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                {isOpen && (
-                  <div
-                    className="absolute right-0 z-10 mt-2 w-70 lg:w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabIndex={-1}
-                  >
-                    <div className="py-1" role="none">
-                      <a
-                        href="#"
-                        className="text-gray-700 block px-4 py-2 text-sm border-b border-box text-center"
-                        role="menuitem"
-                        tabIndex={-1}
-                      >
-                        order id
-                      </a>
-                      <a
-                        href="#"
-                        className="text-gray-700 block px-4 py-2 text-sm border-b border-box text-center"
-                        role="menuitem"
-                        tabIndex={-1}
-                      >
-                        Lessee name
-                      </a>
-                      <a
-                        href="#"
-                        className="text-gray-700 block px-4 py-2 text-sm border-b border-box text-center"
-                        role="menuitem"
-                        tabIndex={-1}
-                      >
-                        Lessor name
-                      </a>
-                    </div>
-                  </div>
-                )}
+            <div className='relative text-center text-sm border-box border-1 rounded-lg bg-whiter text-gray-2 md:w-full lg:w-1/5 mt-4 md:mt-0 border '>
+              <select
+                id="default"
+                className="text-center text-sm space-y-5   border-box border-1 rounded-lg bg-whiter text-gray-2 w-full h-15  custom-select md:mt-0 border  "
+              >
+                <option selected>Lesse</option>
+                <option value="US">order id</option>
+                <option value="FR">Lessor name</option>
+
+              </select>
+
+
+              <div className="absolute top-5  right-0 h-full pr-10 pointer-events-none">
+                <RiArrowDropDownLine className="text-2xl" />
               </div>
             </div>
             <div className="md:w-1/4 mt-4 md:mt-0 flex relative">

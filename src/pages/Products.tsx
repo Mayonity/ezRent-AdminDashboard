@@ -6,6 +6,7 @@ import Navbar from '../components/Sidebar/Navbar';
 import { Block } from '../components/BlockProducts';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
+import {RiArrowDropDownLine} from "react-icons/ri"
 import { showProducts } from '../redux/Product/productAction';
 import moment from 'moment';
 import Toggle from "../components/Toggle"
@@ -25,7 +26,7 @@ const Products = () => {
     navigate('/AddProduct');
   };
   const navigateToPage2 = () => {
-    navigate('/viewProduct');
+    navigate('/ViewProduct');
   };
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -72,59 +73,17 @@ const Products = () => {
               className="w-full p-4 bg-white border border-box rounded-lg"
             />
           </div>
-          <div className="md:w-full lg:w-1/5 mt-4 md:mt-0">
-            <div className="text-center  flex items-center relative text-gray-2 h-15 p-3 md:w-70 lg:w-full text-xs font-bold border border-box border-1 rounded-lg bg-whiter">
-              <button
-                onClick={toggleDropdown}
-                type="button"
-                className="inline-flex  items-center justify-center"
-                id="menu-button"
-                aria-expanded={isOpen}
-                aria-haspopup="true"
-              >
-                Lessor name
-                <svg
-                  className={`-mr-1 h-5 w-5 text-gray-400 ${isOpen ? 'transform rotate-180' : ''}`}
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              {isOpen && (
-                <div
-                  className="absolute right-0 z-10 mt-2 top-14 w-70 lg:w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="menu-button"
-                  tabIndex={-1}
-                >
-                  <div className="py-1" role="none">
-                    <a
-                      href="#"
-                      className="text-gray-700 block px-4 py-2 2xl:text-sm text-xs border-b border-box text-center"
-                      role="menuitem"
-                      tabIndex={-1}
-                    >
-                      Lessor name
-                    </a>
-                    <a
-                      href="#"
-                      className="text-gray-700 block px-4 py-2 text-sm border-b border-box text-center"
-                      role="menuitem"
-                      tabIndex={-1}
-                    >
-                      Category
-                    </a>
-
-                  </div>
-                </div>
-              )}
+        
+          <div className='relative text-center   text-xs space-y-5  border-box border-1 rounded-lg bg-whiter text-gray-2 md:w-full lg:w-1/5  md:mt-0 border '>
+            <select
+              id="default"
+              className="text-center text-xs space-y-5  border-box border-1 rounded-lg bg-whiter text-gray-2 w-full h-15  custom-select md:mt-0 border  "
+            >
+              <option selected>Lessor Name</option>
+              <option value="US">Category</option>
+            </select>
+            <div className="absolute top-0  right-0 h-full pr-1 pointer-events-none">
+              <RiArrowDropDownLine className="text-2xl" />
             </div>
           </div>
           <div className="md:w-1/4 mt-4 md:mt-0 flex relative">
