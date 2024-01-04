@@ -17,6 +17,7 @@ const EditImage = () => {
     const openDelete = () => {
         setShowDelete(true);
     }; const closeDelete = () => {
+        console.log("Component close Delete")
         setShowDelete(false);
     };
     const [showBlock, setShowBlock] = useState(false);
@@ -259,7 +260,7 @@ const EditImage = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
                             </button>
                             <div className="p-6">
-                                <Delete />
+                                <Delete closeDelete={closeDelete}/>
                             </div>
                         </div>
                     </div>

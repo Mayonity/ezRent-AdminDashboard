@@ -16,11 +16,8 @@ const Users = () => {
   const users = useSelector((state: RootState) => state.user.users);
   const dispatch: AppDispatch = useDispatch();
 
-  const [isOpen, setIsOpen] = useState(false);
   const [showSignInForm, setShowSignInForm] = useState(false);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  
   const navigate = useNavigate();
   const navigateToPage = () => {
     navigate('/UserInfo');
@@ -35,10 +32,7 @@ const Users = () => {
     setShowSignInForm(false);
   };
   const [showBlock, setShowBlock] = useState(false);
-  const openBlock = () => {
-    setShowBlock(true);
-  };
-
+ 
   const closeBlock = () => {
     console.log("Closing sign-in form");
     setShowBlock(false);
@@ -47,8 +41,6 @@ const Users = () => {
     document.title = 'Ez-Rent-Admin | Users'; // Set your dynamic title here
     dispatch(showUsers())
   }, []);
-
-  const [enabled, setEnabled] = useState<boolean>(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="flex flex-col md:flex-row h-full  transition-all">

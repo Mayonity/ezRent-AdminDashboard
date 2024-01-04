@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Form from './pages/form';
+import Login from './pages/Login.tsx';
 import Password from './pages/password';
 import Dashboard from './pages/Dashboard';
 import './index.css';
@@ -12,7 +12,6 @@ import Products from './pages/Products';
 import Orders from './pages/Orders';
 import Chats from './pages/Chats'
 import UserInfo from './pages/Users-Info.tsx';
-import Info from './pages/Info';
 import AddProduct from './pages/AddProduct.tsx';
 import ViewProduct from "./pages/ViewProduct.tsx"
 import Reports from './pages/Reports';
@@ -36,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Routes>
           <Route path="/Loader" element={<Loader />} />
 
-          <Route path="/" element={<Form />} />
+          <Route path="/" element={<Login />} />
           <Route path="/password" element={<Password />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/otpVerification" element={<Otp />} />

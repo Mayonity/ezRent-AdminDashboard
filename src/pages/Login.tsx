@@ -6,7 +6,7 @@ import { RootState, AppDispatch } from '../redux/store';
 import { login } from '../redux/Auth/authAction';
 import { BiShow, BiHide } from 'react-icons/bi';
 
-const Form = () => {
+const Login = () => {
   useEffect(() => {
     document.title = 'Ez-Rent-Admin | Login'; // Set your dynamic title here
   }, []);
@@ -160,4 +160,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Login;
