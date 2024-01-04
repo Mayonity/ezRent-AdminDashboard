@@ -1,8 +1,12 @@
 // Import required modules
 import React from 'react';
 
+interface DeleteProps {
+  closeDelete: () => void;
+}
+
 // Modal component
-const Delete: React.FC = () => {
+const Delete: React.FC <DeleteProps>= ({closeDelete}) => {
   return (
     <div className="flex items-center justify-center h-full">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm text-center">
@@ -17,7 +21,7 @@ const Delete: React.FC = () => {
          
           <h1 className='mr-5 text-xl font-bold mt-2'>Are you sure you want <br /> to delete this product?</h1>
           <div className='flex justify-around w-80 mt-10 ml-6'>
-            <button className='bg-[#F1F5F9] border-box border p-3 w-30 rounded-md'>Cancel</button>
+            <button className='bg-[#F1F5F9] border-box border p-3 w-30 rounded-md'onClick={closeDelete}>Cancel</button>
             <button className='bg-[#D40915] text-white p-3 w-30 rounded-md'>Delete</button>
 
           </div>

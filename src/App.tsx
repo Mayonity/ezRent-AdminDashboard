@@ -1,6 +1,6 @@
 
 
-import Form from './pages/form'; 
+import Form from './pages/Login'; 
 
 
 const App = () => {

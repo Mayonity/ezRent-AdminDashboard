@@ -1,29 +1,13 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Sidebar/Navbar';
 import Sidebar from '../components/Sidebar/Sidebars';
-import MyImage from '../assets/ps51_800KB.jpg';
-import MyImage1 from '../assets/ps52.png';
-import MyImage2 from '../assets/ps53.png';
-import MyImage3 from '../assets/ps54.png';
-import MyImage4 from '../assets/ps55.png';
-import Image from '../assets/Mask group.png';
-import { Link } from 'react-router-dom';
-import Delete from '../components/Delete';
-import { EditOffers } from '../components/EditOffers';
-import { Block } from '../components/Block';
+ import { EditOffers } from '../components/EditOffers';
 import { OrderModel } from '../components/OrderModel';
 import ViewProduct from "../components/ViewProduct"
-const AddProduct = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showOrderModel, setShowOrderModel] = useState(false);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-  const [isOpenDropdown1, setIsOpenDropdown1] = useState(false);
-  const toggleDropdown1 = () => {
-    setIsOpenDropdown1(!isOpenDropdown1);
 
-  };
+const AddProduct = () => {
+  const [showOrderModel, setShowOrderModel] = useState(false);
+
   const openOrderModel = () => {
     setShowOrderModel(true);
   };
@@ -32,28 +16,14 @@ const AddProduct = () => {
     setShowOrderModel(false);
   };
   const [showBlock, setShowBlock] = useState(false);
-  const openBlock = () => {
-    setShowBlock(true);
-  };
 
   const closeBlock = () => {
     console.log("Closing sign-in form");
     setShowBlock(false);
   };
 
-  const [showDelete, setShowDelete] = useState(false);
-
-  const closeDelete = () => {
-    setShowDelete(false);
-  };
-
-  const openDelete = () => {
-    setShowDelete(true);
-  };
-
-
-
-
+ 
+  
 
   const [showEditOffers, setShowEditOffers] = useState(false);
 
@@ -85,7 +55,7 @@ const AddProduct = () => {
           </h1>
 
 
-     <div className="relative overflow-x-auto m-10  rounded-lg justify-center items-center ">
+          <div className="relative overflow-x-auto m-10  rounded-lg justify-center items-center ">
             <table className="w-full  text-base text-left  rtl:text-right text-gray-500 dark:text-gray-400 border border-box">
               <thead className="text-base text-gray-2 uppercase  dark:text-gray-400 border-b border-box">
                 <tr>
@@ -223,7 +193,7 @@ const AddProduct = () => {
 
               </tbody>
             </table>
-          </div> 
+          </div>
         </div>
 
       </div>
@@ -268,20 +238,6 @@ const AddProduct = () => {
                     </div>
                   </div>
                 </div>              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      {showDelete && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-80  bg-gray-2   z-50">
-          <div className="relative w-100 max-w-lg ">
-            <div className="relative rounded-3xl shadow-lg bg-white">
-              <button onClick={closeDelete} className="absolute top-4 right-4 bg-white text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
-              </button>
-              <div className="p-6">
-                <Delete />
-              </div>
             </div>
           </div>
         </div>

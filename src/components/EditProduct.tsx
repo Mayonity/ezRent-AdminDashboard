@@ -3,20 +3,15 @@
 import { useEffect, useState } from 'react'
 import { RiArrowDropDownLine } from "react-icons/ri"
 import UploadImage from "../components/UploadImage"
-import { Link } from 'react-router-dom';
-import Delete from '../components/Delete';
 import Image from '../assets/Mask group.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../redux/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/store';
 import { showCategories } from '../redux/Category/categoryAction';
 import { addProduct } from '../redux/Product/productAction';
 import { showUsers } from '../redux/User/userAction';
 
 const EditProduct = () => {
     const dispatch: AppDispatch = useDispatch();
-    const [isOpen, setIsOpen] = useState(false);
-    const categories = useSelector((state: RootState) => state.category.categories);
-    const users = useSelector((state: RootState) => state.user.users);
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [totalQuantity, setTotalQuantity] = useState('');
@@ -24,14 +19,8 @@ const EditProduct = () => {
     const [collectionFee, setCollectionFee] = useState('')
     const [refundDeposit, setRefundDeposit] = useState('')
     const [description, setDescription] = useState('')
-    const [categoryId, setCategoryId] = useState('')
     const [featureImage, setFeatureImage] = useState<File | null>(null)
     const [filesArray, setFilesArray] = useState<File[]>([]);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-
     const [isOpenDropdown1, setIsOpenDropdown1] = useState(false);
     const toggleDropdown1 = () => {
         setIsOpenDropdown1(!isOpenDropdown1);
@@ -53,7 +42,7 @@ const EditProduct = () => {
             formData.append('image', featureImage);
         }
         // Append multiple files
-        filesArray.forEach((file, index) => {
+        filesArray.forEach((file, _index) => {
             formData.append(`images`, file);
         });
 
