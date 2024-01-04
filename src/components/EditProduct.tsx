@@ -26,19 +26,19 @@ const EditProduct = () => {
     const [description, setDescription] = useState('')
     const [categoryId, setCategoryId] = useState('')
     const [featureImage, setFeatureImage] = useState<File | null>(null)
-    const [filesArray, setFilesArray] =  useState<File[]>([]);
+    const [filesArray, setFilesArray] = useState<File[]>([]);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-   
+
     const [isOpenDropdown1, setIsOpenDropdown1] = useState(false);
     const toggleDropdown1 = () => {
         setIsOpenDropdown1(!isOpenDropdown1);
     }
     const handleSubmit = async () => {
-       const user_id = 44;
-       const category_id = 6;
+        const user_id = 44;
+        const category_id = 6;
         const formData = new FormData();
         formData.append('title', title);
         formData.append('price', price);
@@ -56,18 +56,18 @@ const EditProduct = () => {
         filesArray.forEach((file, index) => {
             formData.append(`images`, file);
         });
-    
+
         // for (let [key, value] of formData.entries()) {
         //     console.log(`${key}: ${value}`);
         // }
         // return
         dispatch(addProduct(formData));
-    
-      };
+
+    };
     useEffect(() => {
         dispatch(showCategories())
         dispatch(showUsers())
-    },[])
+    }, [])
     return (
         <div>
 
@@ -177,69 +177,29 @@ const EditProduct = () => {
                                         className=' text-sm  cursor-pointer  border-2 p-2 mt-2 rounded-[7px] px-3 2xl:h-[91px] 2xl:w-[760px] xl:w-[540px] border-[#DEDEDE] md:w-[350px] outline-none focus:border-[#0E9F6E] w-full h-[80px]' />
                                 </div>
                             </div>
-                            <div className="relative inline-block text-left">
-                                <div>
-                                    <label className='2xl:text-lg text-xs'>Category*</label><br />
-                                    <button
-                                        onClick={toggleDropdown}
-                                        type="button"
-                                        className="inline-flex   items-center justify-center  w-full   text-sm font-medium text-gray-700 "
-                                    >
-                                        <label></label>
-                                        <div className='2xl:w-[220px] xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2  flex  items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px]'>
-                                            <RiArrowDropDownLine className="2xl:text-6xl text-4xl right-0 flex items-center" />
-
-                                        </div>
-                                    </button>
+                           <div className='flex flex-col mt-2'>
+                           <label htmlFor="small" className="block text-[10px] font-medium text-gray-900">Category*</label>
+                            <div className="relative">
+                                <select
+                                    id="default"
+                                    className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
+                                >
+                                    <option selected>Gaming</option>
+                                    <option value="US">Backpack</option>
+                                    <option value="CA">Clothes</option>
+                                    <option value="FR">Vehicles</option>
+                                    <option value="DE">Accessories</option>
+                                    <option value="CA">Cosmetics</option>
+                                    <option value="FR">Books</option>
+                                    <option value="DE">Radios</option>
+                                    <option value="CA">Furniture</option>
+                                    <option value="FR">Travel</option>
+                                </select>
+                                <div className="absolute top-1  right-0 h-full flex items-center pr-3 pointer-events-none">
+                                    <RiArrowDropDownLine className="text-2xl" />
                                 </div>
-
-                                {isOpen && (
-                                    <div className="origin-top-right z-10 absolute 2xl:left-10 left-1  mt-2 2xl:w-48 w-40 rounded-2xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                            <a href="#" className="block px-4 pt-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Gaming
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Backpack
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Clothes
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Vehicles
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Accessories
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Cosmetics
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Books
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Radios
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Furniture
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 pb-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Travel
-                                                <hr className='my-2' />
-                                            </a>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
+                           </div>
                         </div>
                         <div className=' gap-10 mt-7'>
                             <div>
@@ -258,7 +218,7 @@ const EditProduct = () => {
                             <button className='text-[#0E9F6E] bg-[#F1F5F9] 2xl:py-3 py-2 2xl:text-xl text-xs 2xl:h-14 h-12 rounded-lg w-32 2xl:w-28'>+ Add FAQ</button>
                         </div>
                         <div className='mb-4.5 float-right  mt-25'>
-                           
+
                             <button
                                 onClick={handleSubmit}
                                 className="inline-flex items-center md:ml-40 justify-center gap-5 md:w-1/4 w-44 rounded-md md:gap-2.5 bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
@@ -271,7 +231,7 @@ const EditProduct = () => {
                     </div>
                 </div>
             </div>
-          
+
         </div>
     )
 }

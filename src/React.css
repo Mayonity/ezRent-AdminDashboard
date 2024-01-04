@@ -5,7 +5,9 @@
   width: 450px;
 
 }
-
+.custom-select{
+  appearance: none;
+}
 .main {
   height: 800px;
 }

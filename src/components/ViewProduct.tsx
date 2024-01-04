@@ -155,69 +155,29 @@ const EditImage = () => {
                                     </textarea>
                                 </div>
                             </div>
-                            <div className="relative inline-block text-left">
-                                <div>
-                                    <label className='2xl:text-lg text-xs'>Category*</label><br />
-                                    <button
-                                        onClick={toggleDropdown}
-                                        type="button"
-                                        className="inline-flex   items-center justify-center  w-full   text-sm font-medium text-gray-700 "
-                                    >
-                                        <label></label>
-                                        <div className='2xl:w-[220px] xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2  flex  items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px]'>
-                                            <RiArrowDropDownLine className="2xl:text-6xl text-4xl right-0 flex items-center" />
-
-                                        </div>
-                                    </button>
+                            <div className='flex flex-col mt-2'>
+                           <label htmlFor="small" className="block text-[10px] font-medium text-gray-900">Category*</label>
+                            <div className="relative">
+                                <select
+                                    id="default"
+                                    className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
+                                >
+                                    <option selected>Gaming</option>
+                                    <option value="US">Backpack</option>
+                                    <option value="CA">Clothes</option>
+                                    <option value="FR">Vehicles</option>
+                                    <option value="DE">Accessories</option>
+                                    <option value="CA">Cosmetics</option>
+                                    <option value="FR">Books</option>
+                                    <option value="DE">Radios</option>
+                                    <option value="CA">Furniture</option>
+                                    <option value="FR">Travel</option>
+                                </select>
+                                <div className="absolute top-1  right-0 h-full flex items-center pr-3 pointer-events-none">
+                                    <RiArrowDropDownLine className="text-2xl" />
                                 </div>
-
-                                {isOpen && (
-                                    <div className="origin-top-right z-10 absolute 2xl:left-10 left-1  mt-2 2xl:w-48 w-40 rounded-2xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                            <a href="#" className="block px-4 pt-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Gaming
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Backpack
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Clothes
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Vehicles
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Accessories
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Cosmetics
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Books
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Radios
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4  text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Furniture
-                                                <hr className='my-2' />
-                                            </a>
-                                            <a href="#" className="block px-4 pb-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                                Travel
-                                                <hr className='my-2' />
-                                            </a>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
+                           </div>
                         </div>
                         <div className=' gap-10 mt-7'>
                             <div>
