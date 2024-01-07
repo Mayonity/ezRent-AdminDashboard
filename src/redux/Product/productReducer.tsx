@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addProduct, showProducts, updateProduct} from './productAction'
+import { addProduct, deleteProduct, searchProducts, showProducts, updateProduct} from './productAction'
 
 
 interface ProductState {
@@ -49,11 +49,42 @@ export const productSlice = createSlice({
                 state.loading = true;
             })
             .addCase(updateProduct.fulfilled, (state, action) => {
-                console.log(action.payload)
+                const updatedProduct = action.payload;
+                const existingIndex = state.products.findIndex(product => product.id === updatedProduct.id);
+            
+                if (existingIndex !== -1) {
+                    // If the product exists in the state, update it
+                    state.products[existingIndex] = updatedProduct;
+                } else {
+                    // If the product doesn't exist, add it to the state
+                    state.products.push(updatedProduct);
+                }
+            
                 state.loading = false;
-                state.products.push(action.payload);
             })
             .addCase(updateProduct.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(searchProducts.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(searchProducts.fulfilled, (state, action) => {
+                state.loading = false;
+                state.products = action.payload;
+            })
+            .addCase(searchProducts.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(deleteProduct.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.loading = false;
+                // state.products = action.payload;
+            })
+            .addCase(deleteProduct.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

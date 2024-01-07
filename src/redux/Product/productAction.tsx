@@ -1,7 +1,7 @@
 "use-client"
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { addProductEndPoint,showProductEndPoint,updateProductEndPoint} from '../../constants/endPointConstants'
+import { addProductEndPoint,deleteProductEndPoint,searchProductEndPoint,showProductEndPoint,updateProductEndPoint} from '../../constants/endPointConstants'
 import { toast } from 'react-toastify';
 import {getToken} from '../../utils/getToken';
 
@@ -68,10 +68,65 @@ export const updateProduct = createAsyncThunk(
             });
           
             toast.success(response.data.message);
-            return response.data;
+            return response.data.updatedProduct;
         } catch (error: any) {
+            console.log(error.message, 'error message')
             if (error.response) {
                 toast.error(error.response.data.message || "Update product failed");
+                return rejectWithValue(error.response.data);
+            } else {
+                toast.error("Network error");
+                return rejectWithValue(error.message);
+            }
+        }
+    }
+);
+
+export const searchProducts = createAsyncThunk(
+    'product/search',
+    async (productData: any, { rejectWithValue }) => {
+        try {
+            const token = getToken(); 
+            const response = await axios.post(searchProductEndPoint, productData, {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
+          
+            toast.success(response.data.message);
+            return response.data.products;
+        } catch (error: any) {
+            if (error.response) {
+                console.log(error.message)
+                toast.error(error.response.data.message || "Search Product failed");
+                return rejectWithValue(error.response.data);
+            } else {
+                toast.error("Network error");
+                return rejectWithValue(error.message);
+            }
+        }
+    }
+);
+
+
+export const deleteProduct = createAsyncThunk(
+    'product/delete',
+    async (productData: any, { rejectWithValue }) => {
+        console.log(productData, 'productData')
+        try {
+            const token = getToken(); 
+            const response = await axios.post(deleteProductEndPoint, productData, {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
+          
+            toast.success(response.data.message);
+            return ;
+        } catch (error: any) {
+            if (error.response) {
+                console.log(error.message)
+                toast.error(error.response.data.message || "Delete Product failed");
                 return rejectWithValue(error.response.data);
             } else {
                 toast.error("Network error");

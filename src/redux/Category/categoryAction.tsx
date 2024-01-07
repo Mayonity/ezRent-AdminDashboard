@@ -16,9 +16,9 @@ export const addCategory = createAsyncThunk(
                     'Authorization': `Bearer ${token}` 
                 }
             });
-          
+        
             toast.success(response.data.message);
-            return response.data;
+            return response.data.category;
         } catch (error: any) {
             if (error.response) {
                 toast.error(error.response.data.message || "Add Category failed");
@@ -60,9 +60,9 @@ export const updateCategory = createAsyncThunk(
                     'Authorization': `Bearer ${token}` 
                 }
             });
-          
+            console.log(response.data, 'updated category')
             toast.success(response.data.message);
-            return response.data;
+            return response.data.updatedCategory;
         } catch (error: any) {
             if (error.response) {
                 toast.error(error.response.data.message || "Update Category failed");
@@ -72,5 +72,5 @@ export const updateCategory = createAsyncThunk(
                 return rejectWithValue(error.message);
             }
         }
-    }
+    }   
 );
