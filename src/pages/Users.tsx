@@ -6,7 +6,7 @@ import Navbar from '../components/Sidebar/Navbar';
 import { Block } from '../components/Block';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
-import { showUsers } from '../redux/User/userAction';
+import { searchUsers, showUsers, updateUser } from '../redux/User/userAction';
 import {RiArrowDropDownLine} from "react-icons/ri"
 import Toggle from "../components/Toggle"
 
@@ -41,7 +41,26 @@ const Users = () => {
     document.title = 'Ez-Rent-Admin | Users'; // Set your dynamic title here
     dispatch(showUsers())
   }, []);
+  const handleBlock = (id:any, status:any, comment:any) => {
+    const data = {
+      id : id,
+      status : status,
+      comment : comment
+    }
+    dispatch(updateUser(data));
+  }
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const [type, setType] = useState('name');
+
+  const handleSearch = () => {
+    const data = {
+      search : search,
+      type: type
+    }
+    dispatch(searchUsers(data));
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-full  transition-all">
       {/* Sidebar and Navbar components */}
@@ -57,16 +76,28 @@ const Users = () => {
               type="text"
               placeholder="Search by"
               className="w-full p-4 bg-white border border-box rounded-lg"
+              value={search}
+          onChange={(e) => {setSearch(e.target.value); handleSearch()}}
+          // onKeyPress={(e) => {
+          //   if (e.key === 'Enter') {
+          //     handleSearch();
+          //   }
+          // }}
             />
           </div>
           <div className='relative text-center  border-box border-1 rounded-lg bg-whiter text-gray-2 md:w-full lg:w-1/5 mt-4 md:mt-0 border '>
             <select
               id="default"
+              value={type}
+              onChange={(e) => {
+                setType(e.target.value);
+                handleSearch();
+              }}
               className="text-center  border-box border-1 rounded-lg bg-whiter text-gray-2 w-full h-15 custom-select mt-4 md:mt-0 border "
             >
-              <option selected>Phone</option>
-              <option value="US">Name</option>
-              <option value="CA">Email</option>
+              <option value="name" selected>Name</option>
+              <option value="email">Email</option>
+              <option  value="phone">Phone</option>
               
             </select>
             <div className="absolute top-0  right-0 h-full flex items-center pr-7 pointer-events-none">
@@ -169,7 +200,7 @@ const Users = () => {
                     Email
                   </td>
                   <td className="border-b border-box ">
-                  <Toggle/>
+                  <Toggle onClick={handleBlock} isToggle={user.status} id={user.id} comment={user.comment}/>
                   </td>
                   <td className="   ">
                     <button onClick={navigateToPage} className='w-[35px] h-[35px] shrink-0 rounded-[17.5px] bg-[#D5EDE5] flex items-center justify-center'>

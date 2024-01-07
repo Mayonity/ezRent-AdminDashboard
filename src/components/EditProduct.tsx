@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { RiArrowDropDownLine } from "react-icons/ri"
 import UploadImage from "../components/UploadImage"
 import Image from '../assets/Mask group.png';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
 import { showCategories } from '../redux/Category/categoryAction';
 import { addProduct } from '../redux/Product/productAction';
 import { showUsers } from '../redux/User/userAction';
@@ -22,12 +22,12 @@ const EditProduct = () => {
     const [featureImage, setFeatureImage] = useState<File | null>(null)
     const [filesArray, setFilesArray] = useState<File[]>([]);
     const [isOpenDropdown1, setIsOpenDropdown1] = useState(false);
+    const [selectedUserId, setSelectedUserId] = useState();
+    const [selectedCategoryId, setSelectedCategoryId] = useState();
     const toggleDropdown1 = () => {
         setIsOpenDropdown1(!isOpenDropdown1);
     }
     const handleSubmit = async () => {
-        const user_id = 44;
-        const category_id = 6;
         const formData = new FormData();
         formData.append('title', title);
         formData.append('price', price);
@@ -36,8 +36,8 @@ const EditProduct = () => {
         formData.append('collection_fee', collectionFee);
         formData.append('refundable_deposit', refundDeposit);
         formData.append('description', description);
-        formData.append('category_id', category_id);
-        formData.append('user_id', user_id);
+        formData.append('category_id', selectedCategoryId);
+        formData.append('user_id', selectedUserId);
         if (featureImage) {
             formData.append('image', featureImage);
         }
@@ -45,11 +45,6 @@ const EditProduct = () => {
         filesArray.forEach((file, _index) => {
             formData.append(`images`, file);
         });
-
-        // for (let [key, value] of formData.entries()) {
-        //     console.log(`${key}: ${value}`);
-        // }
-        // return
         dispatch(addProduct(formData));
 
     };
@@ -57,6 +52,16 @@ const EditProduct = () => {
         dispatch(showCategories())
         dispatch(showUsers())
     }, [])
+    const handleUserSelection = (event) => {
+        const userId = event.target.value;
+        setSelectedUserId(userId);
+    };
+    const handleCategorySelection = (event) => {
+        const categoryId = event.target.value;
+        setSelectedCategoryId(categoryId);
+    };
+    const categories = useSelector((state: RootState) => state.category.categories);
+    const users = useSelector((state: RootState) => state.user.users);
     return (
         <div>
 
@@ -68,7 +73,7 @@ const EditProduct = () => {
                             type="button"
                             className="inline-flex  gap-x-1.5 text-left text-sm font-semibold text-gray-900 hover:bg-gray-50"
                         >
-                            <h1 className={`text-black text-xl ${isOpenDropdown1}`}>By: <span className='text-gray-2'>Devis miller</span></h1>
+                            <h1 className={`text-black text-xl ${isOpenDropdown1}`}>By: <span className='text-gray-2'>Select Lessor</span></h1>
 
                         </button>
                         {isOpenDropdown1 && (
@@ -86,18 +91,19 @@ const EditProduct = () => {
                                         placeholder="🔍    Search User"
                                         required />
                                     <br />
-                                    <div className='flex bg-gray p-1 gap-20 border-b border-box'>
-                                        <img src={Image} alt="ss" />
-                                        <h1 className='mt-2 '>Devis miller</h1>
-                                    </div>
-                                    <div className='flex bg-gray p-1 gap-20  border-b border-box'>
-                                        <img src={Image} alt="ss" />
-                                        <h1 className='mt-2 '>Devis miller</h1>
-                                    </div>
-                                    <div className='flex bg-gray p-1 gap-20 border-b border-box'>
-                                        <img src={Image} alt="ss" />
-                                        <h1 className='mt-2 '>Devis miller</h1>
-                                    </div>
+                                    <select
+                                        id="default"
+                                        onChange={handleUserSelection}
+                                        value={selectedUserId}
+                                        className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
+                                    >
+                                        <option value="" disabled selected>Select User</option>
+                                        {users.map((user) => (
+                                            <option key={user.id} value={user.id}>
+                                                {user.name}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
                         )}
@@ -166,29 +172,28 @@ const EditProduct = () => {
                                         className=' text-sm  cursor-pointer  border-2 p-2 mt-2 rounded-[7px] px-3 2xl:h-[91px] 2xl:w-[760px] xl:w-[540px] border-[#DEDEDE] md:w-[350px] outline-none focus:border-[#0E9F6E] w-full h-[80px]' />
                                 </div>
                             </div>
-                           <div className='flex flex-col mt-2'>
-                           <label htmlFor="small" className="block text-[10px] font-medium text-gray-900">Category*</label>
-                            <div className="relative">
-                                <select
-                                    id="default"
-                                    className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
-                                >
-                                    <option selected>Gaming</option>
-                                    <option value="US">Backpack</option>
-                                    <option value="CA">Clothes</option>
-                                    <option value="FR">Vehicles</option>
-                                    <option value="DE">Accessories</option>
-                                    <option value="CA">Cosmetics</option>
-                                    <option value="FR">Books</option>
-                                    <option value="DE">Radios</option>
-                                    <option value="CA">Furniture</option>
-                                    <option value="FR">Travel</option>
-                                </select>
-                                <div className="absolute top-1  right-0 h-full flex items-center pr-3 pointer-events-none">
-                                    <RiArrowDropDownLine className="text-2xl" />
+                            <div className='flex flex-col mt-2'>
+                                <label htmlFor="small" className="block text-[10px] font-medium text-gray-900">Category*</label>
+                                <div className="relative">
+
+                                    <select
+                                        id="default"
+                                        onChange={handleCategorySelection}
+                                        value={selectedCategoryId}
+                                        className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
+                                    >
+                                        <option value="" disabled>Select Category</option>
+                                        {categories.map((category) => (
+                                            <option key={category.id} value={category.id}>
+                                                {category.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute top-1  right-0 h-full flex items-center pr-3 pointer-events-none">
+                                        <RiArrowDropDownLine className="text-2xl" />
+                                    </div>
                                 </div>
                             </div>
-                           </div>
                         </div>
                         <div className=' gap-10 mt-7'>
                             <div>

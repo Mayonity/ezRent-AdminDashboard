@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { addCategory,updateCategory } from '../redux/Category/categoryAction';
 const Uploading: React.FC = (props:any) => {
-  const {category} = props
+  const {category,onClick} = props
   const dispatch: AppDispatch = useDispatch();
   const [categoryName, setCategoryName] = useState(category.name);
   const [previewUrl, setPreviewUrl] = useState<string | null>(category.image_path);
@@ -31,8 +31,12 @@ const Uploading: React.FC = (props:any) => {
     formData.append('image', file);
 
     dispatch(updateCategory(formData));
+    onClick(false)
 
   };
+  const handleClose = () => {
+    onClick(false)
+  }
 
   return (
     <div className="col-span-5 xl:col-span-2 ">
@@ -94,7 +98,7 @@ const Uploading: React.FC = (props:any) => {
             <div className="flex justify-center gap-15 ">
               <button
                 className="flex justify-center  rounded border border-stroke 2xl:py-3 py-2 2xl:text-xl text-xs 2xl:px-15 px-10 font-medium text-danger hover:shadow-1 dark:border-strokedark dark:text-white "
-                type="submit"
+               onClick={handleClose}
               >
                 Cancel
               </button>

@@ -6,7 +6,7 @@ import Navbar from '../components/Sidebar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { RiArrowDropDownLine } from "react-icons/ri"
-import { showProducts } from '../redux/Product/productAction';
+import { searchProducts, showProducts, updateProduct } from '../redux/Product/productAction';
 import moment from 'moment';
 import Toggle from "../components/Toggle"
 const Products = () => {
@@ -22,8 +22,8 @@ const Products = () => {
   const navigateToPage = () => {
     navigate('/AddProduct');
   };
-  const navigateToPage2 = () => {
-    navigate('/ViewProduct');
+  const navigateToPage2 = (pageId:any) => {
+    navigate('/ViewProduct/' + pageId);
   };
 
 
@@ -38,7 +38,24 @@ const Products = () => {
     console.log("Closing sign-in form");
     setShowBlock(false);
   };
+  const handleBlock = (id:any, status:any, comment:any) => {
+    const data = {
+      id : id,
+      status : status,
+      comment : comment
+    }
+    dispatch(updateProduct(data));
+  }
+  const [search, setSearch] = useState('');
+  const [type, setType] = useState('name');
 
+  const handleSearch = () => {
+    const data = {
+      search : search,
+      type: type
+    }
+    dispatch(searchProducts(data));
+  };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
@@ -48,7 +65,7 @@ const Products = () => {
       <div className="flex-1">
         <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <h1 className="text-bold text-3xl m-5 md:m-10 boldish">
-          Products <span className="text-meta-3 boldish">(2)</span>
+          Products <span className="text-meta-3 boldish">{`(${products.length})`}</span>
         </h1>
         <div className="flex flex-col md:flex-row m-5 md:m-10 gap-4 p-5 rounded-lg bg-white border border-box">
           <div className="w-full md:w-2/3">
@@ -56,16 +73,21 @@ const Products = () => {
               type="text"
               placeholder="Search products by"
               className="w-full p-4 bg-white border border-box rounded-lg"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
           <div className='relative text-center   text-xs space-y-5  border-box border-1 rounded-lg bg-whiter text-gray-2 md:w-full lg:w-1/5  md:mt-0 border '>
             <select
               id="default"
+              value={type}
+              onChange={(e) => 
+                setType(e.target.value)}
               className="text-center text-xs space-y-5  border-box border-1 rounded-lg bg-whiter text-gray-2 w-full h-15  custom-select md:mt-0 border  "
             >
-              <option selected>Lessor Name</option>
-              <option value="US">Category</option>
+              <option value="name" selected>Lessor Name</option>
+              <option value="category">Category</option>
             </select>
             <div className="absolute top-0  right-0 h-full pr-1 pointer-events-none">
               <RiArrowDropDownLine className="text-2xl" />
@@ -73,6 +95,7 @@ const Products = () => {
           </div>
           <div className="md:w-1/4 mt-4 md:mt-0 flex relative">
             <button
+            onClick={handleSearch}
               className="flex-grow bg-meta-3 h-15 text-white rounded-md text-center flex justify-center align-center items-center"
 
             >
@@ -212,7 +235,7 @@ const Products = () => {
 
                     </td>
                     <td className="border-b border-box py-5  dark:border-strokedark">
-                      <Toggle />
+                      <Toggle onClick={handleBlock} isToggle={product.status} id={product.id} comment={product.comment}/>
                     </td>
                     <td className="border-b border-box py-5   dark:border-strokedark xl:pl-11">
                       <h5 className="font-medium text-black dark:text-white">
@@ -221,7 +244,7 @@ const Products = () => {
 
                     </td>
                     <td className="border-b border-box py-5  dark-border-box text-primary">
-                      <button onClick={navigateToPage2} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
+                      <button onClick={() => navigateToPage2(product.id)} className='bg-[#D5EDE5] w-20 h-8 rounded-full text-center'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className='ml-7.5'>
                           <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="#0E9F6E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

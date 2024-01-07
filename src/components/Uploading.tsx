@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { addCategory } from '../redux/Category/categoryAction';
 
-const Uploading: React.FC = () => {
+const Uploading: React.FC = (props:any) => {
+  const { onClick } = props
   const [file, setFile] = useState<any | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [categoryName, setCategoryName] = useState('');
@@ -22,27 +23,26 @@ const Uploading: React.FC = () => {
     } else {
       setFile(null);
       setPreviewUrl(null);
+    
     }
   };
   const handleCancel = () => {
     setFile(null);
     setPreviewUrl(null);
     setCategoryName('');
+    onClick(false);
+
   }
   const handleSubmit = async () => {
 
-    // if (!file || !categoryName) {
-    //   // Handle the error case where file or category name is not provided
-    //   console.log('Category name and image are required');
-    //   return;
-    // }
-
-    // Construct FormData to handle file upload
+  
     const formData = new FormData();
     formData.append('name', categoryName);
     formData.append('image', file);
 
     dispatch(addCategory(formData));
+    onClick(false);
+
 
   };
 

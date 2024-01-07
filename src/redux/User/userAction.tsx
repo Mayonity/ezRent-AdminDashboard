@@ -1,7 +1,7 @@
 "use-client"
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { addUserEndPoint,showUserEndPoint,updateUserEndPoint} from '../../constants/endPointConstants'
+import { addUserEndPoint,searchUserEndPoint,showUserEndPoint,updateUserEndPoint} from '../../constants/endPointConstants'
 import { toast } from 'react-toastify';
 import {getToken} from '../../utils/getToken';
 
@@ -15,9 +15,8 @@ export const addUser = createAsyncThunk(
                     'Authorization': `Bearer ${token}` 
                 }
             });
-          
             toast.success(response.data.message);
-            return response.data;
+            return response.data.user;
         } catch (error: any) {
             if (error.response) {
                 toast.error(error.response.data.message || "Add User failed");
@@ -67,7 +66,32 @@ export const updateUser = createAsyncThunk(
             });
           
             toast.success(response.data.message);
-            return response.data;
+            return response.data.updatedUser;
+        } catch (error: any) {
+            if (error.response) {
+                toast.error(error.response.data.message || "Update User failed");
+                return rejectWithValue(error.response.data);
+            } else {
+                toast.error("Network error");
+                return rejectWithValue(error.message);
+            }
+        }
+    }
+);
+
+export const searchUsers = createAsyncThunk(
+    'user/search',
+    async (userData: any, { rejectWithValue }) => {
+        try {
+            const token = getToken(); 
+            const response = await axios.post(searchUserEndPoint, userData, {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
+          
+            toast.success(response.data.message);
+            return response.data.users;
         } catch (error: any) {
             if (error.response) {
                 toast.error(error.response.data.message || "Update User failed");

@@ -4,9 +4,10 @@ import Uploading from './Uploading';
 import CategoryEdit from './CategoryEdit';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
-import { showCategories } from '../redux/Category/categoryAction';
+import { showCategories, updateCategory } from '../redux/Category/categoryAction';
 import moment from 'moment';
 import Toggle from "../components/Toggle"
+import { updateCategoryEndPoint } from '../constants/endPointConstants';
 const Table = () => {
   const categories = useSelector((state: RootState) => state.category.categories);
   const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,14 @@ const Table = () => {
       setDisplayCategories(categories); // No search term, show all categories
     }
   };
+  const handleBlock = (id:any, status:any, comment:any) => {
+    const data = {
+      id : id,
+      status : status,
+      comment : comment
+    }
+    dispatch(updateCategory(data));
+  }
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(showCategories())
@@ -191,7 +200,7 @@ const Table = () => {
 
                 </td>
                 <td className="border-b border-box py-5 px-4 ">
-              <Toggle/>
+              <Toggle onClick={handleBlock} isToggle={category.status} id={category.id} comment={category.comment} />
                 </td>
 
 
@@ -222,7 +231,7 @@ const Table = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
               </button>
               <div className="p-8">
-                <Uploading />
+                <Uploading onClick={closeUploading} />
               </div>
             </div>
           </div>
@@ -239,7 +248,7 @@ const Table = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
               </button>
               <div className="2xl:p-8 p-4">
-                <CategoryEdit category={singleCategory} />
+                <CategoryEdit category={singleCategory} onClick={closeCategoryEdit} />
               </div>
             </div>
           </div>

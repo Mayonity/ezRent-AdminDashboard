@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-const ToggleButton = () => {
+const ToggleButton = (props:any) => {
+    const {onClick, isToggle , id, comment} = props
     const location = useLocation();
 
-    const [isToggled, setIsToggled] = useState(false);
+    const [isToggled, setIsToggled] = useState(isToggle);
+    const [message, setMessage] = useState(comment)
 
     const handleToggle = () => {
-        setIsToggled(false);
-        if (isToggled === true) {
+     
+        if (isToggled === false) {
             setShowBlock(false);
+            setIsToggled(true)
+            onClick(id, true);
+
         }
         else {
+            setIsToggled(false)
             setShowBlock(true);
         }
+       
 
     };
     const [showBlock, setShowBlock] = useState(false);
     const openBlock = () => {
         setShowBlock(true);
+       
     };
 
     const closeBlock = () => {
@@ -26,22 +34,32 @@ const ToggleButton = () => {
 
         setIsToggled(true);
     };
+    const handleSubmitBlock = () => {
+        setShowBlock(false);
+
+        setIsToggled(false);
+         onClick(id, false, message);
+    }
+    // useEffect(() => {
+    //     // Call the onClick prop with the initial isToggled value
+    //     // onClick(id, isToggled);
+    //   }, [id, isToggled, onClick]);
 
     return (
         <>
             <div
-                style={{ color: isToggled ? 'red' : 'green' }}
+                style={{ color: isToggled ? 'green' : 'red' }}
                 className="toggleContainer flex gap-2">
 
-                {isToggled ? <p>Blocked</p> : <p onClick={openBlock}>UnBlocked</p>}
+                {isToggled ? <p onClick={openBlock}>UnBlocked</p>:<p>Blocked</p>  }
                 <button
                     onClick={handleToggle}
-                    className={`toggleButton ${isToggled ? "toggled " : ''}`}
+                    className={`toggleButton ${isToggled ? " " : 'toggled'}`}
 
                     style={{ backgroundColor: '#F1F5F9' }}
                 >
                     <div
-                        style={{ backgroundColor: isToggled ? '#C90000' : '#0E9F6E' }}
+                        style={{ backgroundColor: isToggled ? '#0E9F6E' : '#C90000' }}
                         className="slider"></div>
                 </button>
             </div>
@@ -65,10 +83,10 @@ const ToggleButton = () => {
                                         <br />
                                     </div>
                                     <div>
-                                        <textarea name="" id="" placeholder='Add remarks' className='bg-white text-gray-2 border-2 border-box w-100 h-40 rounded-lg p-5' />
+                                        <textarea name="" id="" value={message} onChange={(e) => setMessage(e.target.value)} placeholder='Add remarks' className='bg-white text-gray-2 border-2 border-box w-100 h-40 rounded-lg p-5' />
                                         <br />
                                         <div className='text-center mt-5'>
-                                            <button onClick={closeBlock} className='text-white bg-[#C70813] p-4 w-50 ml-10 text-center rounded-lg'>Block</button>
+                                            <button onClick={handleSubmitBlock} className='text-white bg-[#C70813] p-4 w-50 ml-10 text-center rounded-lg'>Block</button>
                                         </div>
                                     </div>
                                 </div>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addUser, showUsers, updateUser} from './userAction'
+import { addUser, showUsers, updateUser,searchUsers} from './userAction'
 
 
 interface UserState {
@@ -49,11 +49,30 @@ export const userSlice = createSlice({
                 state.loading = true;
             })
             .addCase(updateUser.fulfilled, (state, action) => {
-                console.log(action.payload)
+                const updatedUser = action.payload;
+               
+                const existingIndex = state.users.findIndex(user => user.id === updatedUser.id);
+                console.log(existingIndex, 'updaedd')
+                if (existingIndex !== -1) {
+                    state.users[existingIndex] = updatedUser;
+                } else {
+                    state.users.push(updatedUser);
+                }
+            
                 state.loading = false;
-                state.users.push(action.payload);
             })
             .addCase(updateUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(searchUsers.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(searchUsers.fulfilled, (state, action) => {
+                state.loading = false;
+                state.users = action.payload;
+            })
+            .addCase(searchUsers.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

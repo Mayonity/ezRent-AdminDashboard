@@ -49,9 +49,18 @@ export const categorySlice = createSlice({
                 state.loading = true;
             })
             .addCase(updateCategory.fulfilled, (state, action) => {
-                console.log(action.payload)
+                const updatedCategory = action.payload;
+                const existingIndex = state.categories.findIndex(category => category.id === updatedCategory.id);
+            
+                if (existingIndex !== -1) {
+                    // If the category exists in the state, update it
+                    state.categories[existingIndex] = updatedCategory;
+                } else {
+                    // If the category doesn't exist, add it to the state
+                    state.categories.push(updatedCategory);
+                }
+            
                 state.loading = false;
-                state.categories.push(action.payload);
             })
             .addCase(updateCategory.rejected, (state, action) => {
                 state.loading = false;
