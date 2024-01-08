@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { LuImagePlus } from "react-icons/lu"
 import React, { ChangeEvent, useEffect, useState } from 'react';
-function UploadImage({ onFileChange, onFilesArrayChange }) {
+
+
+function UploadImage({  onFileChange, onFilesArrayChange, productImages , featuredImagePath}) {
     const [imagesArray, setImagesArray] = useState<File[]>([]);
-    const [imageUrl1, setImageUrl1] = useState<string | undefined>(undefined);
-    const [imageUrl2, setImageUrl2] = useState<string | undefined>(undefined);
-    const [imageUrl3, setImageUrl3] = useState<string | undefined>(undefined);
-    const [imageUrl4, setImageUrl4] = useState<string | undefined>(undefined);
-    const [imageUrl5, setImageUrl5] = useState<string | undefined>(undefined);
+    const [imageUrl1, setImageUrl1] = useState<string | undefined>(featuredImagePath || undefined);
+    const [imageUrl2, setImageUrl2] = useState<string | undefined>(productImages && productImages[0]?.path  || undefined);
+    const [imageUrl3, setImageUrl3] = useState<string | undefined>(productImages && productImages[1]?.path ||undefined);
+    const [imageUrl4, setImageUrl4] = useState<string | undefined>(productImages && productImages[2]?.path || undefined);
+    const [imageUrl5, setImageUrl5] = useState<string | undefined>(productImages && productImages[3]?.path ||undefined);
 
 
     const handleSingleFileChange = (file) => {
@@ -80,12 +82,15 @@ function UploadImage({ onFileChange, onFilesArrayChange }) {
                     id="inputFile"
                     type="file"
                     accept="image/*"
-                    style={{ display: 'none' }}
+                    // style={{ display: 'none' }}
                     onChange={(e) => handleSingleFileChange(e.target)}
                 />
                 {imageUrl1 && (
                     <div className="box ">
-                        <img src={imageUrl1} alt="Uploaded Image" className="  absolute -mt-[200px] flex justify-center 2xl:w-[300px] lg:w-[250px] md:w-[300px] w-[250px]   lg:h-[300px] h-[330px] rounded-2xl  h-auto" />
+                        <img src={imageUrl1} 
+                    onChange={(e) => handleSingleFileChange(e.target)}
+
+                         alt="Uploaded Image" className="  absolute -mt-[200px] flex justify-center 2xl:w-[300px] lg:w-[250px] md:w-[300px] w-[250px]   lg:h-[300px] h-[330px] rounded-2xl  h-auto" />
                     </div>
                 )}
             </div>

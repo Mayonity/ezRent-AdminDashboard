@@ -17,7 +17,7 @@ import UploadImage from './UploadImage';
 const EditImage = () => {
     const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate();
-  
+
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -31,6 +31,7 @@ const EditImage = () => {
         setShowDelete(false);
     };
     const [showBlock, setShowBlock] = useState(false);
+
     const openBlock = () => {
         setShowBlock(true);
     };
@@ -42,20 +43,21 @@ const EditImage = () => {
     const toggleDropdown1 = () => {
         setIsOpenDropdown1(!isOpenDropdown1);
     }
-    // const { productId } = 1;
-    // const { id } = useParams();
+    const { id } = useParams() || {};
+    const productId = parseInt(id, 10);
     const users = useSelector((state: RootState) => state.user.users);
     const categories = useSelector((state: RootState) => state.category.categories);
-    const product = useSelector((state: RootState) => {
-        return state.product.products.find(product => product.id === 1);
-      });
-      console.log(product)
-    useEffect(() => {
-        dispatch(showCategories())
-        dispatch(showProducts())
-        dispatch(showUsers())
+    const products = useSelector((state: RootState) => state.product.products);
+    const product = products.find((product) => product?.id === productId) || {};
 
-    },[])
+
+    useEffect(() => {
+        dispatch(showCategories());
+        dispatch(showProducts());
+        dispatch(showUsers());
+
+
+    }, [dispatch, id])
 
     const handleUserSelection = (event) => {
         const userId = event.target.value;
@@ -76,10 +78,11 @@ const EditImage = () => {
     const [filesArray, setFilesArray] = useState<File[]>(product?.images || []);
     const [selectedUserId, setSelectedUserId] = useState(product?.user?.id || '');
     const [selectedCategoryId, setSelectedCategoryId] = useState(product?.category?.id || '');
+    const [oldImagesArray, setOldImagesArray] = useState(product?.images || []);
 
     const handleSubmit = async () => {
         const formData = new FormData();
-        formData.append('id', 1)
+        formData.append('id', productId)
         formData.append('title', title);
         formData.append('price', price);
         formData.append('total_quantity', totalQuantity);
@@ -89,6 +92,7 @@ const EditImage = () => {
         formData.append('description', description);
         formData.append('category_id', selectedCategoryId);
         formData.append('user_id', selectedUserId);
+        formData.append('old_images', oldImagesArray);
         if (featureImage) {
             formData.append('image', featureImage);
         }
@@ -97,17 +101,18 @@ const EditImage = () => {
             formData.append(`images`, file);
         });
         dispatch(updateProduct(formData));
+        navigate('/Products')
+
 
     };
     const handleDeleteSubmit = async () => {
-        let id = 1;
         let data = {
-            id : id
+            id: productId
         }
         dispatch(deleteProduct(data))
         navigate('/Products')
     }
-
+  console.log(product, 'htis is my product')
     return (
         <div>
 
@@ -133,7 +138,7 @@ const EditImage = () => {
                                 <div className="py-1m p-5" role="none">
                                     <input type="text"
                                         id="first_name"
-                                     
+
                                         className="bg-gray text-gray-900 text-sm  outline:none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="🔍    Search User"
                                         required />
@@ -149,7 +154,7 @@ const EditImage = () => {
                                                 {user.name}
                                             </option>
                                         ))}
-                                        </select>
+                                    </select>
                                 </div>
                             </div>
                         )}
@@ -159,7 +164,12 @@ const EditImage = () => {
                 <div className='lg:flex gap-0'>
                     <div className=' lg:w-[300px] md:w-full '>
                         {/* <Editimage /> */}
-                        <UploadImage onFileChange={setFeatureImage} onFilesArrayChange={setFilesArray} />
+                        <UploadImage
+                          onFileChange={setFeatureImage}
+                          onFilesArrayChange={setFilesArray}
+                          productImages={filesArray || []}
+                          featuredImagePath={product.featuredImagePath}
+                         />
 
                     </div>
                     <div className='border bg-gray-300 ml-5 lg:block hidden w-[1px] mt-16  h-[700px]'>
@@ -173,7 +183,7 @@ const EditImage = () => {
                                 <label className='2xl:text-lg text-xs'>Product Name*</label>
                                 <div className=' w-full  mt-2  rounded-[15px]'>
                                     <textarea placeholder="" value={title} onChange={(e) => setTitle(e.target.value)} className='text-[10px] cursor-pointer 2xl:w-[520px] h-10 px-3 xl:w-[370px] md:w-[330px] w-[95%] mx-auto  outline-none focus:border-[#0E9F6E]  border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2'>
-                                      
+
                                     </textarea>
 
                                 </div>
@@ -183,7 +193,7 @@ const EditImage = () => {
                                     <label className='2xl:text-lg text-xs'>Price (per day)*</label>
                                     <div className='mt-2 rounded-[15px]'>
                                         <textarea value={price} onChange={(e) => setPrice(e.target.value)} className='text-[10px] cursor-pointer 2xl:w-[220px] px-3 h-10 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2' >
-                                        
+
                                         </textarea>
                                     </div>
                                 </div>
@@ -191,7 +201,7 @@ const EditImage = () => {
                                     <label className='2xl:text-lg text-xs'>Quantity*</label>
                                     <div className='mt-2 rounded-[15px]'>
                                         <textarea value={totalQuantity} onChange={(e) => setTotalQuantity(e.target.value)} className='text-[10px] cursor-pointer 2xl:w-[220px] h-10 px-3 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E]  border-[#DEDEDE] border-2  rounded-[7px] 2xl:py-3 py-2'>
-                                            
+
                                         </textarea>
                                     </div>
                                 </div>
@@ -202,7 +212,7 @@ const EditImage = () => {
                                 <label className='2xl:text-lg text-xs'>Tagline*</label>
                                 <div className=' w-full mt-2   rounded-[15px]'>
                                     <textarea value={tagLine} onChange={(e) => setTagline(e.target.value)} className='text-[10px] cursor-pointer 2xl:w-[520px] px-3 h-10 xl:w-[370px] md:w-[350px] w-[95%] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2   rounded-[7px] 2xl:py-3 py-2'>
-                                      
+
                                     </textarea>
                                 </div>
                             </div>
@@ -211,7 +221,7 @@ const EditImage = () => {
                                     <label className='2xl:text-lg  text-[10px]'>Delivery/ collection fee*</label>
                                     <div className='mt-2  rounded-[15px]'>
                                         <textarea value={collectionFee} onChange={(e) => setCollectionFee(e.target.value)} className='text-[10px] cursor-pointer 2xl:w-[220px] px-3 h-10 xl:w-[150px] w-[130px] outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2'>
-                                          
+
                                         </textarea>
                                     </div>
                                 </div>
@@ -219,7 +229,7 @@ const EditImage = () => {
                                     <label className='2xl:text-lg text-xs'>Refundable deposit*</label>
                                     <div className='mt-2 rounded-[15px]'>
                                         <textarea value={refundDeposit} onChange={(e) => setRefundDeposit(e.target.value)} className='text-[10px] cursor-pointer 2xl:w-[220px] px-3 h-10 xl:w-[150px] w-[130px]  outline-none focus:border-[#0E9F6E] border-[#DEDEDE] border-2 rounded-[7px] 2xl:py-3 py-2'>
-                                          
+
                                         </textarea>
                                     </div>
                                 </div>
@@ -230,32 +240,32 @@ const EditImage = () => {
                                 <label className='2xl:text-lg text-xs'>Description*</label>
                                 <div>
                                     <textarea
-                                    value={description} onChange={(e) => setDescription(e.target.value)}
+                                        value={description} onChange={(e) => setDescription(e.target.value)}
                                         className=' text-xs  cursor-pointer  border-2 p-2 mt-2 rounded-[7px] px-3 2xl:h-[91px] 2xl:w-[760px] xl:w-[540px] border-[#DEDEDE] md:w-[350px] outline-none focus:border-[#0E9F6E] w-full h-[80px]'>
-                                       
+
                                     </textarea>
                                 </div>
                             </div>
                             <div className='flex flex-col mt-2'>
-                           <label htmlFor="small" className="block text-[10px] font-medium text-gray-900">Category*</label>
-                            <div className="relative">
-                                <select
-                                 onChange={handleCategorySelection}
-                                 value={selectedCategoryId}
-                                    id="default"
-                                    className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
-                                >
-                                    {categories.map((category) => (
+                                <label htmlFor="small" className="block text-[10px] font-medium text-gray-900">Category*</label>
+                                <div className="relative">
+                                    <select
+                                        onChange={handleCategorySelection}
+                                        value={selectedCategoryId}
+                                        id="default"
+                                        className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
+                                    >
+                                        {categories.map((category) => (
                                             <option key={category.id} value={category.id}>
                                                 {category.name}
                                             </option>
                                         ))}
-                                </select>
-                                <div className="absolute top-1  right-0 h-full flex items-center pr-3 pointer-events-none">
-                                    <RiArrowDropDownLine className="text-2xl" />
+                                    </select>
+                                    <div className="absolute top-1  right-0 h-full flex items-center pr-3 pointer-events-none">
+                                        <RiArrowDropDownLine className="text-2xl" />
+                                    </div>
                                 </div>
                             </div>
-                           </div>
                         </div>
                         <div className=' gap-10 mt-7'>
                             <div>
@@ -278,7 +288,7 @@ const EditImage = () => {
                         <div className='mb-4.5 flex flex-col gap-5 xl:flex-row mt-25'>
                             {/* <Link onClick={openDelete}
                                 to="#" */}
-                                <button onClick={handleDeleteSubmit} 
+                            <button onClick={handleDeleteSubmit}
                                 className="inline-flex items-center justify-center md:w-1/4 w-44 rounded-md gap-2.5 bg-redlight py-4 px-10 text-center font-medium text-danger hover:bg-opacity-90 lg:px-8 xl:px-10"
                             >
 
@@ -291,7 +301,7 @@ const EditImage = () => {
 
                                 Block
                             </Link> */}
-                           <button onClick={handleSubmit}
+                            <button onClick={handleSubmit}
                                 className="inline-flex items-center md:ml-40 justify-center gap-5 md:w-1/4 w-44 rounded-md md:gap-2.5 bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                             >
 
@@ -337,7 +347,7 @@ const EditImage = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill='#CACACA'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
                             </button>
                             <div className="p-6">
-                                <Delete onClick={handleDeleteSubmit} closeDelete={closeDelete}/>
+                                <Delete onClick={handleDeleteSubmit} closeDelete={closeDelete} />
                             </div>
                         </div>
                     </div>
