@@ -58,6 +58,7 @@ const EditProduct = () => {
     };
     const handleCategorySelection = (event) => {
         const categoryId = event.target.value;
+        console.log(categoryId, 'cat id')
         setSelectedCategoryId(categoryId);
     };
     const categories = useSelector((state: RootState) => state.category.categories);
@@ -178,11 +179,13 @@ const EditProduct = () => {
 
                                     <select
                                         id="default"
-                                        onChange={handleCategorySelection}
-                                        value={selectedCategoryId}
+                                        onChange={(e) => {
+                                            console.log('Select changed');
+                                            handleCategorySelection(e);
+                                          }}
                                         className="2xl:w-[220px] text-sm text-center xl:w-[150px] w-[130px] border-[#DEDEDE] mt-2 flex items-center justify-end border-2 2xl:h-[91px] h-[80px] rounded-[7px] custom-select"
                                     >
-                                        <option value="" disabled>Select Category</option>
+                                        <option value="">Select Category</option>
                                         {categories.map((category) => (
                                             <option key={category.id} value={category.id}>
                                                 {category.name}
