@@ -15,10 +15,6 @@ function UploadImage({  onFileChange, onFilesArrayChange, productImages , featur
     const handleSingleFileChange = (file) => {
         readURL(file, 'first');
         onFileChange(file.files[0]);
-        if (oldImagesArray.length > 0) {
-            console.log('we are here')
-            setOldImagesArray((oldArray) => oldArray.slice(1));
-        }
     };
 
     const handleFirstFileChange = (file) => {
