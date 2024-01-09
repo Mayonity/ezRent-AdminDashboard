@@ -77,21 +77,16 @@ const Users = () => {
               placeholder="Search by"
               className="w-full p-4 bg-white border border-box rounded-lg"
               value={search}
-          onChange={(e) => {setSearch(e.target.value); handleSearch()}}
-          // onKeyPress={(e) => {
-          //   if (e.key === 'Enter') {
-          //     handleSearch();
-          //   }
-          // }}
+          onChange={(e) => {setSearch(e.target.value)}}
             />
           </div>
+          
           <div className='relative text-center  border-box border-1 rounded-lg bg-whiter text-gray-2 md:w-full lg:w-1/5 mt-4 md:mt-0 border '>
             <select
               id="default"
               value={type}
               onChange={(e) => {
                 setType(e.target.value);
-                handleSearch();
               }}
               className="text-center  border-box border-1 rounded-lg bg-whiter text-gray-2 w-full h-15 custom-select mt-4 md:mt-0 border "
             >
@@ -104,7 +99,26 @@ const Users = () => {
               <RiArrowDropDownLine className="text-2xl" />
             </div>
           </div>
-
+          <div className="md:w-1/3 mt-4 md:mt-0 flex">
+          <button
+            className="flex-grow bg-meta-3 h-15 text-white rounded-md text-center flex justify-center align-center items-center"
+            onClick={handleSearch}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="#1D9E6F"
+              stroke="currentColor"
+              width={20}
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>  Search
+          </button>
+        </div>  
           <div className="md:w-[20%] mt-4 md:mt-0 flex relative">
             <button
               className="w-full text-sm bg-meta-3 h-15 text-white rounded-md"
