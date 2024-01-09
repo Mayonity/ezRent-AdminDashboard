@@ -177,7 +177,7 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
+              {users.length > 0 ? ( users.map((user, index) => (
 
                 <tr key={index} className="bg-white border-box border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <td className="py-5 px-5">
@@ -212,7 +212,12 @@ const Users = () => {
 
                   </td>
                 </tr>
-              ))}
+              ))
+              ) : (
+                <tr className="2xl:text-base text-xs border-b border-1 border-box">
+                  <td className="px-6 py-4">No Data Found</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

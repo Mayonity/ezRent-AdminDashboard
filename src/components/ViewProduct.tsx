@@ -79,6 +79,7 @@ const EditImage = () => {
     const [selectedUserId, setSelectedUserId] = useState(product?.user?.id || '');
     const [selectedCategoryId, setSelectedCategoryId] = useState(product?.category?.id || '');
     const [oldImagesArray, setOldImagesArray] = useState(product?.images || []);
+    const [faqSections, setFaqSections] = useState(product.faqs ? JSON.parse(product.faqs) : []);
 
     const handleSubmit = async () => {
         const formData = new FormData();
@@ -93,6 +94,7 @@ const EditImage = () => {
         formData.append('category_id', selectedCategoryId);
         formData.append('user_id', selectedUserId);
         formData.append('old_images', oldImagesArray);
+        formData.append('faqs', JSON.stringify(faqSections));
         if (featureImage) {
             formData.append('image', featureImage);
         }
@@ -112,7 +114,14 @@ const EditImage = () => {
         dispatch(deleteProduct(data))
         navigate('/Products')
     }
-  console.log(product, 'htis is my product')
+    const addFaqSection = () => {
+        setFaqSections([...faqSections, { question: '', answer: '' }]);
+    };
+    const handleInputChange = (index, field, value) => {
+        const updatedFaqSections = [...faqSections];
+        updatedFaqSections[index][field] = value;
+        setFaqSections(updatedFaqSections);
+    };
     return (
         <div>
 
@@ -136,13 +145,13 @@ const EditImage = () => {
                                 tabIndex={-1}
                             >
                                 <div className="py-1m p-5" role="none">
-                                    <input type="text"
+                                    {/* <input type="text"
                                         id="first_name"
 
                                         className="bg-gray text-gray-900 text-sm  outline:none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="🔍    Search User"
                                         required />
-                                    <br />
+                                    <br /> */}
                                     <select
                                         id="default"
                                         onChange={handleUserSelection}
@@ -159,7 +168,7 @@ const EditImage = () => {
                             </div>
                         )}
                     </div>
-                    <span className="font-black text-black">Address:</span> 22-04-2022
+                    {/* <span className="font-black text-black">Address:</span> 22-04-2022 */}
                 </h1>                <hr className='2xl:my-7 my-5 md:block hidden' />
                 <div className='lg:flex gap-0'>
                     <div className=' lg:w-[300px] md:w-full '>
@@ -268,22 +277,34 @@ const EditImage = () => {
                             </div>
                         </div>
                         <div className=' gap-10 mt-7'>
-                            <div>
-                                <label className='2xl:text-xl text-xs'>FAQ</label>
-                                <div className=' w-full  mt-2 rounded-[7px]'>
-                                    <textarea className='text-[10px] cursor-pointer w-[100%] border-[#DEDEDE] h-10 px-5 outline-none focus:border-[#0E9F6E] border-2 rounded-[7px] 2xl:py-3 py-2' >
-                                        Lorem Ipsum
-                                    </textarea>
+                        {faqSections.map((faq, index) => (
+                                <div key={index} className='gap-10 mt-7'>
+                                    <div>
+                                        <label className='2xl:text-xl text-xs'>FAQ</label>
+                                        <div className='w-full mt-2 rounded-[7px]'>
+                                            <input
+                                                type="text"
+                                                value={faq.question}
+                                                onChange={(e) => handleInputChange(index, 'question', e.target.value)}
+                                                className='text-sm cursor-pointer w-[100%] border-[#DEDEDE] px-5 outline-none focus:border-[#0E9F6E] border-2 rounded-[7px] 2xl:py-3 py-2'
+                                                placeholder="Question"
+                                            />
+                                        </div>
+                                        <div className='mt-5 rounded-[7px]'>
+                                            <input
+                                                type="text"
+                                                value={faq.answer}
+                                                onChange={(e) => handleInputChange(index, 'answer', e.target.value)}
+                                                className='text-sm cursor-pointer w-[100%] border-[#DEDEDE] px-5 outline-none focus:border-[#0E9F6E] border-2 rounded-[7px] 2xl:py-3 py-2'
+                                                placeholder="Answer"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='  mt-5 rounded-[7px]'>
-                                    <textarea className='text-[10px] cursor-pointer w-[100%] border-[#DEDEDE] h-10 px-5 outline-none focus:border-[#0E9F6E] border-2 rounded-[7px] 2xl:py-3 py-2 '>
-                                        Lorem Ipsum
-                                    </textarea>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className=' md:flex justify-between w-full md:mt-5 mt-5'>
-                            <button className='text-[#0E9F6E] bg-[#F1F5F9] 2xl:py-3 py-2 2xl:text-xl text-xs 2xl:h-14 h-12 rounded-lg w-32 2xl:w-28'>+ Add FAQ</button>
+                            <button onClick={addFaqSection} className='text-[#0E9F6E] bg-[#F1F5F9] 2xl:py-3 py-2 2xl:text-xl text-xs 2xl:h-14 h-12 rounded-lg w-32 2xl:w-28'>+ Add FAQ</button>
                         </div>
                         <div className='mb-4.5 flex flex-col gap-5 xl:flex-row mt-25'>
                             {/* <Link onClick={openDelete}
