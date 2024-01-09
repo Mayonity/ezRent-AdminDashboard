@@ -22,6 +22,7 @@ const EditProduct = () => {
     const [description, setDescription] = useState('')
     const [featureImage, setFeatureImage] = useState<File | null>(null)
     const [filesArray, setFilesArray] = useState<File[]>([]);
+    const [oldProductImages, setOldProductImages] = useState<File[]>([]);
     const [isOpenDropdown1, setIsOpenDropdown1] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState();
     const [selectedCategoryId, setSelectedCategoryId] = useState();
@@ -48,6 +49,7 @@ const EditProduct = () => {
         formData.append('description', description);
         formData.append('category_id', selectedCategoryId);
         formData.append('user_id', selectedUserId);
+        formData.append('status', 1);
         formData.append('faqs', JSON.stringify(faqSections));
         if (featureImage) {
             formData.append('image', featureImage);
@@ -59,6 +61,10 @@ const EditProduct = () => {
         dispatch(addProduct(formData));
 
     };
+    const getUsers = useSelector((state: RootState) => state.user.users);
+    const users = getUsers.filter(user => user.status === true);
+    const getCategories = useSelector((state: RootState) => state.category.categories);
+    const categories = getCategories.filter(category => category.status === true);
     useEffect(() => {
         dispatch(showCategories())
         dispatch(showUsers())
@@ -72,10 +78,8 @@ const EditProduct = () => {
         console.log(categoryId, 'cat id')
         setSelectedCategoryId(categoryId);
     };
-    const categories = useSelector((state: RootState) => state.category.categories);
-    const users = useSelector((state: RootState) => state.user.users);
-
-
+  
+console.log(categories, 'categories')
     const addFaqSection = () => {
         setFaqSections([...faqSections, { question: '', answer: '' }]);
     };
@@ -134,7 +138,7 @@ const EditProduct = () => {
                 </h1>                <hr className='2xl:my-7 my-5 md:block hidden' />
                 <div className='lg:flex gap-0'>
                     <div className=' lg:w-[300px] md:w-full '>
-                        <UploadImage onFileChange={setFeatureImage} onFilesArrayChange={setFilesArray} />
+                        <UploadImage onFileChange={setFeatureImage} onFilesArrayChange={setFilesArray} oldProductImages={setOldProductImages} />
                     </div>
                     <div className='border bg-gray-300 ml-5 lg:block hidden w-[1px] mt-16  h-[700px]'>
 
