@@ -45,8 +45,10 @@ const EditImage = () => {
     }
     const { id } = useParams() || {};
     const productId = parseInt(id, 10);
-    const users = useSelector((state: RootState) => state.user.users);
-    const categories = useSelector((state: RootState) => state.category.categories);
+    const getUsers = useSelector((state: RootState) => state.user.users);
+    const users = getUsers.filter(user => user.status === true);
+    const getCategories = useSelector((state: RootState) => state.category.categories);
+    const categories = getCategories.filter(category => category.status === true);
     const products = useSelector((state: RootState) => state.product.products);
     const product = products.find((product) => product?.id === productId) || {};
 
@@ -176,6 +178,7 @@ const EditImage = () => {
                         <UploadImage
                           onFileChange={setFeatureImage}
                           onFilesArrayChange={setFilesArray}
+                          oldProductImages = {setOldImagesArray}
                           productImages={filesArray || []}
                           featuredImagePath={product.featuredImagePath}
                          />

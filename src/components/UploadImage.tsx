@@ -3,7 +3,8 @@ import { LuImagePlus } from "react-icons/lu"
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 
-function UploadImage({  onFileChange, onFilesArrayChange, productImages , featuredImagePath}) {
+function UploadImage({  onFileChange, onFilesArrayChange, productImages , featuredImagePath, oldProductImages}) {
+    const [oldImagesArray, setOldImagesArray] = useState(productImages || []);
     const [imagesArray, setImagesArray] = useState<File[]>([]);
     const [imageUrl1, setImageUrl1] = useState<string | undefined>(featuredImagePath || undefined);
     const [imageUrl2, setImageUrl2] = useState<string | undefined>(productImages && productImages[0]?.path  || undefined);
@@ -11,39 +12,57 @@ function UploadImage({  onFileChange, onFilesArrayChange, productImages , featur
     const [imageUrl4, setImageUrl4] = useState<string | undefined>(productImages && productImages[2]?.path || undefined);
     const [imageUrl5, setImageUrl5] = useState<string | undefined>(productImages && productImages[3]?.path ||undefined);
 
-
     const handleSingleFileChange = (file) => {
         readURL(file, 'first');
         onFileChange(file.files[0]);
+        if (oldImagesArray.length > 0) {
+            console.log('we are here')
+            setOldImagesArray((oldArray) => oldArray.slice(1));
+        }
     };
 
     const handleFirstFileChange = (file) => {
         if (file.files[0]) {
             readURL(file, 'second');
             setImagesArray(prevArray => [...prevArray, file.files[0]]);
+            if (oldImagesArray.length > 0) {
+                console.log('we are here')
+                setOldImagesArray((oldArray) => oldArray.slice(1));
+            }
+
         }
     }
     const handleSecondFileChange = (file) => {
         if (file.files[0]) {
             readURL(file, 'third');
             setImagesArray(prevArray => [...prevArray, file.files[0]]);
+            if (oldImagesArray.length > 0) {
+                setOldImagesArray((oldArray) => oldArray.slice(2));
+            }
         }
     }
     const handleThirdFileChange = (file) => {
         if (file.files[0]) {
             readURL(file, 'fourth');
             setImagesArray(prevArray => [...prevArray, file.files[0]]);
+            if (oldImagesArray.length > 0) {
+                setOldImagesArray((oldArray) => oldArray.slice(3));
+            }
         }
     }
     const handleFourthFileChange = (file) => {
         if (file.files[0]) {
             readURL(file, 'fifth');
             setImagesArray(prevArray => [...prevArray, file.files[0]]);
+            if (oldImagesArray.length > 0) {
+                setOldImagesArray((oldArray) => oldArray.slice(4));
+            }
         }
     }
     useEffect(() => {
         onFilesArrayChange(imagesArray);
-    }, [imagesArray, onFilesArrayChange]);
+        oldProductImages(oldImagesArray)
+    }, [imagesArray, onFilesArrayChange,oldImagesArray]);
     function readURL(input: HTMLInputElement | null, type: string) {
         if (input && input.files && input.files[0]) {
             const file = input.files[0];
@@ -67,6 +86,7 @@ function UploadImage({  onFileChange, onFilesArrayChange, productImages , featur
             reader.readAsDataURL(file);
         }
     }
+    
     return (
         <div className="flex lg:flex-col md:flex-row flex-col md:ml-0 gap-5 justify-center items">
             <div className='2xl:w-[300px] lg:w-[250px] md:w-[300px] w-[250px] 2xl:mx-auto text-center 2xl:py-28 py-24 bg-[#F1F5F9] border border-[#CACACA] rounded-2xl'>
