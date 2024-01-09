@@ -4,6 +4,7 @@ import { AppDispatch, RootState } from '../redux/store';
 import { addCategory,updateCategory } from '../redux/Category/categoryAction';
 const Uploading: React.FC = (props:any) => {
   const {category,onClick} = props
+  console.log(category, 'category')
   const dispatch: AppDispatch = useDispatch();
   const [categoryName, setCategoryName] = useState(category.name);
   const [previewUrl, setPreviewUrl] = useState<string | null>(category.image_path);

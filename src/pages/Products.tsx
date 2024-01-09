@@ -201,7 +201,7 @@ const Products = () => {
                 </tr>
               </thead>
               <tbody className='2xl:text-xl text-xs'>
-                {products.map((product, index) => (
+                {products.length > 0 ? ( products.map((product, index) => (
                   <tr key={index}>
                     <td className="border-b border-box py-5   dark:border-strokedark ">
                       <h5 className="font-medium dark:text-white text-left">
@@ -254,7 +254,12 @@ const Products = () => {
 
                     </td>
                   </tr>
-                ))}
+                ))
+                ) : (
+                  <tr className="2xl:text-base text-xs border-b border-1 border-box">
+                    <td className="px-6 py-4">No Data Found</td>
+                  </tr>
+                )}
 
               </tbody>
             </table>

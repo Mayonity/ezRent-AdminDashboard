@@ -59,15 +59,15 @@ const Table = () => {
         category.name.toLowerCase().includes(searchName.toLowerCase())
       );
       setDisplayCategories(filtered);
-    } else {
+    } else if (searchName === '') {
       setDisplayCategories(categories); // No search term, show all categories
     }
   };
-  const handleBlock = (id:any, status:any, comment:any) => {
+  const handleBlock = (id: any, status: any, comment: any) => {
     const data = {
-      id : id,
-      status : status,
-      comment : comment
+      id: id,
+      status: status,
+      comment: comment
     }
     dispatch(updateCategory(data));
   }
@@ -177,7 +177,8 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {displayCategories.map((category, index) => (
+            {displayCategories.length > 0 ? (displayCategories.map((category, index) => (
+
               <tr key={index} className="2xl:text-base text-xs border-b border-1 border-box ">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {category.id}
@@ -193,14 +194,14 @@ const Table = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  {category.products ?  category.products.length : 0}
+                  {category.products ? category.products.length : 0}
                 </td>
                 <td className="px-6 py-4">
                   {moment(category.created_at).format('YYYY-MM-DD')}
 
                 </td>
                 <td className="border-b border-box py-5 px-4 ">
-              <Toggle onClick={handleBlock} isToggle={category.status} id={category.id} comment={category.comment} />
+                  <Toggle onClick={handleBlock} isToggle={category.status} id={category.id} comment={category.comment} />
                 </td>
 
 
@@ -215,7 +216,12 @@ const Table = () => {
                 </td>
 
               </tr>
-            ))}
+            ))
+            ) : (
+              <tr className="2xl:text-base text-xs border-b border-1 border-box">
+                <td className="px-6 py-4">No Data Found</td>
+              </tr>
+            )}
 
           </tbody>
         </table>
